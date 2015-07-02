@@ -3,7 +3,7 @@ module V1
   class PeopleController < ApplicationController
 
     def index
-      @people = Person.all
+      @people = paginate(Person.all)
     end
 
   end
