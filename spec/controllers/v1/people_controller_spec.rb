@@ -2,7 +2,15 @@
 require 'rails_helper'
 
 describe V1::PeopleController, type: :controller do
-  it "should" do
-    expect(1).to equal 1
+
+  describe "GET #index" do
+
+    it "provides a list of people" do
+      request.headers["Accept"] = "application/json; version=1"
+      get :index
+      # TODO
+    end
+
   end
+
 end
