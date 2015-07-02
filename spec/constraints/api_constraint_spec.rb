@@ -5,7 +5,7 @@ require "constraints/api_constraint"
 describe ApiConstraint do
 
   let(:request) {
-    double :request
+    double(:request)
   }
 
   describe "#matches?" do
@@ -21,8 +21,8 @@ describe ApiConstraint do
     end
 
     it "matches the requested version" do
-      request.stub(headers: { accept: header(version) })
-      expect(constraint.matches?(request)).to be_true
+      allow(request).to receive(:headers).and_return(accept: header(version))
+      expect(constraint.matches?(request)).to be true
     end
 
   end
