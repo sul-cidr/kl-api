@@ -1,17 +1,21 @@
 
 
-desc "Import data from v1."
-task :import => :environment do
+namespace :db do
 
-  # Connect to legacy database.
-  config = Rails.configuration.database_configuration["legacy"]
-  DB = Sequel.connect(:adapter => "postgres", **config.symbolize_keys)
+  desc "Import data from v1"
+  task :import => :environment do
 
-  DB[:indiv].each{|i|
-    Person.create(
-      family_name:  i[:surn],
-      given_name:   i[:givn],
-    )
-  }
+    # Connect to legacy database.
+    legacy = Rails.configuration.database_configuration["legacy"]
+    DB = Sequel.connect(:adapter => "postgres", **legacy.symbolize_keys)
+
+    DB[:indiv].each{|i|
+      Person.create(
+        family_name:  i[:surn],
+        given_name:   i[:givn],
+      )
+    }
+
+  end
 
 end
