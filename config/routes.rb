@@ -54,13 +54,13 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  #def api_version(version, &routes)
-    #constraint = ApiConstraint.new(version: version)
-    #scope(module: "v#{version}", constraints: constraint, &routes)
-  #end
+  def api_version(version, &routes)
+    constraint = ApiConstraint.new(version: version)
+    scope(module: "v#{version}", constraints: constraint, &routes)
+  end
 
-  #api_version(1) do
-    #resource :people
-  #end
+  api_version(1) do
+    resources :people, only: :index
+  end
 
 end
