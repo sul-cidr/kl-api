@@ -1,5 +1,4 @@
 
-
 namespace :db do
 
   desc "Import data from v1"
