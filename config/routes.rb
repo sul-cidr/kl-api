@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   end
 
   api_version(1) do
-    resources :people, only: :index
+    resources :people, only: [:index, :show]
   end
 
 end
