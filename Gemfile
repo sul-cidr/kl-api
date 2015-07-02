@@ -47,5 +47,8 @@ group :development, :test do
 
   # Annotate model files with the current schema.
   gem 'annotate'
+
+  # Linting.
+  gem 'rubocop'
 end
 
