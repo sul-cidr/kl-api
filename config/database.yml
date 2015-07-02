@@ -83,3 +83,7 @@ production:
   database: kb_production
   username: kb
   password: <%= ENV['PG_DATABASE_PASSWORD'] %>
+
+legacy:
+  <<: *default
+  database: kb_legacy
