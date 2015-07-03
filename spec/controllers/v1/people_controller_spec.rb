@@ -16,7 +16,7 @@ describe V1::PeopleController, type: :controller do
       create_list(:person, 100)
     end
 
-    it "should provide a list of people, with default pagination" do
+    it "should provide a list of people (with default pagination)" do
       get :index
       json = JSON.parse(response.body)
       expect(json.length).to eq(25)
