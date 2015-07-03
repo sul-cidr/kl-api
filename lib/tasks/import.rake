@@ -1,21 +1,38 @@
 
+
+# Get the legacy parameters.
+legacy = Rails.configuration.database_configuration["legacy"]
+
+# Initialize the connection.
+DB = Sequel.connect(
+  :adapter => "postgres",
+  **legacy.symbolize_keys
+)
+
+
 namespace :db do
+  namespace :import do
 
-  desc "Import data from v1"
-  task :import => :environment do
+    desc "Import person rows"
+    task :indiv_rows => :environment do
 
-    # Connect to legacy database.
-    legacy = Rails.configuration.database_configuration["legacy"]
-    DB = Sequel.connect(:adapter => "postgres", **legacy.symbolize_keys)
+      DB[:indiv].each do |i|
+        Person.create(
+          given_name:   i[:givn],
+          family_name:  i[:surn],
+          sex:          i[:sex],
+        )
+      end
 
-    DB[:indiv].each{|i|
-      Person.create(
-        given_name:   i[:givn],
-        family_name:  i[:surn],
-        sex:          i[:sex],
-      )
-    }
+    end
+
+    desc "Migrate person birth / death years" do
+
+      DB[:indiv].each do |i|
+        # TODO
+      end
+
+    end
 
   end
-
 end
