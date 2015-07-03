@@ -1,5 +1,5 @@
 
-module V1
+module API
   class PeopleController < ApplicationController
 
     def index

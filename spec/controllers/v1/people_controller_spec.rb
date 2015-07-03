@@ -2,7 +2,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe V1::PeopleController, type: :controller do
+describe API::PeopleController, type: :controller do
 
   render_views
 
