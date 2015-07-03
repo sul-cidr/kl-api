@@ -25,19 +25,19 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `deathyear`: **TODO**
   - `birth_abt`: **TODO**
   - `death_abt`: **TODO**
-  - `odnb`: **TODO**
-  - `sim20`: **TODO**
-  - `birt`: Dropped (all rows had empty values).
-  - `deat`: Dropped (all rows had empty values).
-  - `birthdate`: **TODO**
-  - `deathdate`: **TODO**
-  - `perioddist`: **TODO**
+  - `odnb`: Dropped (empty).
+  - `sim20`: Dropped (empty).
+  - `birt`: Dropped (empty).
+  - `deat`: Dropped (empty).
+  - `birthdate`: Dropped (empty).
+  - `deathdate`: Dropped (empty).
+  - `perioddist`: Dropped (empty).
   - `search_names`: Dropped - let's use Solr / Elasticsearch.
-  - `perioddist_new`: **TODO**
+  - `perioddist_new`: Dropped (empty).
   - `best`: **TODO**
   - `dest`: **TODO**
   - `bestconf`: **TODO**
   - `destconf`: **TODO**
   - `chantext`: **TODO**
-  - `diedyoung`: **TODO**
+  - `diedyoung`: Dropped (empty).
   - `spfx`: **TODO**

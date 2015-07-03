@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703215533) do
+ActiveRecord::Schema.define(version: 20150703224533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20150703215533) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "sex"
+    t.integer  "birth_year"
+    t.integer  "death_year"
   end
 
 end
