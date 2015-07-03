@@ -9,7 +9,7 @@ This app includes code to restructure and import data from the Kindred Britain v
 - **`indiv`**
 
   - `recno`: **TODO**
-  - `indiv_id`: **TODO**
+  - `indiv_id`: Migrated directly into `Person` / `legacy_id`.
   - `sex`: Migrated directly into `Person` / `sex`.
   - `fullname`: Dropped - this can be formed from the `given_name` and `family_name`.
   - `reli`: **TODO**
