@@ -29,11 +29,18 @@ namespace :db do
       end
 
       desc "Migrate birth / death years"
-      task :birth_death_years => [:environment, :rows] do
+      task :birth_death => :environment do
 
         DB[:indiv].each do |i|
+
           birth_year = i[:birthyear] || i[:birthdate] || i[:best]
           death_year = i[:deathyear] || i[:deathdate] || i[:dest]
+
+          Person.find_by(legacy_id: i[:indiv_id]).update(
+            birth_year: birth_year,
+            death_year: death_year
+          )
+
         end
 
       end
