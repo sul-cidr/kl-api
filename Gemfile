@@ -52,5 +52,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'sequel'
   gem 'factory_girl_rails'
+  gem 'json_spec'
 
 end
