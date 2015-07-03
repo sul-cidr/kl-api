@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -50,6 +51,6 @@ group :development, :test do
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'sequel'
+  gem 'factory_girl_rails'
 
 end
-
