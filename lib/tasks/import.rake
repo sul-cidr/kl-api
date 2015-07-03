@@ -19,6 +19,7 @@ namespace :db do
 
         DB[:indiv].each do |i|
           Person.create(
+            legacy_id:    i[:indiv_id],
             given_name:   i[:givn],
             family_name:  i[:surn],
             sex:          i[:sex],
@@ -31,7 +32,8 @@ namespace :db do
       task :birth_death_years => [:environment, :rows] do
 
         DB[:indiv].each do |i|
-          # TODO
+          birth_year = i[:birthyear] || i[:birthdate] || i[:best]
+          death_year = i[:deathyear] || i[:deathdate] || i[:dest]
         end
 
       end
