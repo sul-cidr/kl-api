@@ -10,3 +10,4 @@ This app includes code to restructure and import data from the Kindred Britain v
 
   - `givn`: Migrated directly into `Person` / `given_name`.
   - `surn`: Migrated directly into `Person` / `family_name`.
+  - `sex`: Migrated directly into `Person` / `sex`.

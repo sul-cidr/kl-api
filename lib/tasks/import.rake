@@ -10,8 +10,9 @@ namespace :db do
 
     DB[:indiv].each{|i|
       Person.create(
-        family_name:  i[:surn],
         given_name:   i[:givn],
+        family_name:  i[:surn],
+        sex:          i[:sex],
       )
     }
 
