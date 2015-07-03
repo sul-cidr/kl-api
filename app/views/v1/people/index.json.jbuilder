@@ -1,4 +1,4 @@
 
 json.array! @people do |person|
-  json.extract!(person, :family_name, :given_name)
+  json.extract!(person, :id, :family_name, :given_name)
 end
