@@ -8,6 +8,9 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  sex         :string
+#  birth_year  :integer
+#  death_year  :integer
+#  legacy_id   :string
 #
 
 class Person < ActiveRecord::Base

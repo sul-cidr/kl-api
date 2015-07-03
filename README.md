@@ -21,8 +21,8 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `notes`: **TODO**
   - `fams`: **TODO**
   - `famc`: **TODO**
-  - `birthyear`: **TODO**
-  - `deathyear`: **TODO**
+  - `birthyear`: Migrated directly into `Person` / `birth_year`.
+  - `deathyear`: Migrated directly into `Person` / `death_year`.
   - `birth_abt`: **TODO**
   - `death_abt`: **TODO**
   - `odnb`: Dropped (empty).
