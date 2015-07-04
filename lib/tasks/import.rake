@@ -33,8 +33,11 @@ namespace :db do
 
         DB[:indiv].each do |i|
 
-          birth_year = i[:birthyear] || i[:birthdate] || i[:best]
-          death_year = i[:deathyear] || i[:deathdate] || i[:dest]
+          # TODO: Do we need to preserve the fact that the *abt and *est fields
+          # are approximate?
+
+          birth_year = i[:birthyear] || i[:birth_abt] || i[:best]
+          death_year = i[:deathyear] || i[:death_abt] || i[:dest]
 
           Person.find_by(legacy_id: i[:indiv_id]).update(
             birth_year: birth_year,
