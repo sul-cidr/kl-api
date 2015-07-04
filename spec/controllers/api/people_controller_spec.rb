@@ -7,7 +7,14 @@ describe API::PeopleController, type: :controller do
 
   let(:per_page) { 25 }
 
-  let(:fields) { ["id", "family_name", "given_name"] }
+  let(:fields) {[
+    "id",
+    "family_name",
+    "given_name",
+    "sex",
+    "birth_year",
+    "death_year"
+  ]}
 
   before(:each) do
     request.headers["Accept"] = "application/json; version=1"
