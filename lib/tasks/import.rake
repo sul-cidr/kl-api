@@ -31,6 +31,7 @@ class ImportStep
     if satisfied?
       puts "SATISFIED: #{self.class.name}".colorize(:green)
     else
+      puts "IMPORTING: #{self.class.name}".colorize(:green)
       _up
     end
 
@@ -40,6 +41,7 @@ class ImportStep
   def down
 
     if satisfied?
+      puts "REVERTING: #{self.class.name}".colorize(:green)
       _down
     else
       puts "SATISFIED: #{self.class.name}".colorize(:green)
@@ -81,45 +83,45 @@ class ImportPersonRows < ImportStep
 end
 
 
-# Get the legacy parameters.
-legacy = Rails.configuration.database_configuration["legacy"]
-
-# Initialize the connection.
-DB = Sequel.connect(
-  :adapter => "postgres",
-  **legacy.symbolize_keys
-)
-
-
 namespace :db do
-  namespace :import do
-    namespace :person do
 
-      desc "Import rows"
-      task :rows => :environment do
-        ImportPersonRows.new.down
-      end
-
-      desc "Migrate birth / death years"
-      task :birth_death => :environment do
-
-        DB[:indiv].each do |i|
-
-          # TODO: Do we need to preserve the fact that the *abt and *est fields
-          # are approximate?
-
-          birth_year = i[:birthyear] || i[:birth_abt] || i[:best]
-          death_year = i[:deathyear] || i[:death_abt] || i[:dest]
-
-          Person.find_by(legacy_id: i[:indiv_id]).update(
-            birth_year: birth_year,
-            death_year: death_year
-          )
-
-        end
-
-      end
-
-    end
+  desc "Import data from KB1"
+  task :import => :environment do
+    ImportPersonRows.new.up
   end
+
 end
+
+
+#namespace :db do
+  #namespace :import do
+    #namespace :person do
+
+      #desc "Import rows"
+      #task :rows => :environment do
+        #ImportPersonRows.new.down
+      #end
+
+      #desc "Migrate birth / death years"
+      #task :birth_death => :environment do
+
+        #DB[:indiv].each do |i|
+
+          ## TODO: Do we need to preserve the fact that the *abt and *est fields
+          ## are approximate?
+
+          #birth_year = i[:birthyear] || i[:birth_abt] || i[:best]
+          #death_year = i[:deathyear] || i[:death_abt] || i[:dest]
+
+          #Person.find_by(legacy_id: i[:indiv_id]).update(
+            #birth_year: birth_year,
+            #death_year: death_year
+          #)
+
+        #end
+
+      #end
+
+    #end
+  #end
+#end
