@@ -44,5 +44,5 @@ This app includes code to restructure and import data from the Kindred Britain v
 
 - **`indiv_occu`**
   - `recno`: **TODO**
-  - `indiv_id`: Now a FK reference from `Person` -> `Occupation`.
-  - `occu`: Distinct values migrated to `Occupation` / `name`.
+  - `indiv_id`: Now a FK reference on the `OccupationPerson` join table.
+  - `occu`: Distinct values migrated to `Occupation` / `name`, FK references on `OccupationPerson`.
