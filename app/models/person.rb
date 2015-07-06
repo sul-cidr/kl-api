@@ -11,6 +11,8 @@
 #  birth_year  :integer
 #  death_year  :integer
 #  legacy_id   :string
+#  birth_circa :boolean
+#  death_circa :boolean
 #
 
 class Person < ActiveRecord::Base
