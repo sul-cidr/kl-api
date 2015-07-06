@@ -53,7 +53,7 @@ module Import
 
     # Has the import been run?
     def satisfied?
-      return false
+      raise NotImplementedError
     end
 
   end
