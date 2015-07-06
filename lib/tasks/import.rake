@@ -19,17 +19,23 @@ class ImportStep
 
   # Run the import.
   def up
-    # TODO
+
+    @depends.each do |dep|
+      dep.up()
+    end
+
+    return unless not satisfied?
+
   end
 
   # Reverse the import.
   def down
-    # TODO
+    return unless satisfied?
   end
 
   # Has the import been run?
   def satisfied?
-    # TODO
+    return false
   end
 
 end
