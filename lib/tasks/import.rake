@@ -64,12 +64,16 @@ module Import
 
     def _up
       @DB[:indiv].each do |i|
-        Person.create(
-          legacy_id:    i[:indiv_id],
-          given_name:   i[:givn],
-          family_name:  i[:surn],
-          sex:          i[:sex],
-        )
+        begin
+          Person.create(
+            legacy_id:    i[:indiv_id],
+            given_name:   i[:givn],
+            family_name:  i[:surn],
+            sex:          i[:sex],
+          )
+        rescue
+          next
+        end
       end
     end
 
