@@ -153,13 +153,29 @@ module Import
 
   class OccupationLinks < Step
 
-    @depende = [OccupationRows]
+    @depends = [OccupationRows]
 
     def _up
       @DB[:indiv_occu].each do |i|
-        # find matching occupation row
-        # set FK reference on person
+
+        # Find a matching person / occupation.
+        occupation = Occupation.find_by(name: i[:occu])
+        person = Person.find_by(legacy_id: i[:indiv_id])
+
+        # Link person -> occupation.
+        if occupation and person
+          person.update(occupation_id: occupation.id)
+        end
+
       end
+    end
+
+    def _down
+      Person.update_all(occupation_id: nil)
+    end
+
+    def satisfied?
+      Person.where.not(occupation_id: nil).exists?
     end
 
   end
@@ -176,6 +192,7 @@ namespace :db do
       Import::PersonRows.new.up
       Import::PersonBirthDeath.new.up
       Import::OccupationRows.new.up
+      Import::OccupationLinks.new.up
     end
 
     desc "Roll back the import"
