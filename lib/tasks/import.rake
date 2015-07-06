@@ -31,7 +31,7 @@ module Import
       end
 
       if satisfied?
-        puts "SATISFIED: #{self.class.name}".colorize(:green)
+        puts "SATISFIED: #{self.class.name}".colorize(:light_white)
       else
         puts "IMPORTING: #{self.class.name}".colorize(:green)
         _up
@@ -46,7 +46,7 @@ module Import
         puts "REVERTING: #{self.class.name}".colorize(:green)
         _down
       else
-        puts "SATISFIED: #{self.class.name}".colorize(:green)
+        puts "SATISFIED: #{self.class.name}".colorize(:light_white)
       end
 
     end
@@ -113,7 +113,7 @@ module Import
     end
 
     def satisfied?
-      return false
+      Person.where.not(birth_year: nil).exists?
     end
 
   end
