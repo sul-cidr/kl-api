@@ -58,7 +58,6 @@ module Import
 
   end
 
-
   class PersonRows < Step
 
     @depends = []
