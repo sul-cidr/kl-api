@@ -23,8 +23,8 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `famc`: **TODO**
   - `birthyear`: Migrated directly into `Person` / `birth_year`.
   - `deathyear`: Migrated directly into `Person` / `death_year`.
-  - `birth_abt`: **TODO**
-  - `death_abt`: **TODO**
+  - `birth_abt`: Migrated directly into `Person` / `birth_year`, with `birth_circa` flipped on.
+  - `death_abt`: Migrated directly into `Person` / `death_year`, with `death_circa` flipped on.
   - `odnb`: Dropped (empty).
   - `sim20`: Dropped (empty).
   - `birt`: Dropped (empty).
@@ -34,8 +34,8 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `perioddist`: Dropped (empty).
   - `search_names`: Dropped - let's use Solr / Elasticsearch.
   - `perioddist_new`: Dropped (empty).
-  - `best`: **TODO**
-  - `dest`: **TODO**
+  - `best`: Migrated directly into `Person` / `birth_year`, with `birth_circa` flipped on.
+  - `dest`: Migrated directly into `Person` / `death_year`, with `death_circa` flipped on.
   - `bestconf`: **TODO**
   - `destconf`: **TODO**
   - `chantext`: **TODO**
