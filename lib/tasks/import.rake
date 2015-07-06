@@ -151,6 +151,20 @@ module Import
   end
 
 
+  class OccupationLinks < Step
+
+    @depende = [OccupationRows]
+
+    def _up
+      @DB[:indiv_occu].each do |i|
+        # find matching occupation row
+        # set FK reference on person
+      end
+    end
+
+  end
+
+
 end
 
 
