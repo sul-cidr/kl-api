@@ -53,5 +53,6 @@ group :development, :test do
   gem 'sequel'
   gem 'factory_girl_rails'
   gem 'json_spec'
+  gem 'colorize'
 
 end

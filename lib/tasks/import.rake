@@ -2,6 +2,10 @@
 
 class ImportStep
 
+  class << self
+    attr_accessor :depends
+  end
+
   @depends = []
 
   # Set the legacy database connection.
@@ -10,7 +14,7 @@ class ImportStep
     # Read KB1 params from Rails config.
     params = Rails.configuration.database_configuration['legacy']
 
-    @DB = Sequal.connect(
+    @DB = Sequel.connect(
       :adapter => "postgres",
       **params.symbolize_keys
     )
@@ -20,22 +24,58 @@ class ImportStep
   # Run the import.
   def up
 
-    @depends.each do |dep|
-      dep.up()
+    self.class.depends.each do |dep|
+      dep.new.up
     end
 
-    return unless not satisfied?
+    if satisfied?
+      puts "SATISFIED: #{self.class.name}".colorize(:green)
+    else
+      _up
+    end
 
   end
 
   # Reverse the import.
   def down
-    return unless satisfied?
+
+    if satisfied?
+      _down
+    else
+      puts "SATISFIED: #{self.class.name}".colorize(:green)
+    end
+
   end
 
   # Has the import been run?
   def satisfied?
     return false
+  end
+
+end
+
+
+class ImportPersonRows < ImportStep
+
+  @depends = []
+
+  def _up
+    @DB[:indiv].each do |i|
+      Person.create(
+        legacy_id:    i[:indiv_id],
+        given_name:   i[:givn],
+        family_name:  i[:surn],
+        sex:          i[:sex],
+      )
+    end
+  end
+
+  def _down
+    Person.delete_all
+  end
+
+  def satisfied?
+    Person.count > 0
   end
 
 end
@@ -57,16 +97,7 @@ namespace :db do
 
       desc "Import rows"
       task :rows => :environment do
-
-        DB[:indiv].each do |i|
-          Person.create(
-            legacy_id:    i[:indiv_id],
-            given_name:   i[:givn],
-            family_name:  i[:surn],
-            sex:          i[:sex],
-          )
-        end
-
+        ImportPersonRows.new.down
       end
 
       desc "Migrate birth / death years"
