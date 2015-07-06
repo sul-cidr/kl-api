@@ -2,6 +2,7 @@
 
 module Import
 
+
   class Step
 
     class << self
@@ -58,6 +59,7 @@ module Import
 
   end
 
+
   class PersonRows < Step
 
     @depends = []
@@ -83,10 +85,11 @@ module Import
     end
 
     def satisfied?
-      Person.count == @DB[:indiv].count
+      Person.count > 0
     end
 
   end
+
 
   class PersonBirthDeath < Step
 
@@ -126,6 +129,28 @@ module Import
 
   end
 
+
+  class OccupationRows < Step
+
+    @depends = []
+
+    def _up
+      @DB[:indiv_occu].distinct(:occu).each do |i|
+        Occupation.create(name: i[:occu])
+      end
+    end
+
+    def _down
+      Occupation.delete_all
+    end
+
+    def satisfied?
+      Occupation.count > 0
+    end
+
+  end
+
+
 end
 
 
@@ -134,12 +159,15 @@ namespace :db do
 
     desc "Import data from KB1"
     task :up => :environment do
+      Import::PersonRows.new.up
       Import::PersonBirthDeath.new.up
+      Import::OccupationRows.new.up
     end
 
     desc "Roll back the import"
     task :down => :environment do
       Import::PersonRows.new.down
+      Import::OccupationRows.new.down
     end
 
   end
