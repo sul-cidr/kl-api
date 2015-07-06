@@ -1,5 +1,40 @@
 
 
+class ImportStep
+
+  @depends = []
+
+  # Set the legacy database connection.
+  def initialize
+
+    # Read KB1 params from Rails config.
+    params = Rails.configuration.database_configuration['legacy']
+
+    @DB = Sequal.connect(
+      :adapter => "postgres",
+      **params.symbolize_keys
+    )
+
+  end
+
+  # Run the import.
+  def up
+    # TODO
+  end
+
+  # Reverse the import.
+  def down
+    # TODO
+  end
+
+  # Has the import been run?
+  def satisfied?
+    # TODO
+  end
+
+end
+
+
 # Get the legacy parameters.
 legacy = Rails.configuration.database_configuration["legacy"]
 
