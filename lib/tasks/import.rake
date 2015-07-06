@@ -70,6 +70,7 @@ module Import
             given_name:   i[:givn],
             family_name:  i[:surn],
             sex:          i[:sex],
+            religion:     i[:reli],
           )
         rescue
           next
@@ -120,10 +121,7 @@ module Import
     end
 
     def satisfied?
-      Person.where.not(birth_year: nil).exists?   &&
-      Person.where.not(death_year: nil).exists?   &&
-      Person.where.not(birth_circa: nil).exists?  &&
-      Person.where.not(death_circa: nil).exists?
+      Person.where.not(birth_year: nil).exists?
     end
 
   end
@@ -141,7 +139,7 @@ namespace :db do
 
     desc "Roll back the import"
     task :down => :environment do
-      Import::PersonBirthDeath.new.down
+      Import::PersonRows.new.down
     end
 
   end
