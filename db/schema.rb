@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706222315) do
+ActiveRecord::Schema.define(version: 20150706233120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "occupation_people", force: :cascade do |t|
+    t.integer "occupation_id"
+    t.integer "person_id"
+  end
+
+  add_index "occupation_people", ["occupation_id", "person_id"], name: "index_occupation_people_on_occupation_id_and_person_id", using: :btree
+  add_index "occupation_people", ["person_id", "occupation_id"], name: "index_occupation_people_on_person_id_and_occupation_id", using: :btree
 
   create_table "occupations", force: :cascade do |t|
     t.string   "name"
@@ -37,4 +45,6 @@ ActiveRecord::Schema.define(version: 20150706222315) do
 
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree
 
+  add_foreign_key "occupation_people", "occupations"
+  add_foreign_key "occupation_people", "people"
 end

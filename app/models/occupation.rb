@@ -9,4 +9,6 @@
 #
 
 class Occupation < ActiveRecord::Base
+  has_many :occupation_people
+  has_many :people, :through => :occupation_people
 end
