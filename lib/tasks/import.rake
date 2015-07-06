@@ -164,18 +164,21 @@ module Import
 
         # Link person -> occupation.
         if occupation and person
-          person.update(occupation_id: occupation.id)
+          OccupationPerson.create(
+            occupation_id: occupation.id,
+            person_id: person.id
+          )
         end
 
       end
     end
 
     def _down
-      Person.update_all(occupation_id: nil)
+      OccupationPerson.delete_all
     end
 
     def satisfied?
-      Person.where.not(occupation_id: nil).exists?
+      OccupationPerson.count > 0
     end
 
   end
