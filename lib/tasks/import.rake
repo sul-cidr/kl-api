@@ -82,7 +82,7 @@ module Import
     end
 
     def satisfied?
-      Person.count > 0
+      Person.count == @DB[:indiv].count
     end
 
   end
@@ -91,12 +91,19 @@ end
 
 
 namespace :db do
+  namespace :import do
 
-  desc "Import data from KB1"
-  task :import => :environment do
-    Import::PersonRows.new.up
+    desc "Import data from KB1"
+    task :up => :environment do
+      Import::PersonRows.new.up
+    end
+
+    desc "Roll back the import"
+    task :down => :environment do
+      Import::PersonRows.new.down
+    end
+
   end
-
 end
 
 
