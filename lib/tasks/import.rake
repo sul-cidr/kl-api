@@ -87,6 +87,37 @@ module Import
 
   end
 
+  class PersonBirthDeath < Step
+
+    @depends = [PersonRows]
+
+    def _up
+      @DB[:indiv].each do |i|
+
+        birth_year = i[:birthyear] || i[:birth_abt] || i[:best]
+        death_year = i[:deathyear] || i[:death_abt] || i[:dest]
+
+        Person.find_by(legacy_id: i[:indiv_id]).update(
+          birth_year: birth_year,
+          death_year: death_year
+        )
+
+      end
+    end
+
+    def _down
+      Person.update_all(
+        birth_year: nil,
+        death_year: nil
+      )
+    end
+
+    def satisfied?
+      return false
+    end
+
+  end
+
 end
 
 
@@ -95,12 +126,12 @@ namespace :db do
 
     desc "Import data from KB1"
     task :up => :environment do
-      Import::PersonRows.new.up
+      Import::PersonBirthDeath.new.up
     end
 
     desc "Roll back the import"
     task :down => :environment do
-      Import::PersonRows.new.down
+      Import::PersonBirthDeath.new.down
     end
 
   end
