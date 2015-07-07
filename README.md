@@ -49,7 +49,7 @@ This app includes code to restructure and import data from the Kindred Britain v
 
 - **`event`**
   - `recno`: **TODO**
-  - `indiv_id`: **TODO**
+  - `indiv_id`: Dropped - available via particip.
   - `label`: **TODO**
   - `class`: **TODO**
   - `type`: **TODO**
