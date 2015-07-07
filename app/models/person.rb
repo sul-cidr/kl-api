@@ -16,7 +16,13 @@
 #
 
 class Person < ActiveRecord::Base
+
   has_many :occupation_people
   has_many :occupations, :through => :occupation_people
+
+  has_many :participations
+  has_many :events, :through => :participations
+
   validates :legacy_id, uniqueness: true
+
 end
