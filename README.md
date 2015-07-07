@@ -46,3 +46,26 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `recno`: **TODO**
   - `indiv_id`: Now a FK reference on the `OccupationPerson` join table.
   - `occu`: Distinct values migrated to `Occupation` / `name`, FK references on `OccupationPerson`.
+
+- **`event`**
+  - `recno`: **TODO**
+  - `indiv_id`: **TODO**
+  - `label`: **TODO**
+  - `class`: **TODO**
+  - `type`: **TODO**
+  - `period_text`: **TODO**
+  - `place`: **TODO**
+  - `cause`: **TODO**
+  - `notes`: **TODO**
+  - `event_date`: **TODO**
+  - `year`: **TODO**
+  - `year_abt`: **TODO**
+  - `actor_id`: **TODO**
+  - `year_est`: **TODO**
+  - `verb`: **TODO**
+  - `place_id`: **TODO**
+  - `search_col`: **TODO**
+  - `befaft`: **TODO**
+  - `year_est_pass`: **TODO**
+  - `period_array`: **TODO**
+  - `event_period_year`: **TODO**
