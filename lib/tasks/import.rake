@@ -66,17 +66,13 @@ module Import
 
     def _up
       @DB[:indiv].each do |i|
-        begin
-          Person.create(
-            legacy_id:    i[:indiv_id],
-            given_name:   i[:givn],
-            family_name:  i[:surn],
-            sex:          i[:sex],
-            religion:     i[:reli],
-          )
-        rescue
-          next
-        end
+        Person.create(
+          legacy_id:    i[:indiv_id],
+          given_name:   i[:givn],
+          family_name:  i[:surn],
+          sex:          i[:sex],
+          religion:     i[:reli],
+        )
       end
     end
 
@@ -189,8 +185,18 @@ module Import
     @depends = []
 
     def _up
-      @DB[:event].each do |i|
-        # TODO
+      @DB[:event].each do |e|
+
+        # Find a matching person row.
+        person = Person.find_by(legacy_id: e[:indiv_id])
+
+        if person
+          Event.create(
+            person_id: person.id,
+            name: e[:label]
+          )
+        end
+
       end
     end
 
@@ -217,12 +223,14 @@ namespace :db do
       Import::PersonBirthDeath.new.up
       Import::OccupationRows.new.up
       Import::OccupationLinks.new.up
+      Import::EventRows.new.up
     end
 
     desc "Roll back the import"
     task :down => :environment do
       Import::PersonRows.new.down
       Import::OccupationRows.new.down
+      Import::EventRows.new.down
     end
 
   end
