@@ -184,6 +184,27 @@ module Import
   end
 
 
+  class EventRows < Step
+
+    @depends = []
+
+    def _up
+      @DB[:event].each do |i|
+        # TODO
+      end
+    end
+
+    def _down
+      Event.delete_all
+    end
+
+    def satisfied?
+      Event.count > 0
+    end
+
+  end
+
+
 end
 
 
