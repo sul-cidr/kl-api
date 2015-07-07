@@ -11,6 +11,7 @@ namespace :db do
       Import::OccupationRows.new.up
       Import::OccupationLinks.new.up
       Import::EventRows.new.up
+      Import::EventTypeRows.new.up
     end
 
     desc "Roll back the import"
