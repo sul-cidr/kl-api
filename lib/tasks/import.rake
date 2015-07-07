@@ -14,6 +14,7 @@ namespace :db do
       Import::EventTypeRows.new.up
       Import::EventTypeLinks.new.up
       Import::ParticipationRows.new.up
+      Import::EventDates.new.up
     end
 
     desc "Roll back the import"

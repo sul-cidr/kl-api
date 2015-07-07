@@ -66,7 +66,7 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `place_id`: **TODO**
   - `search_col`: **TODO**
   - `befaft`: **TODO**
-  - `year_est_pass`: **TODO**
+  - `year_est_pass`: Dropped - only ~20 values?
   - `period_array`: **TODO**
   - `event_period_year`: **TODO**
 
