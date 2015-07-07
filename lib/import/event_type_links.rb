@@ -26,8 +26,7 @@ module Import
     end
 
     def satisfied?
-      #Event.where.not(event_type_id: nil).exists?
-      false
+      Event.where.not(event_type_id: nil).exists?
     end
 
   end
