@@ -18,4 +18,5 @@
 class Person < ActiveRecord::Base
   has_many :occupation_people
   has_many :occupations, :through => :occupation_people
+  validates :legacy_id, uniqueness: true
 end
