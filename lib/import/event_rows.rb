@@ -14,6 +14,7 @@ module Import
 
         if person
           Event.create(
+            legacy_id: e[:recno],
             person_id: person.id,
             name: e[:label]
           )
