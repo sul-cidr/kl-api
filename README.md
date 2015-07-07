@@ -8,7 +8,7 @@ This app includes code to restructure and import data from the Kindred Britain v
 
 - **`indiv`**
 
-  - `recno`: **TODO**
+  - `recno`: `id`
   - `indiv_id`: Migrated directly into `Person` / `legacy_id`.
   - `sex`: Migrated directly into `Person` / `sex`.
   - `fullname`: Dropped - this can be formed from the `given_name` and `family_name`.
@@ -43,16 +43,16 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `spfx`: **TODO**
 
 - **`indiv_occu`**
-  - `recno`: **TODO**
+  - `recno`: `id`
   - `indiv_id`: Now a FK reference on the `OccupationPerson` join table.
   - `occu`: Distinct values migrated to `Occupation` / `name`, FK references on `OccupationPerson`.
 
 - **`event`**
-  - `recno`: **TODO**
+  - `recno`: `id`
   - `indiv_id`: Dropped - available via particip.
-  - `label`: **TODO**
+  - `label`: Migrated directly into `Event` / `name`.
   - `class`: **TODO**
-  - `type`: **TODO**
+  - `type`: Normalized into `EventType`, referenced via `event_type_id`.
   - `period_text`: **TODO**
   - `place`: **TODO**
   - `cause`: **TODO**
@@ -69,3 +69,10 @@ This app includes code to restructure and import data from the Kindred Britain v
   - `year_est_pass`: **TODO**
   - `period_array`: **TODO**
   - `event_period_year`: **TODO**
+
+- **`particip`**
+  - `recno`: `id`
+  - `event_id`: Mapped into `event_id`, which references `Event`.
+  - `actor_id`: Mapped into `person_id`, which references `Person`.
+  - `role`: **TODO**
+  - `extent`: **TODO**
