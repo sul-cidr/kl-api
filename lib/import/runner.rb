@@ -2,6 +2,8 @@
 module Import
   class Runner
 
+    attr_accessor :steps
+
     #
     # Make an instance from a set of steps.
     #
@@ -26,7 +28,7 @@ module Import
     # @param step [Import::Step]
     #
     def add_step(step)
-      @steps[step.name] = step
+      @steps[step.name.demodulize] = step
     end
 
     #
