@@ -1,6 +1,4 @@
 
-require_rel "step"
-
 module Import
   class EventDates < Step
 
