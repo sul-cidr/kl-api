@@ -8,15 +8,14 @@
 #  updated_at    :datetime         not null
 #  legacy_id     :integer
 #  event_type_id :integer
-#  date          :date
 #  year          :integer
 #  year_est      :boolean
 #
 
 class Event < ActiveRecord::Base
 
-  has_many :participations
-  has_many :people, :through => :participations
+  has_many :person_events
+  has_many :people, :through => :person_events
 
   validates :legacy_id, uniqueness: true
 
