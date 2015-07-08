@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707235404) do
+ActiveRecord::Schema.define(version: 20150708003108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20150707235404) do
     t.integer  "birth_year"
     t.integer  "death_year"
     t.string   "legacy_id"
-    t.boolean  "birth_circa"
-    t.boolean  "death_circa"
+    t.boolean  "birth_est"
+    t.boolean  "death_est"
   end
 
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree

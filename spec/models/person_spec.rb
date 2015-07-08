@@ -11,8 +11,8 @@
 #  birth_year  :integer
 #  death_year  :integer
 #  legacy_id   :string
-#  birth_circa :boolean
-#  death_circa :boolean
+#  birth_est   :boolean
+#  death_est   :boolean
 #
 
 require "rails_helper"
