@@ -8,7 +8,9 @@ module Import
 
     @depends = []
 
+    #
     # Set the legacy database connection.
+    #
     def initialize
 
       # Read KB1 params from Rails config.
@@ -21,7 +23,9 @@ module Import
 
     end
 
+    #
     # Run the import.
+    #
     def up
 
       self.class.depends.each do |dep|
@@ -37,7 +41,9 @@ module Import
 
     end
 
+    #
     # Reverse the import.
+    #
     def down
 
       if satisfied?
@@ -49,7 +55,11 @@ module Import
 
     end
 
+    #
     # Has the import been run?
+    #
+    # @return [Boolean]
+    #
     def satisfied?
       raise NotImplementedError
     end
