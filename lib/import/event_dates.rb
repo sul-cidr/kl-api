@@ -11,11 +11,16 @@ module Import
 
         event = Event.find_by(legacy_id: e[:recno])
 
-        if e[:event_date]
-          event.update(date: e[:event_date])
-        else
-          year = e[:year] || e[:year_abt] || e[:year_est]
-          event.update(year: year)
+        date = e[:event_date]
+        year = e[:year] || e[:year_abt] || e[:year_est]
+
+        if date
+          event.update(date: date)
+        elsif year
+          event.update(
+            year: year,
+            year_est: !!(e[:year_abt] || e[:year_est])
+          )
         end
 
       end
@@ -24,7 +29,8 @@ module Import
     def _down
       Event.update_all(
         date: nil,
-        year: nil
+        year: nil,
+        year_est: nil
       )
     end
 

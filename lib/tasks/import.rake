@@ -19,9 +19,10 @@ namespace :db do
 
     desc "Roll back the import"
     task :down => :environment do
-      Import::PersonRows.new.down
-      Import::OccupationRows.new.down
-      Import::EventRows.new.down
+      #Import::PersonRows.new.down
+      #Import::OccupationRows.new.down
+      #Import::EventRows.new.down
+      Import::EventDates.new.down
     end
 
   end
