@@ -13,12 +13,9 @@ module Import
         year = e[:year] || e[:year_abt] || e[:year_est]
 
         if date
-          event.update(date: date)
+          event.update(year: date.year)
         elsif year
-          event.update(
-            year: year,
-            year_est: !!(e[:year_abt] || e[:year_est])
-          )
+          event.update(year: year)
         end
 
       end
@@ -26,14 +23,13 @@ module Import
 
     def _down
       Event.update_all(
-        date: nil,
         year: nil,
         year_est: nil
       )
     end
 
     def satisfied?
-      Event.where.not(date: nil).exists?
+      Event.where.not(year: nil).exists?
     end
 
   end
