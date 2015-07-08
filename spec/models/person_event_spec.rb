@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: participations
+# Table name: person_events
 #
 #  id        :integer          not null, primary key
 #  person_id :integer
@@ -9,6 +9,6 @@
 
 require 'rails_helper'
 
-describe Participation, type: :model do
+describe PersonEvent, type: :model do
   # TODO
 end

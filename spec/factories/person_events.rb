@@ -1,13 +1,15 @@
 # == Schema Information
 #
-# Table name: participations
+# Table name: person_events
 #
 #  id        :integer          not null, primary key
 #  person_id :integer
 #  event_id  :integer
 #
 
-class Participation < ActiveRecord::Base
-  belongs_to :people
-  belongs_to :events
+FactoryGirl.define do
+  factory :participation do
+    
+  end
+
 end

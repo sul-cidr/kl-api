@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708003108) do
+ActiveRecord::Schema.define(version: 20150708163228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,6 @@ ActiveRecord::Schema.define(version: 20150708003108) do
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
   add_index "events", ["legacy_id"], name: "index_events_on_legacy_id", unique: true, using: :btree
 
-  create_table "occupation_people", force: :cascade do |t|
-    t.integer "occupation_id"
-    t.integer "person_id"
-  end
-
-  add_index "occupation_people", ["occupation_id", "person_id"], name: "index_occupation_people_on_occupation_id_and_person_id", using: :btree
-  add_index "occupation_people", ["person_id", "occupation_id"], name: "index_occupation_people_on_person_id_and_occupation_id", using: :btree
-
   create_table "occupations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -49,14 +41,6 @@ ActiveRecord::Schema.define(version: 20150708003108) do
   end
 
   add_index "occupations", ["name"], name: "index_occupations_on_name", unique: true, using: :btree
-
-  create_table "participations", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "event_id"
-  end
-
-  add_index "participations", ["event_id", "person_id"], name: "index_participations_on_event_id_and_person_id", using: :btree
-  add_index "participations", ["person_id", "event_id"], name: "index_participations_on_person_id_and_event_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "family_name"
@@ -73,9 +57,25 @@ ActiveRecord::Schema.define(version: 20150708003108) do
 
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree
 
+  create_table "person_events", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "event_id"
+  end
+
+  add_index "person_events", ["event_id", "person_id"], name: "index_person_events_on_event_id_and_person_id", using: :btree
+  add_index "person_events", ["person_id", "event_id"], name: "index_person_events_on_person_id_and_event_id", using: :btree
+
+  create_table "person_occupations", force: :cascade do |t|
+    t.integer "occupation_id"
+    t.integer "person_id"
+  end
+
+  add_index "person_occupations", ["occupation_id", "person_id"], name: "index_person_occupations_on_occupation_id_and_person_id", using: :btree
+  add_index "person_occupations", ["person_id", "occupation_id"], name: "index_person_occupations_on_person_id_and_occupation_id", using: :btree
+
   add_foreign_key "events", "event_types"
-  add_foreign_key "occupation_people", "occupations"
-  add_foreign_key "occupation_people", "people"
-  add_foreign_key "participations", "events"
-  add_foreign_key "participations", "people"
+  add_foreign_key "person_events", "events"
+  add_foreign_key "person_events", "people"
+  add_foreign_key "person_occupations", "occupations"
+  add_foreign_key "person_occupations", "people"
 end

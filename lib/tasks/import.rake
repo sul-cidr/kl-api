@@ -13,7 +13,7 @@ namespace :db do
       Import::EventRows.new.up
       Import::EventTypeRows.new.up
       Import::EventTypeLinks.new.up
-      Import::ParticipationRows.new.up
+      Import::PersonEventRows.new.up
       Import::EventDates.new.up
     end
 

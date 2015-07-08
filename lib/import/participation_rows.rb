@@ -1,6 +1,6 @@
 
 module Import
-  class ParticipationRows < Step
+  class PersonEventRows < Step
 
     @depends = [PersonRows, EventRows]
 
@@ -11,7 +11,7 @@ module Import
         event = Event.find_by(legacy_id: p[:event_id])
 
         if person and event
-          Participation.create(
+          PersonEvent.create(
             person_id: person.id,
             event_id: event.id
           )
@@ -21,11 +21,11 @@ module Import
     end
 
     def _down
-      Participation.delete_all
+      PersonEvent.delete_all
     end
 
     def satisfied?
-      Participation.count > 0
+      PersonEvent.count > 0
     end
 
   end
