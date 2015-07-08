@@ -22,10 +22,7 @@ module Import
     end
 
     def _down
-      Event.update_all(
-        year: nil,
-        year_est: nil
-      )
+      Event.update_all(year: nil)
     end
 
     def satisfied?
