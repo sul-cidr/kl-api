@@ -1,4 +1,6 @@
 
+require "rgl/adjacency"
+
 module Import
   class Runner
 
@@ -19,6 +21,7 @@ module Import
     # Initialize the step map.
     #
     def initialize
+      @graph = RGL::DirectedAdjacencyGraph.new
       @steps = {}
     end
 
@@ -28,7 +31,18 @@ module Import
     # @param step [Import::Step]
     #
     def add_step(step)
+
+      # Map name -> class.
       @steps[step.name.demodulize] = step
+
+      # Add node.
+      @graph.add_vertex(step)
+
+      # Add edges.
+      step.depends.each do |dep|
+        @graph.add_edge(step, dep)
+      end
+
     end
 
     #
