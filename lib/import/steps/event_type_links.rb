@@ -2,7 +2,7 @@
 module Import
   class EventTypeLinks < Step
 
-    @depends = [EventTypeRows]
+    @depends = [EventRows, EventTypeRows]
 
     def _up
       @DB[:event].each do |e|

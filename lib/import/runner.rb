@@ -51,22 +51,14 @@ module Import
       steps.each do |step|
         add_step(step)
       end
-      puts @udeps.tsort
     end
 
     #
-    # Run import steps. If a step name is passed, run just that step.
-    # Otherwise, run all steps.
+    # Run import steps.
     #
-    # @param name [String]
-    #
-    def up(name=nil)
-      if name
-        @steps[name].new.up
-      else
-        @steps.each do |k, step|
-          step.new.up
-        end
+    def up()
+      @udeps.tsort_each do |dep|
+        dep.new.up
       end
     end
 
@@ -76,7 +68,11 @@ module Import
     # @param name [String]
     #
     def down(name)
-      @steps[name].new.down
+      @ddeps.each_strongly_connected_component_from(@steps[name]) do |cmp|
+        cmp.each do |dep|
+          dep.new.down
+        end
+      end
     end
 
   end
