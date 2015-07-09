@@ -16,10 +16,12 @@ module Import
     end
 
     #
-    # Initialize the step map.
+    # Initialize the name -> class map and the up/down dependency graphs.
     #
     def initialize
       @steps = {}
+      @udeps = Graph.new([])
+      @ddeps = Graph.new([])
     end
 
     #
@@ -28,7 +30,16 @@ module Import
     # @param step [Import::Step]
     #
     def add_step(step)
+
+      # Map name -> class.
       @steps[step.name.demodulize] = step
+
+      # Build out up/down adjacency lists.
+      step.depends.each do |dep|
+        @udeps[step] += [dep]
+        @ddeps[dep] += [step]
+      end
+
     end
 
     #
