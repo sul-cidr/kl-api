@@ -21,6 +21,8 @@ describe Person, :type => :model do
 
   describe "validations" do
     it { should validate_uniqueness_of :legacy_id }
+    it { should have_many :person_events}
+    it { should have_many :person_occupations}
   end
 
 end

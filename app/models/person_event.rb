@@ -8,6 +8,6 @@
 #
 
 class PersonEvent < ActiveRecord::Base
-  belongs_to :people
-  belongs_to :events
+  belongs_to :person
+  belongs_to :event
 end

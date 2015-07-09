@@ -14,6 +14,7 @@ describe Occupation, type: :model do
 
   describe "validations" do
     it { should validate_uniqueness_of :name }
+    it { should have_many :person_occupations }
   end
 
 end
