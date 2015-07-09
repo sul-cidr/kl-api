@@ -4,13 +4,13 @@ module Import
 
     @depends = []
 
-    def _up
+    def up
       @DB[:event].distinct(:type).each do |i|
         EventType.create(code: i[:type])
       end
     end
 
-    def _down
+    def down
       EventType.delete_all
     end
 

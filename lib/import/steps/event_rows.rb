@@ -4,7 +4,7 @@ module Import
 
     @depends = []
 
-    def _up
+    def up
       @DB[:event].each do |e|
         Event.create(
           legacy_id: e[:recno],
@@ -13,7 +13,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       Event.delete_all
     end
 

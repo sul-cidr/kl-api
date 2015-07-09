@@ -4,7 +4,7 @@ module Import
 
     @depends = [OccupationRows]
 
-    def _up
+    def up
       @DB[:indiv_occu].each do |i|
 
         # Find a matching person / occupation.
@@ -22,7 +22,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       PersonOccupation.delete_all
     end
 

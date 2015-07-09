@@ -4,7 +4,7 @@ module Import
 
     @depends = [EventRows]
 
-    def _up
+    def up
       @DB[:event].each do |e|
 
         event = Event.find_by(legacy_id: e[:recno])
@@ -21,7 +21,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       Event.update_all(year: nil)
     end
 

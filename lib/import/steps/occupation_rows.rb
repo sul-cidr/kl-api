@@ -4,13 +4,13 @@ module Import
 
     @depends = []
 
-    def _up
+    def up
       @DB[:indiv_occu].distinct(:occu).each do |i|
         Occupation.create(name: i[:occu])
       end
     end
 
-    def _down
+    def down
       Occupation.delete_all
     end
 

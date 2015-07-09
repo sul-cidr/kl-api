@@ -54,24 +54,53 @@ module Import
     end
 
     #
-    # Run import steps.
+    # Resolve dependencies and run all steps.
     #
-    def up()
+    def up
       @udeps.tsort_each do |dep|
-        dep.new.up
+        step_up(dep.new)
       end
     end
 
     #
-    # Roll back an import step.
+    # Roll back an import step, including all downsteam steps that depend on
+    # the root step.
     #
     # @param name [String]
     #
     def down(name)
       @ddeps.each_strongly_connected_component_from(@steps[name]) do |cmp|
         cmp.each do |dep|
-          dep.new.down
+          step_down(dep.new)
         end
+      end
+    end
+
+    #
+    # Run an individual step.
+    #
+    # @param step [Import::Step]
+    #
+    def step_up(step)
+      if step.satisfied?
+        puts "SATISFIED: #{step.class.name}".colorize(:light_white)
+      else
+        puts "IMPORTING: #{step.class.name}".colorize(:green)
+        step.up
+      end
+    end
+
+    #
+    # Revert an individual step.
+    #
+    # @param step [Import::Step]
+    #
+    def step_down(step)
+      if step.satisfied?
+        puts "REVERTING: #{step.class.name}".colorize(:green)
+        step.down
+      else
+        puts "SATISFIED: #{step.class.name}".colorize(:light_white)
       end
     end
 

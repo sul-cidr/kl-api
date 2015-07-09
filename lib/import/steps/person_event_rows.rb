@@ -4,7 +4,7 @@ module Import
 
     @depends = [PersonRows, EventRows]
 
-    def _up
+    def up
       @DB[:particip].each do |p|
 
         person = Person.find_by(legacy_id: p[:actor_id])
@@ -20,7 +20,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       PersonEvent.delete_all
     end
 

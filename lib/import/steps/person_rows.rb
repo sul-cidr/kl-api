@@ -4,7 +4,7 @@ module Import
 
     @depends = []
 
-    def _up
+    def up
       @DB[:indiv].each do |i|
         Person.create(
           legacy_id:    i[:indiv_id],
@@ -16,7 +16,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       Person.delete_all
     end
 

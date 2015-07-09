@@ -4,7 +4,7 @@ module Import
 
     @depends = [EventRows, EventTypeRows]
 
-    def _up
+    def up
       @DB[:event].each do |e|
 
         # Find the matching type row.
@@ -19,7 +19,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       Event.update_all(birth_year: nil)
     end
 

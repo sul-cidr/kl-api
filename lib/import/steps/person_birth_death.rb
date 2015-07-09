@@ -4,7 +4,7 @@ module Import
 
     @depends = [PersonRows]
 
-    def _up
+    def up
       @DB[:indiv].each do |i|
 
         birth_year = i[:birthyear] || i[:birth_abt] || i[:best]
@@ -23,7 +23,7 @@ module Import
       end
     end
 
-    def _down
+    def down
       Person.update_all(
         birth_year: nil,
         death_year: nil,

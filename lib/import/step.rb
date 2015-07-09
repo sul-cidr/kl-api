@@ -27,24 +27,14 @@ module Import
     # Run the import.
     #
     def up
-      if satisfied?
-        puts "SATISFIED: #{self.class.name}".colorize(:light_white)
-      else
-        puts "IMPORTING: #{self.class.name}".colorize(:green)
-        _up
-      end
+      raise NotImplementedError
     end
 
     #
     # Reverse the import.
     #
     def down
-      if satisfied?
-        puts "REVERTING: #{self.class.name}".colorize(:green)
-        _down
-      else
-        puts "SATISFIED: #{self.class.name}".colorize(:light_white)
-      end
+      raise NotImplementedError
     end
 
     #
