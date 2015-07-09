@@ -20,7 +20,13 @@ require "rails_helper"
 describe Person, :type => :model do
 
   describe "validations" do
-    it "should reject duplicate legacy_ids"
+
+    it "should reject duplicate legacy_ids" do
+      Person.create(legacy_id: 1)
+      expect(Person.new(legacy_id: 1)).not_to be_valid
+      expect(Person.new(legacy_id: 2)).to be_valid
+    end
+
   end
 
 end
