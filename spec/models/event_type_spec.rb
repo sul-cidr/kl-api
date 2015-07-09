@@ -9,5 +9,9 @@
 require 'rails_helper'
 
 describe EventType, type: :model do
-  # TODO
+
+  describe "validations" do
+    it "should reject duplicate codes"
+  end
+
 end

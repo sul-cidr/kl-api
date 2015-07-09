@@ -15,5 +15,9 @@
 require 'rails_helper'
 
 describe Event, type: :model do
-  # TODO
+
+  describe "validations" do
+    it "should reject duplicate legacy_ids"
+  end
+
 end

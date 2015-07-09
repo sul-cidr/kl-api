@@ -11,5 +11,9 @@
 require 'rails_helper'
 
 describe Occupation, type: :model do
-  # TODO
+
+  describe "validations" do
+    it "should reject duplicate names"
+  end
+
 end
