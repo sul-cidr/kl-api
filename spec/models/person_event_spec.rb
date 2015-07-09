@@ -10,5 +10,10 @@
 require 'rails_helper'
 
 describe PersonEvent, type: :model do
-  # TODO
+
+  describe "validations" do
+    it { should belong_to(:person) }
+    it { should belong_to(:event) }
+  end
+
 end

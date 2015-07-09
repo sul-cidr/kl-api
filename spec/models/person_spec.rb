@@ -20,9 +20,11 @@ require "rails_helper"
 describe Person, :type => :model do
 
   describe "validations" do
-    it { should validate_uniqueness_of :legacy_id }
-    it { should have_many :person_events}
-    it { should have_many :person_occupations}
+    it { should have_many(:person_events) }
+    it { should have_many(:events).through(:person_events) }
+    it { should have_many(:person_occupations) }
+    it { should have_many(:occupations).through(:person_occupations) }
+    it { should validate_uniqueness_of(:legacy_id) }
   end
 
 end

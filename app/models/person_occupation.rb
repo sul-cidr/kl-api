@@ -8,6 +8,6 @@
 #
 
 class PersonOccupation < ActiveRecord::Base
-  belongs_to :occupations
-  belongs_to :people
+  belongs_to :occupation
+  belongs_to :person
 end
