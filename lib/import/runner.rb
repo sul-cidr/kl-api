@@ -1,8 +1,10 @@
 
+require "rgl/adjacency"
+
 module Import
   class Runner
 
-    attr_accessor :steps, :before, :after
+    attr_accessor :steps
 
     #
     # Make an instance from a set of steps.
@@ -19,9 +21,8 @@ module Import
     # Initialize the step map.
     #
     def initialize
-      @steps  = {}
-      @before = Hash.new([])
-      @after  = Hash.new([])
+      @graph = RGL::DirectedAdjacencyGraph.new
+      @steps = {}
     end
 
     #
@@ -34,9 +35,12 @@ module Import
       # Map name -> class.
       @steps[step.name.demodulize] = step
 
+      # Add node.
+      @graph.add_vertex(step)
+
+      # Add edges.
       step.depends.each do |dep|
-        @before[step.name] += [dep]
-        @after[dep.name] += [step]
+        @graph.add_edge(step, dep)
       end
 
     end
