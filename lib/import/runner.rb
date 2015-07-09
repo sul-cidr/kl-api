@@ -20,8 +20,8 @@ module Import
     #
     def initialize
       @steps = {}
-      @udeps = Graph.new([])
-      @ddeps = Graph.new([])
+      @udeps = Graph.new
+      @ddeps = Graph.new
     end
 
     #
@@ -51,6 +51,7 @@ module Import
       steps.each do |step|
         add_step(step)
       end
+      puts @udeps.tsort
     end
 
     #
