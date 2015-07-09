@@ -17,13 +17,7 @@ require 'rails_helper'
 describe Event, type: :model do
 
   describe "validations" do
-
-    it "should reject duplicate legacy_ids" do
-      Event.create(legacy_id: 1)
-      expect(Event.new(legacy_id: 1)).not_to be_valid
-      expect(Event.new(legacy_id: 2)).to be_valid
-    end
-
+    it { should validate_uniqueness_of :legacy_id }
   end
 
 end

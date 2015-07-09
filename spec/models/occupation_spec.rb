@@ -13,13 +13,7 @@ require 'rails_helper'
 describe Occupation, type: :model do
 
   describe "validations" do
-
-    it "should reject duplicate names" do
-      Occupation.create(name: "o1")
-      expect(Occupation.new(name: "o1")).not_to be_valid
-      expect(Occupation.new(name: "o2")).to be_valid
-    end
-
+    it { should validate_uniqueness_of :name }
   end
 
 end

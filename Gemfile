@@ -57,3 +57,7 @@ group :development, :test do
   gem 'colorize'
 
 end
+
+group :test do
+  gem 'shoulda-matchers', require: false
+end
