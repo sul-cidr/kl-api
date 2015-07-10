@@ -1,4 +1,4 @@
-# Database migration
+# Data import
 
 - **`indiv`**
 
