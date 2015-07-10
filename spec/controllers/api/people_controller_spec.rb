@@ -43,8 +43,6 @@ describe API::PeopleController, type: :controller do
 
     end
 
-    it "should paginate the results"
-
   end
 
 end
