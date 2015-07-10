@@ -16,6 +16,7 @@ class Event < ActiveRecord::Base
 
   has_many :person_events
   has_many :people, :through => :person_events
+  belongs_to :event_type
 
   validates :legacy_id, uniqueness: true
 

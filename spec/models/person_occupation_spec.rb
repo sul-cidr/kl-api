@@ -11,7 +11,7 @@ require 'rails_helper'
 
 describe PersonOccupation, type: :model do
 
-  describe "validations" do
+  describe "associations" do
     it { should belong_to(:occupation) }
     it { should belong_to(:person) }
   end

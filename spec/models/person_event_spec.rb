@@ -11,7 +11,7 @@ require 'rails_helper'
 
 describe PersonEvent, type: :model do
 
-  describe "validations" do
+  describe "associations" do
     it { should belong_to(:person) }
     it { should belong_to(:event) }
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710232310) do
+ActiveRecord::Schema.define(version: 20150710232427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20150710232310) do
   end
 
   add_index "landmark_types", ["name"], name: "index_landmark_types_on_name", unique: true, using: :btree
+
+  create_table "landmarks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "landmark_type_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "occupations", force: :cascade do |t|
     t.string   "name"
@@ -79,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150710232310) do
   add_index "person_occupations", ["person_id", "occupation_id"], name: "index_person_occupations_on_person_id_and_occupation_id", using: :btree
 
   add_foreign_key "events", "event_types"
+  add_foreign_key "landmarks", "landmark_types"
   add_foreign_key "person_events", "events"
   add_foreign_key "person_events", "people"
   add_foreign_key "person_occupations", "occupations"

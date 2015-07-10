@@ -7,5 +7,6 @@
 #
 
 class LandmarkType < ActiveRecord::Base
+  has_many :landmarks
   validates :name, uniqueness: true
 end

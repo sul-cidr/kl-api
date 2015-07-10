@@ -14,4 +14,8 @@ describe LandmarkType, type: :model do
     it { should validate_uniqueness_of(:name) }
   end
 
+  describe "associations" do
+    it { should have_many(:landmarks) }
+  end
+
 end

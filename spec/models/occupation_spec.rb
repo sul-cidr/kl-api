@@ -13,9 +13,12 @@ require 'rails_helper'
 describe Occupation, type: :model do
 
   describe "validations" do
+    it { should validate_uniqueness_of(:name) }
+  end
+
+  describe "associations" do
     it { should have_many(:person_occupations) }
     it { should have_many(:people).through(:person_occupations) }
-    it { should validate_uniqueness_of(:name) }
   end
 
 end
