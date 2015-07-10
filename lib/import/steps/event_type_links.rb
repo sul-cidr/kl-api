@@ -8,7 +8,7 @@ module Import
       @DB[:event].each do |e|
 
         # Find the matching type row.
-        type = EventType.find_by(code: e[:type])
+        type = EventType.find_by(name: e[:type])
 
         if type
           Event.find_by(legacy_id: e[:recno]).update(
@@ -20,7 +20,7 @@ module Import
     end
 
     def down
-      Event.update_all(birth_year: nil)
+      Event.update_all(event_type_id: nil)
     end
 
     def satisfied?

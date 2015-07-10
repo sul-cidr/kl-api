@@ -3,7 +3,7 @@
 # Table name: event_types
 #
 #  id   :integer          not null, primary key
-#  code :string
+#  type :string
 #
 
 FactoryGirl.define do

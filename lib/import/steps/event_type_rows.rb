@@ -6,7 +6,7 @@ module Import
 
     def up
       @DB[:event].distinct(:type).each do |i|
-        EventType.create(code: i[:type])
+        EventType.create(name: i[:type])
       end
     end
 

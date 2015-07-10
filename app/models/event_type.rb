@@ -3,9 +3,9 @@
 # Table name: event_types
 #
 #  id   :integer          not null, primary key
-#  code :string
+#  type :string
 #
 
 class EventType < ActiveRecord::Base
-  validates :code, uniqueness: true
+  validates :name, uniqueness: true
 end
