@@ -14,3 +14,32 @@
 - Load events inside an arbitrary polygon.
 - Load photographs within N radius of a point.
 - Load photographs inside an arbitrary polygon.
+
+## Endpoints
+
+- /events
+  - `person`
+  - `occupation`
+  - `type`
+  - `steps`
+  - `start_date`
+  - `end_date`
+  - `extent`
+  - `lon`
+  - `lat`
+  - `radius`
+
+- /photographs
+  - `lon`
+  - `lat`
+  - `radius`
+
+- /landmarks
+  - `type`
+
+- /relation
+  - `source`
+  - `target`
+
+- /search
+  - `query`
