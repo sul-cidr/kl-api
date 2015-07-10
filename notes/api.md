@@ -30,6 +30,7 @@
   - `radius`
 
 - /photographs
+  - `extent`
   - `lon`
   - `lat`
   - `radius`
