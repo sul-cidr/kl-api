@@ -9,7 +9,7 @@
 #  legacy_id     :integer
 #  event_type_id :integer
 #  year          :integer
-#  year_est      :boolean
+#  date          :date
 #
 
 require 'rails_helper'
