@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: event_types
+# Table name: landmark_types
 #
 #  id   :integer          not null, primary key
 #  name :string
 #
 
 FactoryGirl.define do
-  factory :event_type do
-    
+  factory :landmark_type do
+    name "MyString"
   end
 
 end
