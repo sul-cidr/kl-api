@@ -29,12 +29,6 @@
   - `lat`
   - `radius`
 
-- /photographs
-  - `extent`
-  - `lon`
-  - `lat`
-  - `radius`
-
 - /landmarks
   - `type`
 
@@ -44,3 +38,9 @@
 
 - /search
   - `query`
+
+- /photographs
+  - `extent`
+  - `lon`
+  - `lat`
+  - `radius`
