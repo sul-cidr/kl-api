@@ -7,6 +7,7 @@
 #  landmark_type_id :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  lonlat           :geometry({:srid= point, 0
 #
 
 FactoryGirl.define do

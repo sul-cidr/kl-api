@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710232427) do
+ActiveRecord::Schema.define(version: 20150711001547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "event_types", force: :cascade do |t|
     t.string "name"
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20150710232427) do
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
     t.integer  "landmark_type_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.geometry "lonlat",           limit: {:srid=>0, :type=>"point"}
   end
 
   create_table "occupations", force: :cascade do |t|
