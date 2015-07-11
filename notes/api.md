@@ -12,8 +12,8 @@
 - Load events with a range of dates. (READY)
 - Load events within N radius of a point. (READY)
 - Load events inside an arbitrary polygon. (READY)
-- Load photographs within N radius of a point.
-- Load photographs inside an arbitrary polygon.
+- Load photographs within N radius of a point. (READY)
+- Load photographs inside an arbitrary polygon. (READY)
 
 ## Endpoints
 
