@@ -5,8 +5,8 @@ module Import
     @depends = []
 
     def up
-      @DB[:place].where(admin2: "London").each do |place|
-        puts place[:admin2]
+      @DB[:place].where(admin2: "London").each do |p|
+        Landmark.create(name: p[:dbname])
       end
     end
 
