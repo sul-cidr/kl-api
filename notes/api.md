@@ -25,8 +25,7 @@
   - `start_date`
   - `end_date`
   - `extent`
-  - `lon`
-  - `lat`
+  - `point`
   - `radius`
 
 - /landmarks
@@ -41,6 +40,5 @@
 
 - /photographs
   - `extent`
-  - `lon`
-  - `lat`
+  - `point`
   - `radius`
