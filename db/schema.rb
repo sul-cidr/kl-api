@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711001547) do
+ActiveRecord::Schema.define(version: 20150711001731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 20150711001547) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.integer  "legacy_id"
     t.integer  "event_type_id"
     t.integer  "year"
     t.date     "date"
+    t.geometry "lonlat",        limit: {:srid=>0, :type=>"point"}
   end
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
