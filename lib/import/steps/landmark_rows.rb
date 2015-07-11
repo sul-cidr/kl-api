@@ -6,7 +6,7 @@ module Import
 
     def up
       @DB[:place].where(admin2: "London").each do |place|
-        puts place.admin2
+        puts place[:admin2]
       end
     end
 

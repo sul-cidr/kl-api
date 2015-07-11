@@ -34,7 +34,11 @@ module Import
       # Map name -> class.
       @steps[step.name.demodulize] = step
 
-      # Build out up/down adjacency lists.
+      # Add step to up/down adjacency lists.
+      @udeps[step] = []
+      @ddeps[step] = []
+
+      # Register up/down dependencies.
       step.depends.each do |dep|
         @udeps[step] += [dep]
         @ddeps[dep] += [step]
