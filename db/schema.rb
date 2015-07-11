@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711004230) do
+ActiveRecord::Schema.define(version: 20150711010206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 20150711004230) do
   end
 
   create_table "relations", force: :cascade do |t|
-    t.integer "source_id"
-    t.integer "target_id"
+    t.integer "source_id", null: false
+    t.integer "target_id", null: false
   end
 
   add_index "relations", ["source_id", "target_id"], name: "index_relations_on_source_id_and_target_id", using: :btree
