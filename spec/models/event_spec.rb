@@ -10,6 +10,7 @@
 #  event_type_id :integer
 #  year          :integer
 #  date          :date
+#  lonlat        :geometry({:srid= point, 0
 #
 
 require 'rails_helper'

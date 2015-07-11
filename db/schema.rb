@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711001731) do
+ActiveRecord::Schema.define(version: 20150711002850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,13 @@ ActiveRecord::Schema.define(version: 20150711001731) do
 
   add_index "person_occupations", ["occupation_id", "person_id"], name: "index_person_occupations_on_occupation_id_and_person_id", using: :btree
   add_index "person_occupations", ["person_id", "occupation_id"], name: "index_person_occupations_on_person_id_and_occupation_id", using: :btree
+
+  create_table "photographs", force: :cascade do |t|
+    t.string   "slug"
+    t.geometry "lonlat",     limit: {:srid=>0, :type=>"point"}
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
 
   add_foreign_key "events", "event_types"
   add_foreign_key "landmarks", "landmark_types"
