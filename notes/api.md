@@ -11,7 +11,7 @@
 - Load events inside an arbitrary polygon. (READY)
 - Load places by type - schools, churches, etc. (READY)
 - Given two people, get the genealogical shortest path between them.
-- Full-text search on people, occupations, and landmarks (names).
+- Full-text search on people, occupations, and landmarks.
 - Load photographs within N radius of a point. (READY)
 - Load photographs inside an arbitrary polygon. (READY)
 
@@ -30,6 +30,9 @@
 
 - /landmarks
   - `type`
+  - `extent`
+  - `lonlat`
+  - `radius`
 
 - /relation
   - `source`
