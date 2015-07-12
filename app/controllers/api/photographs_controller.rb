@@ -1,6 +1,6 @@
 
 module API
-  class PhotographController < ApplicationController
+  class PhotographsController < ApplicationController
 
     def index
       @photographs = paginate(Photograph.all)

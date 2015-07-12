@@ -56,6 +56,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :people, only: [:index, :show]
+    resources :events, only: [:index, :show]
+    resources :photographs, only: [:index, :show]
+    resources :landmarks, only: [:index, :show]
   end
 
 end

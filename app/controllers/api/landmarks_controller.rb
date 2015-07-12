@@ -1,6 +1,6 @@
 
 module API
-  class LandmarkController < ApplicationController
+  class LandmarksController < ApplicationController
 
     def index
       @landmarks = paginate(Landmark.all)

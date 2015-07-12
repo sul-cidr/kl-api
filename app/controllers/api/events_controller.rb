@@ -1,6 +1,6 @@
 
 module API
-  class EventController < ApplicationController
+  class EventsController < ApplicationController
 
     def index
       @events = paginate(Event.all)
