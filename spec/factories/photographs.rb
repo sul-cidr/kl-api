@@ -10,9 +10,13 @@
 #
 
 FactoryGirl.define do
+
   factory :photograph do
-    slug "MyString"
-lonlat ""
+
+    sequence :slug do |n|
+      "photo-#{n}"
+    end
+
   end
 
 end

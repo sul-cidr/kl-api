@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-describe API::EventsController, type: :controller do
+describe API::LandmarksController, type: :controller do
 
   render_views
 
@@ -13,10 +13,10 @@ describe API::EventsController, type: :controller do
 
   describe "GET #index" do
 
-    it "should return a list of events (with default pagination)" do
+    it "should return a list of landmarks (with default pagination)" do
 
-      # Create 100 events.
-      create_list(:event, 100)
+      # Create 100 landmarks.
+      create_list(:landmark, 100)
 
       get :index
       json = JSON.parse(response.body)

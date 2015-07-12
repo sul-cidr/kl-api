@@ -11,8 +11,9 @@
 #
 
 FactoryGirl.define do
+
   factory :landmark do
-    
+    name "Landmark Name"
   end
 
 end

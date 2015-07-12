@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-describe API::PeopleController, type: :controller do
+describe API::PhotographsController, type: :controller do
 
   render_views
 
@@ -13,10 +13,10 @@ describe API::PeopleController, type: :controller do
 
   describe "GET #index" do
 
-    it "should return a list of people (with default pagination)" do
+    it "should return a list of photographs (with default pagination)" do
 
-      # Create 100 people.
-      create_list(:person, 100)
+      # Create 100 photographs.
+      create_list(:photograph, 100)
 
       get :index
       json = JSON.parse(response.body)
