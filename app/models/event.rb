@@ -11,6 +11,7 @@
 #  year          :integer
 #  date          :date
 #  lonlat        :geometry({:srid= point, 0
+#  description   :text
 #
 
 class Event < ActiveRecord::Base

@@ -11,6 +11,7 @@
 #  year          :integer
 #  date          :date
 #  lonlat        :geometry({:srid= point, 0
+#  description   :text
 #
 
 require 'rails_helper'

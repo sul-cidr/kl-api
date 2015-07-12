@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711010206) do
+ActiveRecord::Schema.define(version: 20150712212437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150711010206) do
     t.integer  "year"
     t.date     "date"
     t.geometry "lonlat",        limit: {:srid=>0, :type=>"point"}
+    t.text     "description"
   end
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
