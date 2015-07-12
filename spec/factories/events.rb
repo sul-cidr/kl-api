@@ -15,8 +15,17 @@
 #
 
 FactoryGirl.define do
+
   factory :event do
-    
+
+    name        "Event Name"
+    description "Event description."
+    year        1616
+
+    sequence :legacy_id do |n|
+      n
+    end
+
   end
 
 end

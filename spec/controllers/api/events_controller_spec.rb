@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-describe API::PeopleController, type: :controller do
+describe API::EventsController, type: :controller do
 
   render_views
 
@@ -15,8 +15,8 @@ describe API::PeopleController, type: :controller do
 
     it "should return a list of people (with default pagination)" do
 
-      # Create 100 people.
-      create_list(:person, 100)
+      # Create 100 events.
+      create_list(:event, 100)
 
       get :index
       json = JSON.parse(response.body)

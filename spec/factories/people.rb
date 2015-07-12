@@ -17,17 +17,18 @@
 
 FactoryGirl.define do
 
-  sequence :legacy_id do |n|
-    "I#{n}"
-  end
-
   factory :person do
+
     family_name   "William"
     given_name    "Shakespeare"
     sex           "M"
     birth_year    1564
     death_year    1616
-    legacy_id
+
+    sequence :legacy_id do |n|
+      "I#{n}"
+    end
+
   end
 
 end
