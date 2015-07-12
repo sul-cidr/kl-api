@@ -7,6 +7,8 @@ json.array! @people do |person|
     :given_name,
     :sex,
     :birth_year,
-    :death_year
+    :death_year,
+    :birth_est,
+    :death_est,
   )
 end
