@@ -17,7 +17,12 @@ class Relation < ActiveRecord::Base
   # events of type "birth" or "marriage."
   #
   def self.index
-    # TODO
+
+    # clear existing rows
+    # loop over events of type birth or marriage
+    # for each event, get associated people
+    # register relation edges for each pair
+
   end
 
 end
