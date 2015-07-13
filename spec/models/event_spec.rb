@@ -28,7 +28,7 @@ describe Event, type: :model do
     it { should belong_to(:event_type) }
   end
 
-  describe "after_year" do
+  describe ".after_year()" do
 
     describe "returns events after the passed year" do
 
@@ -57,6 +57,21 @@ describe Event, type: :model do
         events = Event.after_year(1802)
 
         expect(events[0].date.year).to eq(1803)
+        expect(events[1].date.year).to eq(1804)
+        expect(events.length).to eq(2)
+
+      end
+
+      it "when years and dates are mixed" do
+
+        create(:event, year: 1801)
+        create(:event, date: Date.new(1802))
+        create(:event, year: 1803)
+        create(:event, date: Date.new(1804))
+
+        events = Event.after_year(1802)
+
+        expect(events[0].year).to eq(1803)
         expect(events[1].date.year).to eq(1804)
         expect(events.length).to eq(2)
 
