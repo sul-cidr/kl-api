@@ -25,19 +25,25 @@ class Event < ActiveRecord::Base
   #
   # Match events that occur after a given year.
   #
-  # @param year [Integer]
+  # @param y [Integer]
   #
-  def self.after_year(year)
-    where("(year > ? AND date IS NULL) OR (date > ? AND year IS NULL)", year, Date.new(year))
+  def self.after_year(y)
+    where{
+      ((year > y) & (date == nil)) |
+      ((date > Date.new(y)) & (year == nil))
+    }
   end
 
   #
   # Match events that occur before a given year.
   #
-  # @param year [Integer]
+  # @param y [Integer]
   #
-  def self.before_year(year)
-    where("(year < ? AND date IS NULL) OR (date < ? AND year IS NULL)", year, Date.new(year))
+  def self.before_year(y)
+    where{
+      ((year < y) & (date == nil)) |
+      ((date < Date.new(y)) & (year == nil))
+    }
   end
 
   #
