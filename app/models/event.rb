@@ -63,6 +63,7 @@ class Event < ActiveRecord::Base
   # @param radius [Float]
   #
   def self.in_radius(lonlat, radius)
+    where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", lonlat, radius)
     # TODO
   end
 
