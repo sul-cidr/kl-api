@@ -139,7 +139,7 @@ describe Event, type: :model do
 
   end
 
-  describe ".in_radius", :helpers => :geo do
+  describe ".in_radius()", :helpers => :geo do
 
     it "returns events with a given radius of a point" do
 
@@ -155,6 +155,14 @@ describe Event, type: :model do
 
     end
 
+  end
+
+  describe ".by_occupation()" do
+    it "returns events associated with people of a given occupation"
+  end
+
+  describe ".by_type()" do
+    it "returns events of a given type"
   end
 
 end
