@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712212437) do
+ActiveRecord::Schema.define(version: 20150713234852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
   create_table "event_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
   end
+
+  add_index "event_types", ["name"], name: "index_event_types_on_name", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
