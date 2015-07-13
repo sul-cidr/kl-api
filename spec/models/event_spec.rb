@@ -81,4 +81,57 @@ describe Event, type: :model do
 
   end
 
+  describe ".before_year()" do
+
+    describe "returns events before the passed year" do
+
+      it "when years are defined" do
+
+        create(:event, year: 1801)
+        create(:event, year: 1802)
+        create(:event, year: 1803)
+        create(:event, year: 1804)
+
+        events = Event.before_year(1803)
+
+        expect(events[0].year).to eq(1801)
+        expect(events[1].year).to eq(1802)
+        expect(events.length).to eq(2)
+
+      end
+
+      it "when dates are defined" do
+
+        create(:event, date: Date.new(1801))
+        create(:event, date: Date.new(1802))
+        create(:event, date: Date.new(1803))
+        create(:event, date: Date.new(1804))
+
+        events = Event.before_year(1803)
+
+        expect(events[0].date.year).to eq(1801)
+        expect(events[1].date.year).to eq(1802)
+        expect(events.length).to eq(2)
+
+      end
+
+      it "when years and dates are mixed" do
+
+        create(:event, year: 1801)
+        create(:event, date: Date.new(1802))
+        create(:event, year: 1803)
+        create(:event, date: Date.new(1804))
+
+        events = Event.before_year(1803)
+
+        expect(events[0].year).to eq(1801)
+        expect(events[1].date.year).to eq(1802)
+        expect(events.length).to eq(2)
+
+      end
+
+    end
+
+  end
+
 end
