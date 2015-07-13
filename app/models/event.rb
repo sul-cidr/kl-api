@@ -40,4 +40,42 @@ class Event < ActiveRecord::Base
     where("year < ?", year)
   end
 
+  #
+  # Match events inside of an arbitrary polygon.
+  #
+  # @param extent [String]
+  #
+  def self.in_extent(extent)
+    # TODO
+  end
+
+  #
+  # Match events within a radius around a point.
+  #
+  # @param lon [Float]
+  # @param lat [Float]
+  # @param radius [Float]
+  #
+  def self.in_radius(lonlat, radius)
+    # TODO
+  end
+
+  #
+  # Match events of a given type.
+  #
+  # @param type_id [Integer]
+  #
+  def self.by_type(type_id)
+    # TODO
+  end
+
+  #
+  # Match events linked to people with a given occupation.
+  #
+  # @param occupation_id [Integer]
+  #
+  def self.by_occupation(occupation_id)
+    # TODO
+  end
+
 end
