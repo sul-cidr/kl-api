@@ -22,4 +22,22 @@ class Event < ActiveRecord::Base
 
   validates :legacy_id, uniqueness: true
 
+  #
+  # Match events that occur after a given year.
+  #
+  # @param year [Integer]
+  #
+  def self.after_year(year)
+    where("year > ?", year)
+  end
+
+  #
+  # Match events that occur before a given year.
+  #
+  # @param year [Integer]
+  #
+  def self.before_year(year)
+    where("year < ?", year)
+  end
+
 end
