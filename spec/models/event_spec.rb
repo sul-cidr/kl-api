@@ -134,33 +134,29 @@ describe Event, type: :model do
 
   end
 
-  describe ".in_extent()" do
-
-    let(:geo) { RGeo::Cartesian.preferred_factory }
+  describe ".in_extent()", :helpers => :geo do
 
     it "returns event inside of the passed polygon" do
 
-      create(:event, lonlat: geo.point(1, 1))
-      create(:event, lonlat: geo.point(1, 2))
-      create(:event, lonlat: geo.point(1, 4))
-      create(:event, lonlat: geo.point(1, 5))
+      create(:event, lonlat: point(1, 1))
+      create(:event, lonlat: point(1, 2))
+      create(:event, lonlat: point(1, 4))
+      create(:event, lonlat: point(1, 5))
 
       extent = geo.polygon(geo.line_string([
-        geo.point(0, 0),
-        geo.point(0, 3),
-        geo.point(2, 3),
-        geo.point(2, 0),
-        geo.point(0, 0),
+        point(0, 0),
+        point(0, 3),
+        point(2, 3),
+        point(2, 0),
+        point(0, 0),
       ]))
 
       events = Event.in_extent(extent.to_s)
 
       expect(events[0].lonlat.x).to eq(1)
       expect(events[0].lonlat.y).to eq(1)
-
       expect(events[1].lonlat.x).to eq(1)
       expect(events[1].lonlat.y).to eq(2)
-
       expect(events.length).to eq(2)
 
     end
