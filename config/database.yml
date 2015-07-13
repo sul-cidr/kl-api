@@ -86,4 +86,5 @@ production:
 
 legacy:
   <<: *default
+  adapter: postgresql
   database: kb_legacy
