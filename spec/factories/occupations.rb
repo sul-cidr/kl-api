@@ -9,7 +9,9 @@
 #
 
 FactoryGirl.define do
+
   factory :occupation do
-    name "MyString"
+    name "Occupation"
   end
+
 end

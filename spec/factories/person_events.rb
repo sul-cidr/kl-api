@@ -8,8 +8,9 @@
 #
 
 FactoryGirl.define do
+
   factory :participation do
-    
+    # TODO
   end
 
 end

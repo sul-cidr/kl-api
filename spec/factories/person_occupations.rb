@@ -8,8 +8,9 @@
 #
 
 FactoryGirl.define do
+
   factory :occupation_person do
-    
+    # TODO
   end
 
 end

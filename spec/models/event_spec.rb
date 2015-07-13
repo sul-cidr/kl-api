@@ -162,7 +162,17 @@ describe Event, type: :model do
   end
 
   describe ".by_type()" do
-    it "returns events of a given type"
+
+    it "returns events of a given type" do
+
+      t1 = create(:event_type_with_events)
+      create(:event_type_with_events)
+
+      events = Event.by_type(t1.id)
+      expect(events).to be_records(t1.events)
+
+    end
+
   end
 
 end

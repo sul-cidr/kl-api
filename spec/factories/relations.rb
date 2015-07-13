@@ -8,8 +8,9 @@
 #
 
 FactoryGirl.define do
+
   factory :relation do
-    
+    # TODO
   end
 
 end

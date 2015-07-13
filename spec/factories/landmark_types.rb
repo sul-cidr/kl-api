@@ -7,8 +7,9 @@
 #
 
 FactoryGirl.define do
+
   factory :landmark_type do
-    name "MyString"
+    name "Landmark Type"
   end
 
 end
