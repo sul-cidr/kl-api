@@ -18,10 +18,16 @@ class Relation < ActiveRecord::Base
   #
   def self.index
 
-    # clear existing rows
-    # loop over events of type birth or marriage
-    # for each event, get associated people
-    # register relation edges for each pair
+    # Clear existing rows.
+    self.delete_all
+
+    # Get all events of type "birth" or "marriage."
+    Event
+    .joins(:event_type)
+    .where(event_types: { name: ["BIRT", "MARR"] })
+    .each do |e|
+      puts e.people
+    end
 
   end
 
