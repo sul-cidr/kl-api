@@ -118,7 +118,7 @@ describe Event, type: :model do
 
   describe ".in_extent()", :helpers => :geo do
 
-    it "returns event inside of the passed polygon" do
+    it "returns events inside of the passed polygon" do
 
       e1 = create(:event, lonlat: point(1, 1))
       e2 = create(:event, lonlat: point(1, 2))
@@ -133,6 +133,24 @@ describe Event, type: :model do
       )
 
       events = Event.in_extent(extent.to_s)
+      expect(events).to be_records(e1, e2)
+
+    end
+
+  end
+
+  describe ".in_radius", :helpers => :geo do
+
+    it "returns events with a given radius of a point" do
+
+      e1 = create(:event, lonlat: point(1, 0))
+      e2 = create(:event, lonlat: point(2, 0))
+      create(:event, lonlat: point(4, 0))
+      create(:event, lonlat: point(5, 0))
+
+      center = point(0, 0)
+
+      events = Event.in_radius(center.to_s, 3)
       expect(events).to be_records(e1, e2)
 
     end
