@@ -26,7 +26,7 @@ class Relation < ActiveRecord::Base
     .joins(:event_type)
     .where(event_types: { name: ["BIRT", "MARR"] })
     .each do |e|
-      puts e.people
+      # TODO
     end
 
   end
