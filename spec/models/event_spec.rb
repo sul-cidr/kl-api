@@ -143,13 +143,12 @@ describe Event, type: :model do
       create(:event, lonlat: point(1, 4))
       create(:event, lonlat: point(1, 5))
 
-      extent = geo.polygon(geo.line_string([
-        point(0, 0),
-        point(0, 3),
-        point(2, 3),
-        point(2, 0),
-        point(0, 0),
-      ]))
+      extent = polygon(
+        [0, 0],
+        [0, 3],
+        [2, 3],
+        [2, 0],
+      )
 
       events = Event.in_extent(extent.to_s)
 
