@@ -30,18 +30,37 @@ describe Event, type: :model do
 
   describe "after_year" do
 
-    it "returns events after the passed year" do
+    describe "returns events after the passed year" do
 
-      e1 = create(:event, year: 1801)
-      e2 = create(:event, year: 1802)
-      e3 = create(:event, year: 1803)
-      e4 = create(:event, year: 1804)
+      it "when years are defined" do
 
-      events = Event.after_year(1802)
+        create(:event, year: 1801)
+        create(:event, year: 1802)
+        create(:event, year: 1803)
+        create(:event, year: 1804)
 
-      expect(events[0].id).to eq(e3.id)
-      expect(events[1].id).to eq(e4.id)
-      expect(events.length).to eq(2)
+        events = Event.after_year(1802)
+
+        expect(events[0].year).to eq(1803)
+        expect(events[1].year).to eq(1804)
+        expect(events.length).to eq(2)
+
+      end
+
+      it "when dates are defined" do
+
+        create(:event, date: Date.new(1801))
+        create(:event, date: Date.new(1802))
+        create(:event, date: Date.new(1803))
+        create(:event, date: Date.new(1804))
+
+        events = Event.after_year(1802)
+
+        expect(events[0].date.year).to eq(1803)
+        expect(events[1].date.year).to eq(1804)
+        expect(events.length).to eq(2)
+
+      end
 
     end
 

@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   # @param year [Integer]
   #
   def self.after_year(year)
-    where("year > ?", year)
+    where("year > ? OR date > ?", year, Date.new(year))
   end
 
   #
