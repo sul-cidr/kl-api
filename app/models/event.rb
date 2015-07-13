@@ -61,20 +61,20 @@ class Event < ActiveRecord::Base
   end
 
   #
-  # Match events of a given type.
-  #
-  # @param type_id [Integer]
-  #
-  def self.by_type(type_id)
-    # TODO
-  end
-
-  #
   # Match events linked to people with a given occupation.
   #
   # @param occupation_id [Integer]
   #
   def self.by_occupation(occupation_id)
+    # TODO
+  end
+
+  #
+  # Match events of a given type.
+  #
+  # @param type_id [Integer]
+  #
+  def self.by_type(type_id)
     # TODO
   end
 
