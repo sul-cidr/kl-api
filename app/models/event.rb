@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
   # @param extent [String]
   #
   def self.in_extent(extent)
-    # TODO
+    where("ST_Contains(ST_GeomFromText(?), lonlat)", extent)
   end
 
   #
