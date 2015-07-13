@@ -134,4 +134,20 @@ describe Event, type: :model do
 
   end
 
+  describe ".in_extent()" do
+
+    it "returns event inside of the passed polygon" do
+
+      create(:event, lonlat: factory.point(0, 1))
+      create(:event, lonlat: factory.point(0, 2))
+      create(:event, lonlat: factory.point(0, 3))
+      create(:event, lonlat: factory.point(0, 4))
+
+      events = Event.in_extent("LINESTRING(0 1,0 2)")
+      puts events
+
+    end
+
+  end
+
 end
