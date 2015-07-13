@@ -36,14 +36,11 @@ describe Event, type: :model do
 
         create(:event, year: 1801)
         create(:event, year: 1802)
-        create(:event, year: 1803)
-        create(:event, year: 1804)
+        e1 = create(:event, year: 1803)
+        e2 = create(:event, year: 1804)
 
         events = Event.after_year(1802)
-
-        expect(events[0].year).to eq(1803)
-        expect(events[1].year).to eq(1804)
-        expect(events.length).to eq(2)
+        expect(events).to be_records(e1, e2)
 
       end
 
