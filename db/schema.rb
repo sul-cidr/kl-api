@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714011105) do
+ActiveRecord::Schema.define(version: 20150714011622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,20 +100,10 @@ ActiveRecord::Schema.define(version: 20150714011105) do
 
   add_index "photographs", ["slug"], name: "index_photographs_on_slug", unique: true, using: :btree
 
-  create_table "relations", force: :cascade do |t|
-    t.integer "source_id", null: false
-    t.integer "target_id", null: false
-  end
-
-  add_index "relations", ["source_id", "target_id"], name: "index_relations_on_source_id_and_target_id", using: :btree
-  add_index "relations", ["target_id", "source_id"], name: "index_relations_on_target_id_and_source_id", using: :btree
-
   add_foreign_key "events", "event_types"
   add_foreign_key "landmarks", "landmark_types"
   add_foreign_key "person_events", "events"
   add_foreign_key "person_events", "people"
   add_foreign_key "person_occupations", "occupations"
   add_foreign_key "person_occupations", "people"
-  add_foreign_key "relations", "people", column: "source_id"
-  add_foreign_key "relations", "people", column: "target_id"
 end
