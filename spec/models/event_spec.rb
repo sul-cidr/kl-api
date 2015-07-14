@@ -167,7 +167,10 @@ describe Event, type: :model do
 
   describe ".by_occupation()" do
 
-    xit "returns events associated with people of a given occupation" do
+    it "returns events associated with people of a given occupation" do
+
+      o1 = create(:occupation_with_people)
+      puts o1.people
 
       # add an occupation_with_people factory
       # create events

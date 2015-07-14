@@ -9,8 +9,9 @@
 
 FactoryGirl.define do
 
-  factory :occupation_person do
-    # TODO
+  factory :person_occupation do
+    occupation
+    person
   end
 
 end
