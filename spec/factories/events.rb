@@ -16,14 +16,16 @@
 
 FactoryGirl.define do
 
+  sequence :event_legacy_id do |n|
+    n
+  end
+
   factory :event do
 
     name        "Event Name"
     description "Event description."
 
-    sequence :legacy_id do |n|
-      n
-    end
+    legacy_id { generate(:event_legacy_id) }
 
   end
 

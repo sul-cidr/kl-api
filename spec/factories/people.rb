@@ -17,6 +17,10 @@
 
 FactoryGirl.define do
 
+  sequence :person_legacy_id do |n|
+    "I#{n}"
+  end
+
   factory :person do
 
     family_name   "William"
@@ -25,9 +29,7 @@ FactoryGirl.define do
     birth_year    1564
     death_year    1616
 
-    sequence :legacy_id do |n|
-      "I#{n}"
-    end
+    legacy_id { generate(:person_legacy_id) }
 
   end
 
