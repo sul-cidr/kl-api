@@ -10,4 +10,5 @@
 #
 
 class Photograph < ActiveRecord::Base
+  validates :slug, presence: true, uniqueness: true
 end
