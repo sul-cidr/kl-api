@@ -67,23 +67,34 @@ class Event < ActiveRecord::Base
   end
 
   #
+  # Match events linked with a set of people.
+  #
+  # @param ids [Integer]
+  #
+  def self.by_people(*ids)
+    joins { people }.where {
+      people.id >> ids
+    }
+  end
+
+  #
   # Match events linked to people with a given occupation.
   #
-  # @param occupation_id [Integer]
+  # @param id [Integer]
   #
-  def self.by_occupation(occupation_id)
+  def self.by_occupation(id)
     joins { people.occupations }.where {
-      occupations.id == occupation_id
+      occupations.id == id
     }
   end
 
   #
   # Match events of a given type.
   #
-  # @param type_id [Integer]
+  # @param id [Integer]
   #
-  def self.by_type(type_id)
-    where { event_type_id == type_id }
+  def self.by_type(id)
+    where { event_type_id == id }
   end
 
 end
