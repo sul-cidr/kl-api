@@ -3,10 +3,10 @@
 # Table name: event_types
 #
 #  id   :integer          not null, primary key
-#  name :string
+#  name :string           not null
 #
 
 class EventType < ActiveRecord::Base
   has_many :events
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 end

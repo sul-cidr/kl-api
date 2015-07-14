@@ -163,7 +163,7 @@ describe Event, type: :model do
 
   describe ".by_type()" do
 
-    it "returns events of a given type" do
+    xit "returns events of a given type" do
 
       t1 = create(:event_type_with_events)
       create(:event_type_with_events)
