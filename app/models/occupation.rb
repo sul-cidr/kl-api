@@ -13,6 +13,6 @@ class Occupation < ActiveRecord::Base
   has_many :person_occupations
   has_many :people, :through => :person_occupations
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
 end
