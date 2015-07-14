@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   validates :legacy_id, uniqueness: true
 
   #
-  # Match events that occur after a given year.
+  # Match events that occur after a given year (inclusive).
   #
   # @param y [Integer]
   #
@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   end
 
   #
-  # Match events that occur before a given year.
+  # Match events that occur before a given year (inclusive).
   #
   # @param y [Integer]
   #
@@ -64,7 +64,6 @@ class Event < ActiveRecord::Base
   #
   def self.in_radius(lonlat, radius)
     where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", lonlat, radius)
-    # TODO
   end
 
   #
