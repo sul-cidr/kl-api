@@ -44,7 +44,7 @@ describe Event, type: :model do
         e3 = create(:event, year: 1803)
         e4 = create(:event, year: 1804)
 
-        events = Event.after_year(1802)
+        events = Event.after_year(1803)
         expect(events).to be_records(e3, e4)
 
       end
@@ -56,7 +56,7 @@ describe Event, type: :model do
         e3 = create(:event, date: Date.new(1803))
         e4 = create(:event, date: Date.new(1804))
 
-        events = Event.after_year(1802)
+        events = Event.after_year(1803)
         expect(events).to be_records(e3, e4)
 
       end
@@ -68,7 +68,7 @@ describe Event, type: :model do
         e3 = create(:event, year: 1803)
         e4 = create(:event, date: Date.new(1804))
 
-        events = Event.after_year(1802)
+        events = Event.after_year(1803)
         expect(events).to be_records(e3, e4)
 
       end
@@ -88,7 +88,7 @@ describe Event, type: :model do
         create(:event, year: 1803)
         create(:event, year: 1804)
 
-        events = Event.before_year(1803)
+        events = Event.before_year(1802)
         expect(events).to be_records(e1, e2)
 
       end
@@ -100,7 +100,7 @@ describe Event, type: :model do
         create(:event, date: Date.new(1803))
         create(:event, date: Date.new(1804))
 
-        events = Event.before_year(1803)
+        events = Event.before_year(1802)
         expect(events).to be_records(e1, e2)
 
       end
@@ -112,7 +112,7 @@ describe Event, type: :model do
         create(:event, year: 1803)
         create(:event, date: Date.new(1804))
 
-        events = Event.before_year(1803)
+        events = Event.before_year(1802)
         expect(events).to be_records(e1, e2)
 
       end

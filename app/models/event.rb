@@ -29,8 +29,8 @@ class Event < ActiveRecord::Base
   #
   def self.after_year(y)
     where {
-      ((year > y) & (date == nil)) |
-      ((date > Date.new(y)) & (year == nil))
+      ((year >= y) & (date == nil)) |
+      ((date >= Date.new(y)) & (year == nil))
     }
   end
 
@@ -41,8 +41,8 @@ class Event < ActiveRecord::Base
   #
   def self.before_year(y)
     where {
-      ((year < y) & (date == nil)) |
-      ((date < Date.new(y)) & (year == nil))
+      ((year <= y) & (date == nil)) |
+      ((date <= Date.new(y)) & (year == nil))
     }
   end
 
