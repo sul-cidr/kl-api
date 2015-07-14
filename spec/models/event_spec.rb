@@ -169,12 +169,30 @@ describe Event, type: :model do
 
     it "returns events associated with people of a given occupation" do
 
-      o1 = create(:occupation_with_people)
-      puts o1.people
+      p1 = create(:person)
+      p2 = create(:person)
 
-      # add an occupation_with_people factory
-      # create events
-      # link with people
+      o1 = create(:occupation)
+      o2 = create(:occupation)
+
+      e1 = create(:event)
+      e2 = create(:event)
+      e3 = create(:event)
+      e4 = create(:event)
+
+      # events 1&2 -> occupation 1 -> person 1.
+      # events 3&4 -> occupation 2 -> person 2.
+
+      create(:person_occupation, person: p1, occupation: o1)
+      create(:person_occupation, person: p2, occupation: o2)
+
+      create(:person_event, person: p1, event: e1)
+      create(:person_event, person: p1, event: e2)
+      create(:person_event, person: p2, event: e3)
+      create(:person_event, person: p2, event: e4)
+
+      events = Event.by_occupation(o1.id)
+      expect(events).to be_records(e1, e2)
 
     end
 

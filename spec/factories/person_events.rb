@@ -10,7 +10,8 @@
 FactoryGirl.define do
 
   factory :person_event do
-    # TODO
+    person
+    event
   end
 
 end
