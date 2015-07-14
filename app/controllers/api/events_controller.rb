@@ -6,12 +6,12 @@ module API
 
       events = Event.all
 
-      if params[:start_date]
-        events = events.after_year(params[:start_date].to_i)
+      if params[:start_year]
+        events = events.after_year(params[:start_year].to_i)
       end
 
-      if params[:end_date]
-        events = events.before_year(params[:end_date].to_i)
+      if params[:end_year]
+        events = events.before_year(params[:end_year].to_i)
       end
 
       @events = paginate(events)

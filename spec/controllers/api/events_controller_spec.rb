@@ -20,26 +20,26 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "returns events after `start_date`" do
+    it "?start_year=YEAR" do
 
       create(:event, year: 1801)
       create(:event, year: 1802)
       e3 = create(:event, year: 1803)
       e4 = create(:event, year: 1804)
 
-      get :index, start_date: 1803
+      get :index, start_year: 1803
       expect(response.body).to be_json_records(e3, e4)
 
     end
 
-    it "returns events before `end_date`" do
+    it "?end_year=YEAR" do
 
       e1 = create(:event, year: 1801)
       e2 = create(:event, year: 1802)
       create(:event, year: 1803)
       create(:event, year: 1804)
 
-      get :index, end_date: 1802
+      get :index, end_year: 1802
       expect(response.body).to be_json_records(e1, e2)
 
     end

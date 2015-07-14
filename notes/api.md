@@ -22,8 +22,8 @@
   - `occupation`
   - `type`
   - `steps`
-  - `start_date`
-  - `end_date`
+  - `start_year` DONE
+  - `end_year` DONE
   - `extent`
   - `lonlat`
   - `radius`
