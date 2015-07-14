@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   # @param y [Integer]
   #
   def self.after_year(y)
-    where{
+    where {
       ((year > y) & (date == nil)) |
       ((date > Date.new(y)) & (year == nil))
     }
@@ -40,7 +40,7 @@ class Event < ActiveRecord::Base
   # @param y [Integer]
   #
   def self.before_year(y)
-    where{
+    where {
       ((year < y) & (date == nil)) |
       ((date < Date.new(y)) & (year == nil))
     }
@@ -82,7 +82,7 @@ class Event < ActiveRecord::Base
   # @param type_id [Integer]
   #
   def self.by_type(type_id)
-    # TODO
+    where { event_type_id == type_id }
   end
 
 end
