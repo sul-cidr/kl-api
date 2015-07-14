@@ -7,11 +7,11 @@ module API
       events = Event.all
 
       if params[:after]
-        events = events.after_year(params[:after])
+        events = events.after_year(params[:after].to_i)
       end
 
       if params[:before]
-        events = events.before_year(params[:before])
+        events = events.before_year(params[:before].to_i)
       end
 
       if params[:extent]
