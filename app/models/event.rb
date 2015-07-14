@@ -72,7 +72,9 @@ class Event < ActiveRecord::Base
   # @param occupation_id [Integer]
   #
   def self.by_occupation(occupation_id)
-    # TODO
+    joins { people.occupations }.where {
+      occupations.id == occupation_id
+    }
   end
 
   #
