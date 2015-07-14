@@ -11,6 +11,11 @@ require 'rails_helper'
 
 describe PersonOccupation, type: :model do
 
+  describe "columns" do
+    it { should have_db_column(:occupation_id).with_options(null: false) }
+    it { should have_db_column(:person_id).with_options(null: false) }
+  end
+
   describe "indexes" do
     it { should have_db_index([:occupation_id, :person_id]) }
     it { should have_db_index([:person_id, :occupation_id]) }

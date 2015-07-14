@@ -11,6 +11,11 @@ require 'rails_helper'
 
 describe PersonEvent, type: :model do
 
+  describe "columns" do
+    it { should have_db_column(:person_id).with_options(null: false) }
+    it { should have_db_column(:event_id).with_options(null: false) }
+  end
+
   describe "indexes" do
     it { should have_db_index([:person_id, :event_id]) }
     it { should have_db_index([:event_id, :person_id]) }
