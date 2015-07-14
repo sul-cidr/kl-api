@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714001921) do
+ActiveRecord::Schema.define(version: 20150714003015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150714001921) do
   add_index "events", ["legacy_id"], name: "index_events_on_legacy_id", unique: true, using: :btree
 
   create_table "landmark_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
   end
 
   add_index "landmark_types", ["name"], name: "index_landmark_types_on_name", unique: true, using: :btree
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150714001921) do
   end
 
   create_table "occupations", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
