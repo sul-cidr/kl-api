@@ -19,6 +19,10 @@ require "rails_helper"
 
 describe Person, :type => :model do
 
+  describe "indexes" do
+    it { should have_db_index(:legacy_id).unique(true) }
+  end
+
   describe "validations" do
     it { should validate_uniqueness_of(:legacy_id) }
   end

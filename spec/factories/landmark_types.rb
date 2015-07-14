@@ -3,7 +3,7 @@
 # Table name: landmark_types
 #
 #  id   :integer          not null, primary key
-#  name :string
+#  name :string           not null
 #
 
 FactoryGirl.define do
