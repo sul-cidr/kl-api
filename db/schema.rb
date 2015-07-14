@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714011622) do
+ActiveRecord::Schema.define(version: 20150714012416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,16 +76,16 @@ ActiveRecord::Schema.define(version: 20150714011622) do
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree
 
   create_table "person_events", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "event_id"
+    t.integer "person_id", null: false
+    t.integer "event_id",  null: false
   end
 
   add_index "person_events", ["event_id", "person_id"], name: "index_person_events_on_event_id_and_person_id", using: :btree
   add_index "person_events", ["person_id", "event_id"], name: "index_person_events_on_person_id_and_event_id", using: :btree
 
   create_table "person_occupations", force: :cascade do |t|
-    t.integer "occupation_id"
-    t.integer "person_id"
+    t.integer "occupation_id", null: false
+    t.integer "person_id",     null: false
   end
 
   add_index "person_occupations", ["occupation_id", "person_id"], name: "index_person_occupations_on_occupation_id_and_person_id", using: :btree
