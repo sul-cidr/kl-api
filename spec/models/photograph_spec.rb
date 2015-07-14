@@ -19,6 +19,7 @@ describe Photograph, type: :model do
 
   describe "indexes" do
     it { should have_db_index(:slug).unique(true) }
+    it { should have_db_index(:lonlat) }
   end
 
   describe "validations" do

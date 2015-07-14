@@ -3,8 +3,8 @@
 # Table name: person_occupations
 #
 #  id            :integer          not null, primary key
-#  occupation_id :integer
-#  person_id     :integer
+#  occupation_id :integer          not null
+#  person_id     :integer          not null
 #
 
 require 'rails_helper'

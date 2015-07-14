@@ -3,8 +3,8 @@
 # Table name: person_events
 #
 #  id        :integer          not null, primary key
-#  person_id :integer
-#  event_id  :integer
+#  person_id :integer          not null
+#  event_id  :integer          not null
 #
 
 class PersonEvent < ActiveRecord::Base

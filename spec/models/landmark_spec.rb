@@ -14,6 +14,10 @@ require 'rails_helper'
 
 describe Landmark, type: :model do
 
+  describe "indexes" do
+    it { should have_db_index(:lonlat) }
+  end
+
   describe "associations" do
     it { should belong_to(:landmark_type) }
   end

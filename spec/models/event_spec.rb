@@ -21,6 +21,9 @@ describe Event, type: :model do
   describe "indexes" do
     it { should have_db_index(:legacy_id).unique(true) }
     it { should have_db_index(:event_type_id) }
+    it { should have_db_index(:year) }
+    it { should have_db_index(:date) }
+    it { should have_db_index(:lonlat) }
   end
 
   describe "validations" do
