@@ -8,5 +8,5 @@
 
 class LandmarkType < ActiveRecord::Base
   has_many :landmarks
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 end
