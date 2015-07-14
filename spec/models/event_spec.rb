@@ -166,7 +166,15 @@ describe Event, type: :model do
   end
 
   describe ".by_occupation()" do
-    it "returns events associated with people of a given occupation"
+
+    xit "returns events associated with people of a given occupation" do
+
+      # add an occupation_with_people factory
+      # create events
+      # link with people
+
+    end
+
   end
 
   describe ".by_type()" do

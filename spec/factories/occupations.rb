@@ -10,8 +10,12 @@
 
 FactoryGirl.define do
 
+  sequence :occupation_name do |n|
+    "Occupation #{n}"
+  end
+
   factory :occupation do
-    name "Occupation"
+    name { generate(:occupation_name) }
   end
 
 end

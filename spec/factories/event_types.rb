@@ -8,13 +8,13 @@
 
 FactoryGirl.define do
 
-  sequence :name do |n|
+  sequence :event_type_name do |n|
     "TYPE#{n}"
   end
 
   factory :event_type do
 
-    name
+    name { generate(:event_type_name) }
 
     factory :event_type_with_events do
 
