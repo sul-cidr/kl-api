@@ -22,4 +22,33 @@ describe Landmark, type: :model do
     it { should belong_to(:landmark_type) }
   end
 
+  describe ".in_extent()" do
+
+    it "returns landmarks inside of the passed polygon" do
+
+      lm1 = create(:landmark, lonlat: GeoHelper.point(1, 1))
+      lm2 = create(:landmark, lonlat: GeoHelper.point(1, 2))
+      create(:landmark, lonlat: GeoHelper.point(1, 4))
+      create(:landmark, lonlat: GeoHelper.point(1, 5))
+
+      extent = GeoHelper.polygon(
+        [0, 0],
+        [0, 3],
+        [2, 3],
+        [2, 0],
+      )
+
+      landmarks = Landmark.in_extent(extent.to_s)
+      expect(landmarks).to be_records(lm1, lm2)
+
+    end
+
+  end
+
+  describe ".in_radius()" do
+  end
+
+  describe ".by_type()" do
+  end
+
 end

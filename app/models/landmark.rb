@@ -11,5 +11,16 @@
 #
 
 class Landmark < ActiveRecord::Base
+
   belongs_to :landmark_type
+
+  #
+  # Match landmarks inside of an arbitrary polygon.
+  #
+  # @param extent [String]
+  #
+  def self.in_extent(extent)
+    where("ST_Contains(ST_GeomFromText(?), lonlat)", extent)
+  end
+
 end
