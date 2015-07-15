@@ -18,6 +18,14 @@ module API
         events = events.in_extent(params[:extent])
       end
 
+      if params[:lon] and params[:lat] and params[:radius]
+        events = events.in_radius(
+          params[:lon].to_i,
+          params[:lat].to_i,
+          params[:radius],
+        )
+      end
+
       @events = paginate(events)
 
     end
