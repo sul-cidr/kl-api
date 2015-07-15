@@ -34,6 +34,10 @@ describe Person, :type => :model do
     it { should have_many(:occupations).through(:person_occupations) }
   end
 
+  describe "solr" do
+    it { should have_searchable_field(:name) }
+  end
+
   describe "#full_name()" do
 
     it "combines the given and family names" do

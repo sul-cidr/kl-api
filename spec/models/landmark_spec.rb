@@ -22,6 +22,10 @@ describe Landmark, type: :model do
     it { should belong_to(:landmark_type) }
   end
 
+  describe "solr" do
+    it { should have_searchable_field(:name) }
+  end
+
   describe ".in_extent()" do
 
     it "returns landmarks inside of the passed polygon" do

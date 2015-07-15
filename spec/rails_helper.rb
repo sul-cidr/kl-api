@@ -57,8 +57,9 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  # Patch in FactoryGirl helpers.
+  # Patch in custom matchers.
   config.include FactoryGirl::Syntax::Methods
+  config.include SunspotMatchers
 
   # Mock the Solr service.
   config.before do

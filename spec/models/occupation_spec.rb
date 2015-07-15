@@ -30,4 +30,8 @@ describe Occupation, type: :model do
     it { should have_many(:people).through(:person_occupations) }
   end
 
+  describe "solr" do
+    it { should have_searchable_field(:name) }
+  end
+
 end
