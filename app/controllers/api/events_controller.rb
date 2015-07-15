@@ -26,8 +26,8 @@ module API
         )
       end
 
-      if params[:people]
-        events = events.by_people(*params[:people])
+      if params[:person]
+        events = events.by_person(params[:person])
       end
 
       @events = paginate(events)
