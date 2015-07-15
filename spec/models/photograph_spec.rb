@@ -27,4 +27,43 @@ describe Photograph, type: :model do
     it { should validate_uniqueness_of(:slug) }
   end
 
+  describe ".in_extent()" do
+
+    it "returns photographs inside of the passed polygon" do
+
+      p1 = create(:photograph, lonlat: GeoHelper.point(1, 1))
+      p2 = create(:photograph, lonlat: GeoHelper.point(1, 2))
+      create(:photograph, lonlat: GeoHelper.point(1, 4))
+      create(:photograph, lonlat: GeoHelper.point(1, 5))
+
+      extent = GeoHelper.polygon(
+        [0, 0],
+        [0, 3],
+        [2, 3],
+        [2, 0],
+      )
+
+      photos = Photograph.in_extent(extent.to_s)
+      expect(photos).to be_records(p1, p2)
+
+    end
+
+  end
+
+  describe ".in_radius()" do
+
+    it "returns photographs with a given radius of a point" do
+
+      p1 = create(:photograph, lonlat: GeoHelper.point(1, 0))
+      p2 = create(:photograph, lonlat: GeoHelper.point(2, 0))
+      create(:photograph, lonlat: GeoHelper.point(4, 0))
+      create(:photograph, lonlat: GeoHelper.point(5, 0))
+
+      photos = Photograph.in_radius(0, 0, 3)
+      expect(photos).to be_records(p1, p2)
+
+    end
+
+  end
+
 end
