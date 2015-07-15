@@ -60,7 +60,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'json_spec'
   gem 'colorize'
-  gem 'sunspot-rails-tester'
   gem 'sunspot_matchers'
 
 end

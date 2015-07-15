@@ -68,7 +68,6 @@ RSpec.configure do |config|
 
   # After a test that hits Solr, clear the index.
   config.before :each, :solr => true do
-    Sunspot::Rails::Tester.start_original_sunspot_session
     Sunspot.session = $sunspot_session
     Sunspot.remove_all!
   end
