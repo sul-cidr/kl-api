@@ -35,9 +35,13 @@ class Person < ActiveRecord::Base
   end
 
   searchable do
+
     text :name, :stored => true do
       full_name
     end
+
+    boost { events.count }
+
   end
 
 end
