@@ -124,6 +124,16 @@ describe API::EventsController, type: :controller do
 
     end
 
+    it "type" do
+
+      t1 = create(:event_type_with_events)
+      create(:event_type_with_events)
+
+      get :index, type: t1.id
+      expect(response.body).to be_json_records(*t1.events)
+
+    end
+
   end
 
 end

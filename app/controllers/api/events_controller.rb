@@ -34,6 +34,10 @@ module API
         events = events.by_occupation(params[:occupation])
       end
 
+      if params[:type]
+        events = events.by_type(params[:type])
+      end
+
       @events = paginate(events)
 
     end
