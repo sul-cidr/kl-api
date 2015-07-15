@@ -12,8 +12,8 @@
 - Load places by type - schools, churches, etc. (DONE)
 - Given two people, get the genealogical shortest path between them.
 - Full-text search on people, occupations, and landmarks.
-- Load photographs within N radius of a point. (READY)
-- Load photographs inside an arbitrary polygon. (READY)
+- Load photographs within N radius of a point. (DONE)
+- Load photographs inside an arbitrary polygon. (DONE)
 
 ## Endpoints
 
@@ -44,7 +44,7 @@
   - `query`
 
 - /photographs
-  - `extent`
-  - `lon`
-  - `lat`
-  - `radius`
+  - `extent` DONE
+  - `lon` DONE
+  - `lat` DONE
+  - `radius` DONE

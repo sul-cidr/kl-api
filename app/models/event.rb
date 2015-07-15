@@ -16,6 +16,8 @@
 
 class Event < ActiveRecord::Base
 
+  include GeoSearchable
+
   has_many :person_events
   has_many :people, :through => :person_events
   belongs_to :event_type
@@ -44,27 +46,6 @@ class Event < ActiveRecord::Base
       ((year <= y) & (date == nil)) |
       ((date <= Date.new(y)) & (year == nil))
     }
-  end
-
-  #
-  # Match events inside of an arbitrary polygon.
-  #
-  # @param extent [String]
-  #
-  def self.in_extent(extent)
-    where("ST_Contains(ST_GeomFromText(?), lonlat)", extent)
-  end
-
-  #
-  # Match events within a radius around a point.
-  #
-  # @param lon [Float]
-  # @param lat [Float]
-  # @param radius [Float]
-  #
-  def self.in_radius(lon, lat, radius)
-    point = GeoHelper.point(lon, lat)
-    where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", point.to_s, radius)
   end
 
   #
