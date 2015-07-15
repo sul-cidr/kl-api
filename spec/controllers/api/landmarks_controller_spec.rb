@@ -10,9 +10,6 @@ describe API::LandmarksController, type: :controller do
   end
 
   describe "GET #index" do
-
-    it "should return all events by default"
-
   end
 
 end
