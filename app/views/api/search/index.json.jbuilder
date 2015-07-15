@@ -6,7 +6,7 @@ json.results do
     json.result hit.result
 
     # Wrap the highlights in <em>'s.
-    json.highlights hit.highlight(:name).format { |term|
+    json.highlight hit.highlight(:name).format { |term|
       "<em>#{term}</em>"
     }
 
