@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-describe API::PhotographsController, type: :controller do
+describe API::PeopleController, type: :controller do
 
   render_views
 
