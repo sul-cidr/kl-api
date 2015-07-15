@@ -42,6 +42,16 @@ describe API::LandmarksController, type: :controller do
 
     end
 
+    it "type" do
+
+      t1 = create(:landmark_type_with_landmarks)
+      create(:landmark_type_with_landmarks)
+
+      get :index, type: t1.id
+      expect(response.body).to be_json_records(*t1.landmarks)
+
+    end
+
   end
 
 end

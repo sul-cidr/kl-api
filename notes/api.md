@@ -30,10 +30,11 @@
   - `radius` DONE
 
 - /landmarks
-  - `type`
-  - `extent`
-  - `lonlat`
-  - `radius`
+  - `type` DONE
+  - `extent` DONE
+  - `lon` DONE
+  - `lat` DONE
+  - `radius` DONE
 
 - /relation
   - `source`
