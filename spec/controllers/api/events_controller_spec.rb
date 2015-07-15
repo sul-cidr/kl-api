@@ -20,7 +20,7 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "?start_year=YEAR" do
+    it "start_year" do
 
       create(:event, year: 1801)
       create(:event, year: 1802)
@@ -32,7 +32,7 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "?end_year=YEAR" do
+    it "end_year" do
 
       e1 = create(:event, year: 1801)
       e2 = create(:event, year: 1802)
@@ -44,7 +44,7 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "?extent=WKT" do
+    it "extent" do
 
       e1 = create(:event, lonlat: GeoHelper.point(1, 1))
       e2 = create(:event, lonlat: GeoHelper.point(1, 2))
@@ -59,6 +59,18 @@ describe API::EventsController, type: :controller do
       )
 
       get :index, extent: extent.to_s
+      expect(response.body).to be_json_records(e1, e2)
+
+    end
+
+    it "lon+lat+radius" do
+
+      e1 = create(:event, lonlat: GeoHelper.point(1, 0))
+      e2 = create(:event, lonlat: GeoHelper.point(2, 0))
+      create(:event, lonlat: GeoHelper.point(4, 0))
+      create(:event, lonlat: GeoHelper.point(5, 0))
+
+      get :index, lon: 0, lat: 0, radius: 3
       expect(response.body).to be_json_records(e1, e2)
 
     end
