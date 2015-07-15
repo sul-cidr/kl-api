@@ -156,9 +156,7 @@ describe Event, type: :model do
       create(:event, lonlat: point(4, 0))
       create(:event, lonlat: point(5, 0))
 
-      center = point(0, 0)
-
-      events = Event.in_radius(center.to_s, 3)
+      events = Event.in_radius(0, 0, 3)
       expect(events).to be_records(e1, e2)
 
     end
