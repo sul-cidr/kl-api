@@ -14,10 +14,10 @@ module Import
         death_circa = i[:birth_abt] || i[:best]
 
         Person.find_by(legacy_id: i[:indiv_id]).update(
-          birth_year:   birth_year,
-          death_year:   death_year,
-          birth_circa:  !!birth_circa,
-          death_circa:  !!death_circa
+          birth_year: birth_year,
+          death_year: death_year,
+          birth_est:  !!birth_circa,
+          death_est:  !!death_circa
         )
 
       end
@@ -27,8 +27,8 @@ module Import
       Person.update_all(
         birth_year: nil,
         death_year: nil,
-        birth_circa: nil,
-        death_circa: nil
+        birth_est: nil,
+        death_est: nil
       )
     end
 

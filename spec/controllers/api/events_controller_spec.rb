@@ -75,6 +75,31 @@ describe API::EventsController, type: :controller do
 
     end
 
+    it "people" do
+
+      p1 = create(:person)
+      p2 = create(:person)
+      p3 = create(:person)
+
+      e1 = create(:event)
+      e2 = create(:event)
+      e3 = create(:event)
+      e4 = create(:event)
+      e5 = create(:event)
+      e6 = create(:event)
+
+      create(:person_event, person: p1, event: e1)
+      create(:person_event, person: p1, event: e2)
+      create(:person_event, person: p2, event: e3)
+      create(:person_event, person: p2, event: e4)
+      create(:person_event, person: p3, event: e5)
+      create(:person_event, person: p3, event: e6)
+
+      get :index, people: [p1.id, p2.id]
+      expect(response.body).to be_json_records(e1, e2, e3, e4)
+
+    end
+
   end
 
 end

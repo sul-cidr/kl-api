@@ -10,8 +10,7 @@ module Import
           legacy_id:    i[:indiv_id],
           given_name:   i[:givn],
           family_name:  i[:surn],
-          sex:          i[:sex],
-          religion:     i[:reli],
+          sex:          i[:sex]
         )
       end
     end
