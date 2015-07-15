@@ -9,7 +9,7 @@ describe API::EventsController, type: :controller do
     request.headers["Accept"] = "application/json"
   end
 
-  describe "GET #index" do
+  describe "GET #index", :helpers => :geo do
 
     it "returns all events by default" do
 
@@ -40,6 +40,25 @@ describe API::EventsController, type: :controller do
       create(:event, year: 1804)
 
       get :index, end_year: 1802
+      expect(response.body).to be_json_records(e1, e2)
+
+    end
+
+    it "?extent=WKT" do
+
+      e1 = create(:event, lonlat: point(1, 1))
+      e2 = create(:event, lonlat: point(1, 2))
+      create(:event, lonlat: point(1, 4))
+      create(:event, lonlat: point(1, 5))
+
+      extent = polygon(
+        [0, 0],
+        [0, 3],
+        [2, 3],
+        [2, 0],
+      )
+
+      get :index, extent: extent.to_s
       expect(response.body).to be_json_records(e1, e2)
 
     end

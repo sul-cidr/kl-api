@@ -14,6 +14,10 @@ module API
         events = events.before_year(params[:end_year].to_i)
       end
 
+      if params[:extent]
+        events = events.in_extent(params[:extent])
+      end
+
       @events = paginate(events)
 
     end
