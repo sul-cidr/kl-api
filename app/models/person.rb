@@ -35,7 +35,7 @@ class Person < ActiveRecord::Base
   end
 
   searchable do
-    text :name do
+    text :name, :stored => true do
       full_name
     end
   end
