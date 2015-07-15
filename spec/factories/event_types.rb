@@ -22,8 +22,8 @@ FactoryGirl.define do
         events_count 2
       end
 
-      after(:create) do |event_type, ev|
-        create_list(:event, ev.events_count, event_type: event_type)
+      after(:create) do |type, ev|
+        create_list(:event, ev.events_count, event_type: type)
       end
 
     end

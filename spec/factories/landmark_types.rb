@@ -8,8 +8,26 @@
 
 FactoryGirl.define do
 
+  sequence :landmark_type_name do |n|
+    "TYPE#{n}"
+  end
+
   factory :landmark_type do
-    name "Landmark Type"
+
+    name { generate(:landmark_type_name) }
+
+    factory :landmark_type_with_landmarks do
+
+      transient do
+        landmarks_count 2
+      end
+
+      after(:create) do |type, ev|
+        create_list(:landmark, ev.landmarks_count, landmark_type: type)
+      end
+
+    end
+
   end
 
 end

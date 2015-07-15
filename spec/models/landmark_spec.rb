@@ -47,21 +47,32 @@ describe Landmark, type: :model do
 
   describe ".in_radius()" do
 
-    it "returns events with a given radius of a point" do
+    it "returns landmarks with a given radius of a point" do
 
       lm1 = create(:landmark, lonlat: GeoHelper.point(1, 0))
       lm2 = create(:landmark, lonlat: GeoHelper.point(2, 0))
       create(:landmark, lonlat: GeoHelper.point(4, 0))
       create(:landmark, lonlat: GeoHelper.point(5, 0))
 
-      events = Landmark.in_radius(0, 0, 3)
-      expect(events).to be_records(lm1, lm2)
+      landmarks = Landmark.in_radius(0, 0, 3)
+      expect(landmarks).to be_records(lm1, lm2)
 
     end
 
   end
 
   describe ".by_type()" do
+
+    it "returns landmarks of a given type" do
+
+      t1 = create(:landmark_type_with_landmarks)
+      create(:landmark_type_with_landmarks)
+
+      landmarks = Landmark.by_type(t1.id)
+      expect(landmarks).to be_records(*t1.landmarks)
+
+    end
+
   end
 
 end

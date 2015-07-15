@@ -35,4 +35,13 @@ class Landmark < ActiveRecord::Base
     where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", point.to_s, radius)
   end
 
+  #
+  # Match events of a given type.
+  #
+  # @param id [Integer]
+  #
+  def self.by_type(id)
+    where { landmark_type_id == id }
+  end
+
 end
