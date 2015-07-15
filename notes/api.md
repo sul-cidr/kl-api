@@ -18,15 +18,16 @@
 ## Endpoints
 
 - /events
-  - `person`
-  - `occupation`
-  - `type`
+  - `person` DONE
+  - `occupation` DONE
+  - `type` DONE
   - `steps`
   - `start_year` DONE
   - `end_year` DONE
-  - `extent`
-  - `lonlat`
-  - `radius`
+  - `extent` DONE
+  - `lon` DONE
+  - `lat` DONE
+  - `radius` DONE
 
 - /landmarks
   - `type`
