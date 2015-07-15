@@ -23,4 +23,16 @@ class Landmark < ActiveRecord::Base
     where("ST_Contains(ST_GeomFromText(?), lonlat)", extent)
   end
 
+  #
+  # Match landmarks within a radius around a point.
+  #
+  # @param lon [Float]
+  # @param lat [Float]
+  # @param radius [Float]
+  #
+  def self.in_radius(lon, lat, radius)
+    point = GeoHelper.point(lon, lat)
+    where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", point.to_s, radius)
+  end
+
 end
