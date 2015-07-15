@@ -9,7 +9,7 @@ describe API::EventsController, type: :controller do
     request.headers["Accept"] = "application/json"
   end
 
-  describe "GET #index", :helpers => :geo do
+  describe "GET #index" do
 
     it "returns all events by default" do
 
@@ -46,12 +46,12 @@ describe API::EventsController, type: :controller do
 
     it "?extent=WKT" do
 
-      e1 = create(:event, lonlat: point(1, 1))
-      e2 = create(:event, lonlat: point(1, 2))
-      create(:event, lonlat: point(1, 4))
-      create(:event, lonlat: point(1, 5))
+      e1 = create(:event, lonlat: GeoHelper.point(1, 1))
+      e2 = create(:event, lonlat: GeoHelper.point(1, 2))
+      create(:event, lonlat: GeoHelper.point(1, 4))
+      create(:event, lonlat: GeoHelper.point(1, 5))
 
-      extent = polygon(
+      extent = GeoHelper.polygon(
         [0, 0],
         [0, 3],
         [2, 3],

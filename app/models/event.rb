@@ -63,7 +63,7 @@ class Event < ActiveRecord::Base
   # @param radius [Float]
   #
   def self.in_radius(lon, lat, radius)
-    point = RGeo::Cartesian.preferred_factory.point(lon, lat)
+    point = GeoHelper.point(lon, lat)
     where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", point.to_s, radius)
   end
 
