@@ -11,6 +11,8 @@ require "factory_girl_rails"
 require "json_spec"
 require "shoulda/matchers"
 
+$sunspot_session = Sunspot.session
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -55,6 +57,19 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  # Patch in FactoryGirl helpers.
   config.include FactoryGirl::Syntax::Methods
+
+  # Mock the Solr service.
+  config.before do
+    Sunspot.session = Sunspot::Rails::StubSessionProxy.new($sunspot_session)
+  end
+
+  # After a test that hits Solr, clear the index.
+  config.before :each, :solr => true do
+    Sunspot::Rails::Tester.start_original_sunspot_session
+    Sunspot.session = $sunspot_session
+    Sunspot.remove_all!
+  end
 
 end

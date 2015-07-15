@@ -25,4 +25,19 @@ class Person < ActiveRecord::Base
 
   validates :legacy_id, uniqueness: true
 
+  #
+  # Assemble a full name from the given and family names.
+  #
+  # returns [String]
+  #
+  def full_name
+    "#{given_name} #{family_name}"
+  end
+
+  searchable do
+    text :name do
+      full_name
+    end
+  end
+
 end

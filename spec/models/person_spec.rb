@@ -34,4 +34,19 @@ describe Person, :type => :model do
     it { should have_many(:occupations).through(:person_occupations) }
   end
 
+  describe "#full_name()" do
+
+    it "combines the given and family names" do
+
+      person = build(:person, {
+        given_name: "David",
+        family_name: "McClure"
+      })
+
+      expect(person.full_name).to eq("David McClure")
+
+    end
+
+  end
+
 end
