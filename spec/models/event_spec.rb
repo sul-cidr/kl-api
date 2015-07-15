@@ -202,8 +202,8 @@ describe Event, type: :model do
       e3 = create(:event)
       e4 = create(:event)
 
-      # events 1&2 -> occupation 1 -> person 1.
-      # events 3&4 -> occupation 2 -> person 2.
+      # occupation 1 -> person 1 -> events 1+2.
+      # occupation 2 -> person 2 -> events 3+4.
 
       create(:person_occupation, person: p1, occupation: o1)
       create(:person_occupation, person: p2, occupation: o2)
