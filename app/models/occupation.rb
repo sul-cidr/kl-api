@@ -15,4 +15,8 @@ class Occupation < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+  searchable do
+    text :name, :stored => true
+  end
+
 end

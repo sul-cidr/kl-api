@@ -25,4 +25,8 @@ class Landmark < ActiveRecord::Base
     where { landmark_type_id == id }
   end
 
+  searchable do
+    text :name, :stored => true
+  end
+
 end
