@@ -29,11 +29,6 @@ describe API::SearchController, type: :controller do
 
     end
 
-    xit "boosts people according to event count" do
-      get :index, q: "dog"
-      puts response.body
-    end
-
   end
 
 end
