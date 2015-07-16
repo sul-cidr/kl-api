@@ -16,8 +16,6 @@
 !/log/.keep
 /tmp
 
-# Ignore development Solr index.
 /solr
-
-# Ignore rbenv version file.
 /.ruby-version
+/.env
