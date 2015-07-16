@@ -9,9 +9,9 @@ describe API::SearchController, type: :controller do
     request.headers["Accept"] = "application/json"
   end
 
-  describe "GET #index" do
+  describe "GET #index", :solr => true do
 
-    it "searches people, landmarks, and occupations", :solr => true do
+    it "searches people, landmarks, and occupations" do
 
       p1 = create(:person, given_name: "kindred")
       create(:person, given_name: "britain")
@@ -27,6 +27,11 @@ describe API::SearchController, type: :controller do
       get :index, q: "kindred"
       expect(response.body).to be_solr_records(p1, l1, o1)
 
+    end
+
+    xit "boosts people according to event count" do
+      get :index, q: "dog"
+      puts response.body
     end
 
   end

@@ -23,8 +23,8 @@ FactoryGirl.define do
 
   factory :person do
 
-    family_name   "William"
-    given_name    "Shakespeare"
+    given_name    "William"
+    family_name   "Shakespeare"
     sex           "M"
     birth_year    1564
     death_year    1616

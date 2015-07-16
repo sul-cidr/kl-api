@@ -40,7 +40,7 @@ class Person < ActiveRecord::Base
       full_name
     end
 
-    boost { events.count }
+    boost { events.count+1 }
 
   end
 
