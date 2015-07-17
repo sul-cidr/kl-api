@@ -103,4 +103,22 @@ class Graph::Person
 
   end
 
+  #
+  # Given two Person ids, get the genealogical shortest-path.
+  #
+  # @param id1 [Integer]
+  # @param id2 [Integer]
+  #
+  def self.kin_path(id1, id2)
+
+    Neo4j::Session.query
+      .match(p1: self, p2: self)
+      .match("p=shortestPath((p1)-[*..100]-(p2))")
+      .where(p1: { pg_id: id1 })
+      .where(p2: { pg_id: id2 })
+      .return("nodes(p) as nodes, relationships(p) as rels")
+      .to_a
+
+  end
+
 end
