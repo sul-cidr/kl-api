@@ -10,6 +10,7 @@
 FactoryGirl.define do
 
   factory :person_event do
+    role
     person
     event
   end
