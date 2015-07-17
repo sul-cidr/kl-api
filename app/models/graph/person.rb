@@ -6,37 +6,56 @@ class Graph::Person
   property :pg_id, type: Integer, constraint: :unique
   validates :pg_id, :presence => true
 
-  has_many(
-    :both, :kin,
+  has_one(
+    :both, :spouse,
     model_class: "Person",
-    type: "kin",
+    type: "spouse",
+    unique: true
+  )
+
+  has_many(
+    :out, :children,
+    model_class: "Person",
+    type: "children",
     unique: true
   )
 
   #
-  # Index birth and marriage relationships.
+  # Index genealogical relationships.
   #
-  def self.index!
+  def self.index
+    self.delete_all
+    self.index_marriages
+    self.index_births
+  end
 
-    # Select "birth" and "marriage" events.
+  #
+  # Index marriages.
+  #
+  def self.index_marriages
+
+    # Select "marriage" events.
     events = Event.joins { event_type }.where {
-      event_type.name >> ["BIRT", "MARR"]
+      event_type.name == "MARR"
     }
 
     bar = ProgressBar.new(events.count)
 
-    events.each do |e|
+    events.each do |event|
+
+      next if event.people.count != 2
 
       silence_stream(STDOUT) do
 
         # Insert the nodes.
-        e.people.map do |p|
+        nodes = event.people.map do |p|
           self.merge(pg_id: p.id)
         end
 
-      end
+        # Register marriage.
+        nodes[0].spouse = nodes[1]
 
-      # TODO: Register relationships.
+      end
 
       bar.increment!
 
