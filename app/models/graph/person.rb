@@ -63,4 +63,44 @@ class Graph::Person
 
   end
 
+  #
+  # Index births.
+  #
+  def self.index_births
+
+    # Select "birth" events.
+    events = Event.joins { event_type }.where {
+      event_type.name == "BIRT"
+    }
+
+    bar = ProgressBar.new(events.count)
+
+    events.each do |event|
+
+      next if event.person_events.count != 3
+
+      # Get person-event links for mother/father/child.
+      m = event.person_events.find{|pe| pe.role.name == "mother" }
+      f = event.person_events.find{|pe| pe.role.name == "father" }
+      c = event.person_events.find{|pe| pe.role.name == "child" }
+
+      silence_stream(STDOUT) do
+
+        # Get nodes for the participants.
+        m_node = self.find_by(pg_id: m.person.id)
+        f_node = self.find_by(pg_id: f.person.id)
+        c_node = self.find_by(pg_id: c.person.id)
+
+        # Register the links.
+        m_node.children << c_node
+        f_node.children << c_node
+
+      end
+
+      bar.increment!
+
+    end
+
+  end
+
 end
