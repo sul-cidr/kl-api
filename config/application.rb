@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'neo4j/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -24,13 +23,6 @@ module KbApi
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
-    config.neo4j.session_options = {
-      basic_auth: {
-        username: ENV["NEO4J_USERNAME"],
-        password: ENV["NEO4J_PASSWORD"],
-      }
-    }
 
   end
 end

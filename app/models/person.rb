@@ -39,32 +39,6 @@ class Person < ActiveRecord::Base
   end
 
   #
-  # Index kin relationships in Neo4j.
-  #
-  def self.index
-
-    # Select "birth" and "marriage" events.
-    kin_events = Event.joins { event_type }.where {
-      event_type.name >> ["BIRT", "MARR"]
-    }
-
-    kin_events.each do |e|
-
-      # Insert the nodes.
-      nodes = e.people.map do |p|
-        Graph::Person.merge(pg_id: p.id)
-      end
-
-      # Index undirected edges.
-      nodes.combination(2).each do |pair|
-        pair[0].kin << pair[1]
-      end
-
-    end
-
-  end
-
-  #
   # Assemble a full name from the given and family names.
   #
   # returns [String]
