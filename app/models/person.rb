@@ -52,7 +52,7 @@ class Person < ActiveRecord::Base
 
       # Insert the nodes.
       nodes = e.people.map do |p|
-        PersonNode.merge(pg_id: p.id)
+        Graph::Person.merge(pg_id: p.id)
       end
 
       # Index undirected edges.
@@ -72,22 +72,5 @@ class Person < ActiveRecord::Base
   def full_name
     "#{given_name} #{family_name}"
   end
-
-end
-
-
-class PersonNode
-
-  include Neo4j::ActiveNode
-
-  property :pg_id, type: Integer, constraint: :unique
-  validates :pg_id, :presence => true
-
-  has_many(
-    :both, :kin,
-    model_class: "PersonNode",
-    type: "kin",
-    unique: true
-  )
 
 end
