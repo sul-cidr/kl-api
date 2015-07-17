@@ -2,18 +2,20 @@
 module Import
   class PersonEventRows < Step
 
-    @depends = [PersonRows, EventRows]
+    @depends = [PersonRows, EventRows, RoleRows]
 
     def up
       @DB[:particip].each do |p|
 
-        person = Person.find_by(legacy_id: p[:actor_id])
-        event = Event.find_by(legacy_id: p[:event_id])
+        role    = Role.find_by(name: p[:role])
+        person  = Person.find_by(legacy_id: p[:actor_id])
+        event   = Event.find_by(legacy_id: p[:event_id])
 
         if person and event
           PersonEvent.create(
-            person_id: person.id,
-            event_id: event.id
+            role_id:    role.id,
+            person_id:  person.id,
+            event_id:   event.id,
           )
         end
 
