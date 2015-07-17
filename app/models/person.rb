@@ -25,15 +25,6 @@ class Person < ActiveRecord::Base
 
   validates :legacy_id, uniqueness: true
 
-  #
-  # Assemble a full name from the given and family names.
-  #
-  # returns [String]
-  #
-  def full_name
-    "#{given_name} #{family_name}"
-  end
-
   searchable do
 
     text :name, :stored => true do
@@ -43,5 +34,31 @@ class Person < ActiveRecord::Base
     boost { events.count+1 }
 
   end
+
+  #
+  # Index rows in Neo4j.
+  #
+  def self.index
+    # TODO
+  end
+
+  #
+  # Assemble a full name from the given and family names.
+  #
+  # returns [String]
+  #
+  def full_name
+    "#{given_name} #{family_name}"
+  end
+
+end
+
+
+class PersonNode
+
+  include Neo4j::ActiveNode
+
+  property :pg_id, type: Integer, constraint: :unique
+  validates :pg_id, :presence => true
 
 end
