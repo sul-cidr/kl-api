@@ -42,7 +42,7 @@ gem 'squeel'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
-gem 'neography'
+gem 'neo4j'
 gem 'dotenv-rails'
 
 group :development, :test do
