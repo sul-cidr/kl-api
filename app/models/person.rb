@@ -36,10 +36,29 @@ class Person < ActiveRecord::Base
   end
 
   #
-  # Index rows in Neo4j.
+  # Index kin relationships in Neo4j.
   #
   def self.index
-    # TODO
+
+    # Select "birth" and "marriage" events.
+    kin_events = Event.joins { event_type }.where {
+      event_type.name >> ["BIRT", "MARR"]
+    }
+
+    kin_events.each do |e|
+
+      # Insert the nodes.
+      nodes = e.people.map do |p|
+        PersonNode.merge(pg_id: p.id)
+      end
+
+      # Index undirected edges.
+      nodes.combination(2).each do |pair|
+        pair[0].kin << pair[1]
+      end
+
+    end
+
   end
 
   #
@@ -60,5 +79,12 @@ class PersonNode
 
   property :pg_id, type: Integer, constraint: :unique
   validates :pg_id, :presence => true
+
+  has_many(
+    :both, :kin,
+    model_class: "PersonNode",
+    type: "kin",
+    unique: true
+  )
 
 end
