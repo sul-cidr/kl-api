@@ -25,6 +25,9 @@ class Person < ActiveRecord::Base
 
   validates :legacy_id, uniqueness: true
 
+  #
+  # Index the full name in Solr.
+  #
   searchable do
 
     text :name, :stored => true do
