@@ -16,9 +16,9 @@ class Graph::Person
   )
 
   has_many(
-    :out, :children,
+    :out, :child,
     model_class: "Person",
-    type: "children",
+    type: "child",
     unique: true
   )
 
