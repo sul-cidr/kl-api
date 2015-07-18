@@ -128,32 +128,13 @@ class Graph::Person
   #
   def self.kin_path(id1, id2)
 
-    r = Neo4j::Session.query
+    Neo4j::Session.query
       .match(p1: self, p2: self)
       .match("p=shortestPath((p1)-[*..100]-(p2))")
       .where(p1: { pg_id: id1 })
       .where(p2: { pg_id: id2 })
       .return("nodes(p) as nodes, relationships(p) as links")
       .to_a.first
-
-    nodes = []
-    links = []
-
-    r.nodes.each_cons(2).to_a.each_with_index do |(n1, n2), i|
-
-      nodes << n1.name
-
-      if r.links[i].rel_type == :spouse
-        links << "spouse"
-      elsif r.links[i].start_node_neo_id == n1.neo_id
-        links << "parent"
-      else
-        links << "child"
-      end
-
-    end
-
-    return nodes, links
 
   end
 
