@@ -33,10 +33,9 @@ class Graph::Person
   end
 
   #
-  # Index genealogical relationships.
+  # Index genealogical relations.
   #
   def self.index
-    self.delete_all
     self.index_marriages
     self.index_births
   end
@@ -137,7 +136,7 @@ class Graph::Person
       .return("nodes(p) as nodes, relationships(p) as links")
       .to_a.first
 
-    r.nodes
+    r.links
 
   end
 
