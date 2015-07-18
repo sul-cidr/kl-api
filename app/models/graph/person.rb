@@ -4,6 +4,8 @@ class Graph::Person
   include Neo4j::ActiveNode
 
   property :pg_id, type: Integer, constraint: :unique
+  property :name, type: String
+
   validates :pg_id, :presence => true
 
   has_one(
@@ -19,6 +21,16 @@ class Graph::Person
     type: "children",
     unique: true
   )
+
+  #
+  # Register a node.
+  #
+  # @param id [Integer]
+  # @param name [String]
+  #
+  def self.add_node(id, name)
+    self.merge(pg_id: id, name: name)
+  end
 
   #
   # Index genealogical relationships.
@@ -49,7 +61,7 @@ class Graph::Person
 
         # Insert the nodes.
         nodes = event.people.map do |p|
-          self.merge(pg_id: p.id)
+          self.add_node(p.id, p.full_name)
         end
 
         # Register marriage.
@@ -77,23 +89,29 @@ class Graph::Person
 
     events.each do |event|
 
-      next if event.person_events.count != 3
-
-      # Get person-event links for mother/father/child.
+      # Get the person-event link for mother/father/child.
+      c = event.person_events.find{|pe| pe.role.name == "child" }
       m = event.person_events.find{|pe| pe.role.name == "mother" }
       f = event.person_events.find{|pe| pe.role.name == "father" }
-      c = event.person_events.find{|pe| pe.role.name == "child" }
+
+      next if not c
 
       silence_stream(STDOUT) do
 
-        # Get nodes for the participants.
-        m_node = self.find_by(pg_id: m.person.id)
-        f_node = self.find_by(pg_id: f.person.id)
-        c_node = self.find_by(pg_id: c.person.id)
+        # Get the child node.
+        c_node = self.add_node(c.person.id, c.person.full_name)
 
-        # Register the links.
-        m_node.children << c_node
-        f_node.children << c_node
+        # Register mother -> child link.
+        if m
+          m_node = self.add_node(m.person.id, m.person.full_name)
+          m_node.children << c_node
+        end
+
+        # Register father -> child link.
+        if f
+          f_node = self.add_node(f.person.id, f.person.full_name)
+          f_node.children << c_node
+        end
 
       end
 
@@ -111,13 +129,15 @@ class Graph::Person
   #
   def self.kin_path(id1, id2)
 
-    Neo4j::Session.query
+    r = Neo4j::Session.query
       .match(p1: self, p2: self)
       .match("p=shortestPath((p1)-[*..100]-(p2))")
       .where(p1: { pg_id: id1 })
       .where(p2: { pg_id: id2 })
-      .return("nodes(p) as nodes, relationships(p) as rels")
-      .to_a
+      .return("nodes(p) as nodes, relationships(p) as links")
+      .to_a.first
+
+    r.nodes
 
   end
 
