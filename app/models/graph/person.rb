@@ -136,6 +136,8 @@ class Graph::Person
       .return("nodes(p) as nodes, relationships(p) as links")
       .to_a.first
 
+    # TODO: Assemble path.
+
   end
 
 end
