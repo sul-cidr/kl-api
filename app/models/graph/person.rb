@@ -135,11 +135,36 @@ class Graph::Person
       .where(p1: { pg_id: id1 })
       .where(p2: { pg_id: id2 })
       .return("nodes(p) as people")
-      .to_a.first
 
-    r.people.map do |p|
+    r.to_a.first.people.map do |p|
       ::Person.find(p.pg_id)
     end
+
+    # TODO: Provide relation types.
+
+  end
+
+  #
+  # Given a Person id, find all people with N steps.
+  #
+  # @param id [Integer]
+  # @param steps [Integer]
+  #
+  def self.bacon(id, steps)
+
+    r = Neo4j::Session.query
+      .match(s: self)
+      .match("(s)-[*..#{steps}]-(t)")
+      .where(s: { pg_id: id })
+      .return("t as person")
+
+    pg_ids = r.to_a.map(&:person).map do |p|
+      p.pg_id
+    end
+
+    Event.joins { people }.where {
+      people.id >> pg_ids
+    }
 
   end
 
