@@ -163,25 +163,30 @@ describe Event, type: :model do
 
   end
 
-  describe ".by_person()" do
+  describe ".by_people()" do
 
-    it "returns events associated with a given person" do
+    it "returns events associated with a set of people" do
 
       p1 = create(:person)
       p2 = create(:person)
+      p3 = create(:person)
 
       e1 = create(:event)
       e2 = create(:event)
       e3 = create(:event)
       e4 = create(:event)
+      e5 = create(:event)
+      e6 = create(:event)
 
       create(:person_event, person: p1, event: e1)
       create(:person_event, person: p1, event: e2)
       create(:person_event, person: p2, event: e3)
       create(:person_event, person: p2, event: e4)
+      create(:person_event, person: p3, event: e5)
+      create(:person_event, person: p3, event: e6)
 
-      events = Event.by_person(p1.id)
-      expect(events).to be_records(e1, e2)
+      events = Event.by_people(p1.id, p2.id)
+      expect(events).to be_records(e1, e2, e3, e4)
 
     end
 

@@ -51,11 +51,11 @@ class Event < ActiveRecord::Base
   #
   # Match events linked with a people.
   #
-  # @param id [Integer]
+  # @param ids [Integer]
   #
-  def self.by_person(id)
+  def self.by_people(*ids)
     joins { people }.where {
-      people.id == id
+      people.id >> ids
     }
   end
 

@@ -26,8 +26,8 @@ module API
         )
       end
 
-      if params[:person]
-        events = events.by_person(params[:person])
+      if params[:people]
+        events = events.by_people(params[:people])
       end
 
       if params[:occupation]
