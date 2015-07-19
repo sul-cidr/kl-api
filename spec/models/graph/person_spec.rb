@@ -3,18 +3,16 @@ require 'rails_helper'
 
 describe Graph::Person, :neo4j, :quiet do
 
-  after do
-    puts Graph::Person.count
-  end
-
   describe ".index_marriages()" do
+
+    before do
+      @marriage = create(:event_type, name: "MARR")
+    end
 
     it "creates nodes and relationships for marriages" do
 
-      marriage = create(:event_type, name: "MARR")
-
-      e1 = create(:event, event_type: marriage)
-      e2 = create(:event, event_type: marriage)
+      e1 = create(:event, event_type: @marriage)
+      e2 = create(:event, event_type: @marriage)
 
       p1 = create(:person)
       p2 = create(:person)
@@ -53,10 +51,8 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "skips events with more than / fewer than 2 people" do
 
-      marriage = create(:event_type, name: "MARR")
-
-      e1 = create(:event, event_type: marriage)
-      e2 = create(:event, event_type: marriage)
+      e1 = create(:event, event_type: @marriage)
+      e2 = create(:event, event_type: @marriage)
 
       p1 = create(:person)
       p2 = create(:person)
