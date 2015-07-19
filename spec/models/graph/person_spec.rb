@@ -1,7 +1,11 @@
 
 require 'rails_helper'
 
-describe Graph::Person do
+describe Graph::Person, :neo4j, :quiet do
+
+  after do
+    puts Graph::Person.count
+  end
 
   describe ".index_marriages()" do
 

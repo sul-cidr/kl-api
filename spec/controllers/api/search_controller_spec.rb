@@ -9,7 +9,7 @@ describe API::SearchController, type: :controller do
     request.headers["Accept"] = "application/json"
   end
 
-  describe "GET #index", :solr => true do
+  describe "GET #index", :solr do
 
     it "searches people, landmarks, and occupations" do
 

@@ -67,9 +67,23 @@ RSpec.configure do |config|
   end
 
   # After a test that hits Solr, clear the index.
-  config.before :each, :solr => true do
+  config.before(:each, :solr) do
     Sunspot.session = $sunspot_session
     Sunspot.remove_all!
+  end
+
+  # Swallow STDOUT and STDERR.
+  config.around(:each, :quiet) do |test|
+    silence_stream(STDERR) do
+      silence_stream(STDOUT) do
+        test.run
+      end
+    end
+  end
+
+  # Clear Neo4j.
+  config.before(:each, :neo4j) do
+    Graph::Person.delete_all
   end
 
 end
