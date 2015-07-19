@@ -139,6 +139,51 @@ describe API::EventsController, type: :controller do
 
     end
 
+    it "source+steps", :neo4j, :quiet do
+
+      p1 = create(:person)
+      p2 = create(:person)
+      p3 = create(:person)
+      p4 = create(:person)
+      p5 = create(:person)
+
+      e1 = create(:event)
+      e2 = create(:event)
+      e3 = create(:event)
+      e4 = create(:event)
+      e5 = create(:event)
+
+      create(:person_event, person: p1, event: e1)
+      create(:person_event, person: p2, event: e2)
+      create(:person_event, person: p3, event: e3)
+      create(:person_event, person: p4, event: e4)
+      create(:person_event, person: p5, event: e5)
+
+      n1 = Graph::Person.add_node(p1.id)
+      n2 = Graph::Person.add_node(p2.id)
+      n3 = Graph::Person.add_node(p3.id)
+      n4 = Graph::Person.add_node(p4.id)
+      n5 = Graph::Person.add_node(p5.id)
+
+      n1.child << n2
+      n2.child << n3
+      n3.child << n4
+      n4.child << n5
+
+      get :index, source: p1.id, steps: 1
+      expect(response.body).to be_json_records(e2)
+
+      get :index, source: p1.id, steps: 2
+      expect(response.body).to be_json_records(e2, e3)
+
+      get :index, source: p1.id, steps: 3
+      expect(response.body).to be_json_records(e2, e3, e4)
+
+      get :index, source: p1.id, steps: 4
+      expect(response.body).to be_json_records(e2, e3, e4, e5)
+
+    end
+
   end
 
 end
