@@ -51,6 +51,33 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
+    it "skips events with more than / fewer than 2 people" do
+
+      marriage = create(:event_type, name: "MARR")
+
+      e1 = create(:event, event_type: marriage)
+      e2 = create(:event, event_type: marriage)
+
+      p1 = create(:person)
+      p2 = create(:person)
+      p3 = create(:person)
+
+      # 1 people on e1.
+      create(:person_event, person: p1, event: e1)
+
+      # 3 people on e2.
+      create(:person_event, person: p1, event: e2)
+      create(:person_event, person: p2, event: e2)
+      create(:person_event, person: p3, event: e2)
+
+      Graph::Person.index_marriages
+      expect(Graph::Person.count).to eq(0)
+
+    end
+
+  end
+
+  describe ".index_births()" do
   end
 
 end
