@@ -59,7 +59,7 @@ class Graph::Person
 
         # Insert the nodes.
         nodes = event.people.map do |p|
-          self.add_node(p.id, p.full_name)
+          self.add_node(p.id)
         end
 
         # Register marriage.

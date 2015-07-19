@@ -3,7 +3,7 @@ namespace :neo4j do
 
   desc "Index genealogical relationships"
   task :index => :environment do
-    Graph::Person.index_births
+    Graph::Person.index
   end
 
   desc "Clear all nodes"
