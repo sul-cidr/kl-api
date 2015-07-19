@@ -67,6 +67,7 @@ describe Graph::Person, :neo4j, :quiet do
       create(:person_event, person: p3, event: e2)
 
       Graph::Person.index_marriages
+
       expect(Graph::Person.count).to eq(0)
 
     end
@@ -74,6 +75,47 @@ describe Graph::Person, :neo4j, :quiet do
   end
 
   describe ".index_births()" do
+
+    before do
+      @birth  = create(:event_type, name: "BIRT")
+      @mother = create(:role, name: "mother")
+      @father = create(:role, name: "father")
+      @child  = create(:role, name: "child")
+    end
+
+    it "links mother, father, and child" do
+
+      e = create(:event, event_type: @birth)
+
+      m = create(:person)
+      f = create(:person)
+      c = create(:person)
+
+      create(:person_event, person: m, event: e, role: @mother)
+      create(:person_event, person: f, event: e, role: @father)
+      create(:person_event, person: c, event: e, role: @child)
+
+      Graph::Person.index_births
+
+      m_node = Graph::Person.find_by(pg_id: m.id)
+      f_node = Graph::Person.find_by(pg_id: f.id)
+      c_node = Graph::Person.find_by(pg_id: c.id)
+
+      # Should create nodes.
+      expect(m_node).to_not be_nil
+      expect(f_node).to_not be_nil
+      expect(c_node).to_not be_nil
+
+      # Should create relationships.
+      expect(m_node.child).to include c_node
+      expect(f_node.child).to include c_node
+
+    end
+
+    it "links mother and child"
+    it "links father and child"
+    it "skips events with no child"
+
   end
 
 end
