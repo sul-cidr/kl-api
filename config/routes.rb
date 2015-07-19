@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resources :photographs, only: [:index]
     resources :landmarks, only: [:index]
     resources :search, only: [:index]
+    resources :relation, only: [:index]
   end
 
 end

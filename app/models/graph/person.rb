@@ -134,10 +134,12 @@ class Graph::Person
       .match("p=shortestPath((p1)-[*..100]-(p2))")
       .where(p1: { pg_id: id1 })
       .where(p2: { pg_id: id2 })
-      .return("nodes(p) as nodes")
+      .return("nodes(p) as people")
       .to_a.first
 
-    r.nodes
+    r.people.map do |p|
+      ::Person.find(p.pg_id)
+    end
 
   end
 
