@@ -136,7 +136,7 @@ class Graph::Person
       .return("nodes(p) as people")
 
     r.to_a.first.people.map do |p|
-      ::Person.find(p.pg_id)
+      p.pg_id
     end
 
     # TODO: Provide relation types.
@@ -157,13 +157,9 @@ class Graph::Person
       .where(s: { pg_id: id })
       .return("t as person")
 
-    pg_ids = r.to_a.map(&:person).map do |p|
+    r.to_a.map(&:person).map do |p|
       p.pg_id
     end
-
-    Event.joins { people }.where {
-      people.id >> pg_ids
-    }
 
   end
 
