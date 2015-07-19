@@ -38,6 +38,11 @@ module API
         events = events.by_type(params[:type])
       end
 
+      if params[:source] and params[:steps]
+        ids = Graph::Person.bacon(params[:source].to_i, params[:steps].to_i)
+        events = events.by_people(ids)
+      end
+
       @events = paginate(events)
 
     end
