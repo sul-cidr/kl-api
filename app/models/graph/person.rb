@@ -98,7 +98,6 @@ class Graph::Person
 
       silence_stream(STDOUT) do
 
-        # Get the child node.
         c_node = self.add_node(c.id)
 
         # Register mother -> child link.
