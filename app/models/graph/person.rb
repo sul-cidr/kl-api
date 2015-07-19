@@ -127,7 +127,7 @@ class Graph::Person
   # @param id1 [Integer]
   # @param id2 [Integer]
   #
-  def self.kin_path(id1, id2)
+  def self.kin(id1, id2)
 
     r = Neo4j::Session.query
       .match(p1: self, p2: self)
