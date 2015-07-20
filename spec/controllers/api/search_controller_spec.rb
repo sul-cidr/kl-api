@@ -24,7 +24,7 @@ describe API::SearchController, type: :controller do
 
       Sunspot.commit
 
-      get :index, q: "kindred"
+      get :index, query: "kindred"
       expect(response.body).to be_solr_records(p1, l1, o1)
 
     end

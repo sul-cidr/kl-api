@@ -5,7 +5,7 @@ module API
     def index
 
       @results = Sunspot.search Person, Landmark, Occupation do
-        fulltext params[:q] do
+        fulltext params[:query] do
           highlight :name
         end
       end

@@ -38,7 +38,7 @@ The API provides information about four basic entity types - events, landmarks, 
 
   - **`people`** (integer[array]) - Match events that associated with a set of people, identified by ID.
 
-  - **`occupation`** (integer) - Match events that associated with a set of people of a given occupation., identified by ID.
+  - **`occupation`** (integer) - Match events that associated with a set of people of a given occupation, identified by ID.
 
   - **`type`** (integer) - Match events of a given type, identified by ID.
 
@@ -72,4 +72,4 @@ The API provides information about four basic entity types - events, landmarks, 
 
 #### Parameters
 
-  - **`q`** (string) - Search the names of people, landmarks, and occupations.
+  - **`query`** (string) - Search the names of people, landmarks, and occupations.
