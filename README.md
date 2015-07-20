@@ -38,7 +38,7 @@ The API provides information about four basic entity types - events, landmarks, 
 
   - **`people`** (integer[array]) - Match events that associated with a set of people, identified by ID.
 
-  - **`occupation`** (integer) - Match events that associated with a set of people of a given occupation, identified by ID.
+  - **`occupations`** (integer) - Match events that associated with people of a given set of occupations, identified by ID.
 
   - **`type`** (integer) - Match events of a given type, identified by ID.
 

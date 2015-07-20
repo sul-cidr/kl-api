@@ -30,8 +30,8 @@ module API
         events = events.by_people(params[:people])
       end
 
-      if params[:occupation]
-        events = events.by_occupation(params[:occupation])
+      if params[:occupations]
+        events = events.by_occupations(params[:occupations])
       end
 
       if params[:type]

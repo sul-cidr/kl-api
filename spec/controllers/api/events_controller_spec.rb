@@ -111,32 +111,47 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "occupation" do
+    describe "occupations" do
 
-      p1 = create(:person)
-      p2 = create(:person)
+      before do
 
-      o1 = create(:occupation)
-      o2 = create(:occupation)
+        @p1 = create(:person)
+        @p2 = create(:person)
+        @p3 = create(:person)
 
-      e1 = create(:event)
-      e2 = create(:event)
-      e3 = create(:event)
-      e4 = create(:event)
+        @o1 = create(:occupation)
+        @o2 = create(:occupation)
+        @o3 = create(:occupation)
 
-      # occupation 1 -> person 1 -> events 1+2.
-      # occupation 2 -> person 2 -> events 3+4.
+        @e1 = create(:event)
+        @e2 = create(:event)
+        @e3 = create(:event)
+        @e4 = create(:event)
+        @e5 = create(:event)
+        @e6 = create(:event)
 
-      create(:person_occupation, person: p1, occupation: o1)
-      create(:person_occupation, person: p2, occupation: o2)
+        create(:person_occupation, person: @p1, occupation: @o1)
+        create(:person_occupation, person: @p2, occupation: @o2)
+        create(:person_occupation, person: @p3, occupation: @o3)
 
-      create(:person_event, person: p1, event: e1)
-      create(:person_event, person: p1, event: e2)
-      create(:person_event, person: p2, event: e3)
-      create(:person_event, person: p2, event: e4)
+        create(:person_event, person: @p1, event: @e1)
+        create(:person_event, person: @p1, event: @e2)
+        create(:person_event, person: @p2, event: @e3)
+        create(:person_event, person: @p2, event: @e4)
+        create(:person_event, person: @p3, event: @e5)
+        create(:person_event, person: @p3, event: @e6)
 
-      get :index, occupation: o1.id
-      expect(response.body).to be_json_records(e1, e2)
+      end
+
+      it "one occupation" do
+        get :index, occupations: @o1.id
+        expect(response.body).to be_json_records(@e1, @e2)
+      end
+
+      it "multiple occupations" do
+        get :index, occupations: [@o1.id, @o2.id]
+        expect(response.body).to be_json_records(@e1, @e2, @e3, @e4)
+      end
 
     end
 

@@ -192,34 +192,41 @@ describe Event, type: :model do
 
   end
 
-  describe ".by_occupation()" do
+  describe ".by_occupations()" do
 
-    it "returns events associated with people of a given occupation" do
+    it "returns events associated with people of a set of occupations" do
 
       p1 = create(:person)
       p2 = create(:person)
+      p3 = create(:person)
 
       o1 = create(:occupation)
       o2 = create(:occupation)
+      o3 = create(:occupation)
 
       e1 = create(:event)
       e2 = create(:event)
       e3 = create(:event)
       e4 = create(:event)
+      e5 = create(:event)
+      e6 = create(:event)
 
       # occupation 1 -> person 1 -> events 1+2.
       # occupation 2 -> person 2 -> events 3+4.
 
       create(:person_occupation, person: p1, occupation: o1)
       create(:person_occupation, person: p2, occupation: o2)
+      create(:person_occupation, person: p3, occupation: o3)
 
       create(:person_event, person: p1, event: e1)
       create(:person_event, person: p1, event: e2)
       create(:person_event, person: p2, event: e3)
       create(:person_event, person: p2, event: e4)
+      create(:person_event, person: p3, event: e5)
+      create(:person_event, person: p3, event: e6)
 
-      events = Event.by_occupation(o1.id)
-      expect(events).to be_records(e1, e2)
+      events = Event.by_occupations(o1.id, o2.id)
+      expect(events).to be_records(e1, e2, e3, e4)
 
     end
 
