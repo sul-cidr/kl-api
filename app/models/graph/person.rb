@@ -136,31 +136,45 @@ class Graph::Person
       .return("nodes(p) as people, relationships(p) as rels")
       .to_a.first
 
-    neo_ids = r.people.map do |p|
-      p.neo_id
-    end
-
+    # Postgres ids.
     pg_ids = r.people.map do |p|
       p.pg_id
     end
 
+    # Neo4j ids.
+    node_ids = r.people.map do |p|
+      p.neo_id
+    end
+
+    # Relationship Neo4j ids.
     rel_ids = r.rels.map do |rel|
       [rel.start_node_neo_id, rel.end_node_neo_id]
     end
 
-    links = neo_ids.each_cons(2).to_a.each_with_index.map do |(nid1, nid2), i|
+    # Walk the path IDs in pairs.
+    rels = node_ids
+      .each_cons(2)
+      .to_a
+      .each_with_index
+      .map do |(nid1, nid2), i|
 
+      # Get the relationship type.
       type = r.rels[i].rel_type.to_s
 
-      if rel_ids[i] == [nid1, nid2] || type == "spouse"
+      # If the relation order matches the path order, or the type is spouse
+      # (undirected), use the vanilla type name.
+      if rel_ids[i] == [nid1, nid2] or type == "spouse"
         type
+
+      # Otherwise, the path pair is A -> B, but the relation is B -child-> A,
+      # and we need to flip "child" to "parent".
       else
         "parent"
       end
 
     end
 
-    return pg_ids, links
+    return pg_ids, rels
 
   end
 
