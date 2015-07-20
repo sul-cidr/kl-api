@@ -65,15 +65,16 @@ describe Landmark, type: :model do
 
   end
 
-  describe ".by_type()" do
+  describe ".by_types()" do
 
-    it "returns landmarks of a given type" do
+    it "returns landmarks of 1+ types" do
 
       t1 = create(:landmark_type_with_landmarks)
+      t2 = create(:landmark_type_with_landmarks)
       create(:landmark_type_with_landmarks)
 
-      landmarks = Landmark.by_type(t1.id)
-      expect(landmarks).to be_records(*t1.landmarks)
+      landmarks = Landmark.by_types(t1.id, t2.id)
+      expect(landmarks).to be_records(*t1.landmarks+t2.landmarks)
 
     end
 

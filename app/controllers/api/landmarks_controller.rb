@@ -18,8 +18,8 @@ module API
         )
       end
 
-      if params[:type]
-        landmarks = landmarks.by_type(params[:type])
+      if params[:types]
+        landmarks = landmarks.by_types(params[:types])
       end
 
       @landmarks = paginate(landmarks)

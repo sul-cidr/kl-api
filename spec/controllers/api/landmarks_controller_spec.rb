@@ -42,13 +42,23 @@ describe API::LandmarksController, type: :controller do
 
     end
 
-    it "type" do
+    describe "types" do
 
-      t1 = create(:landmark_type_with_landmarks)
-      create(:landmark_type_with_landmarks)
+      before do
+        @t1 = create(:landmark_type_with_landmarks)
+        @t2 = create(:landmark_type_with_landmarks)
+        @t3 = create(:landmark_type_with_landmarks)
+      end
 
-      get :index, type: t1.id
-      expect(response.body).to be_json_records(*t1.landmarks)
+      it "one type" do
+        get :index, types: @t1.id
+        expect(response.body).to be_json_records(*@t1.landmarks)
+      end
+
+      it "multiple types" do
+        get :index, types: [@t1.id, @t2.id]
+        expect(response.body).to be_json_records(*@t1.landmarks+@t2.landmarks)
+      end
 
     end
 

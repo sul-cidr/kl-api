@@ -16,17 +16,17 @@ class Landmark < ActiveRecord::Base
 
   belongs_to :landmark_type
 
-  #
-  # Match events of a given type.
-  #
-  # @param id [Integer]
-  #
-  def self.by_type(id)
-    where { landmark_type_id == id }
-  end
-
   searchable do
     text :name, :stored => true
+  end
+
+  #
+  # Match events of 1+ type.
+  #
+  # @param ids [Integer]
+  #
+  def self.by_types(*ids)
+    where { landmark_type_id >> ids }
   end
 
 end
