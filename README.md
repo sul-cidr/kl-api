@@ -24,7 +24,7 @@ And, now the test suite should run:
 
 The API provides information about four basic entity types - events, landmarks, people, and photographs.
 
-### `/events`
+### `/api/events`
 
 #### Parameters
 
