@@ -130,6 +130,9 @@ describe API::EventsController, type: :controller do
         @e5 = create(:event)
         @e6 = create(:event)
 
+        # occupation 1 -> person 1 -> events 1+2.
+        # occupation 2 -> person 2 -> events 3+4.
+
         create(:person_occupation, person: @p1, occupation: @o1)
         create(:person_occupation, person: @p2, occupation: @o2)
         create(:person_occupation, person: @p3, occupation: @o3)
@@ -155,13 +158,23 @@ describe API::EventsController, type: :controller do
 
     end
 
-    it "type" do
+    describe "types" do
 
-      t1 = create(:event_type_with_events)
-      create(:event_type_with_events)
+      before do
+        @t1 = create(:event_type_with_events)
+        @t2 = create(:event_type_with_events)
+        @t3 = create(:event_type_with_events)
+      end
 
-      get :index, type: t1.id
-      expect(response.body).to be_json_records(*t1.events)
+      it "one type" do
+        get :index, types: @t1.id
+        expect(response.body).to be_json_records(*@t1.events)
+      end
+
+      it "multiple types" do
+        get :index, types: [@t1.id, @t2.id]
+        expect(response.body).to be_json_records(*@t1.events+@t2.events)
+      end
 
     end
 

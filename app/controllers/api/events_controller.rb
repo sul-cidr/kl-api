@@ -34,8 +34,8 @@ module API
         events = events.by_occupations(params[:occupations])
       end
 
-      if params[:type]
-        events = events.by_type(params[:type])
+      if params[:types]
+        events = events.by_types(params[:types])
       end
 
       if params[:source] and params[:steps]

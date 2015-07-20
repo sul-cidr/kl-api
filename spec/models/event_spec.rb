@@ -165,39 +165,28 @@ describe Event, type: :model do
 
   describe ".by_people()" do
 
-    describe "returns events associated with a set of people" do
+    it "returns events associated with 1+ people" do
 
-      before do
+      p1 = create(:person)
+      p2 = create(:person)
+      p3 = create(:person)
 
-        @p1 = create(:person)
-        @p2 = create(:person)
-        @p3 = create(:person)
+      e1 = create(:event)
+      e2 = create(:event)
+      e3 = create(:event)
+      e4 = create(:event)
+      e5 = create(:event)
+      e6 = create(:event)
 
-        @e1 = create(:event)
-        @e2 = create(:event)
-        @e3 = create(:event)
-        @e4 = create(:event)
-        @e5 = create(:event)
-        @e6 = create(:event)
+      create(:person_event, person: p1, event: e1)
+      create(:person_event, person: p1, event: e2)
+      create(:person_event, person: p2, event: e3)
+      create(:person_event, person: p2, event: e4)
+      create(:person_event, person: p3, event: e5)
+      create(:person_event, person: p3, event: e6)
 
-        create(:person_event, person: @p1, event: @e1)
-        create(:person_event, person: @p1, event: @e2)
-        create(:person_event, person: @p2, event: @e3)
-        create(:person_event, person: @p2, event: @e4)
-        create(:person_event, person: @p3, event: @e5)
-        create(:person_event, person: @p3, event: @e6)
-
-      end
-
-      it "one person" do
-        events = Event.by_people(@p1.id)
-        expect(events).to be_records(@e1, @e2)
-      end
-
-      it "multiple people" do
-        events = Event.by_people(@p1.id, @p2.id)
-        expect(events).to be_records(@e1, @e2, @e3, @e4)
-      end
+      events = Event.by_people(p1.id, p2.id)
+      expect(events).to be_records(e1, e2, e3, e4)
 
     end
 
@@ -205,7 +194,7 @@ describe Event, type: :model do
 
   describe ".by_occupations()" do
 
-    it "returns events associated with people of a set of occupations" do
+    it "returns events associated with 1+ occupations" do
 
       p1 = create(:person)
       p2 = create(:person)
@@ -243,15 +232,16 @@ describe Event, type: :model do
 
   end
 
-  describe ".by_type()" do
+  describe ".by_types()" do
 
-    it "returns events of a given type" do
+    it "returns events of 1+ types" do
 
       t1 = create(:event_type_with_events)
+      t2 = create(:event_type_with_events)
       create(:event_type_with_events)
 
-      events = Event.by_type(t1.id)
-      expect(events).to be_records(*t1.events)
+      events = Event.by_types(t1.id, t2.id)
+      expect(events).to be_records(*t1.events+t2.events)
 
     end
 

@@ -36,11 +36,11 @@ The API provides information about four basic entity types - events, landmarks, 
 
   - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match events within a given radius of a center point.
 
-  - **`people`** (integer[array]) - Match events that associated with a set of people, identified by ID.
+  - **`people`** (integer[array]) - Match events that associated with one or more people, identified by ID.
 
-  - **`occupations`** (integer) - Match events that associated with people of a given set of occupations, identified by ID.
+  - **`occupations`** (integer) - Match events that associated with people of one or more occupations, identified by ID.
 
-  - **`type`** (integer) - Match events of a given type, identified by ID.
+  - **`types`** (integer) - Match events of one or more types, identified by ID.
 
   - **`source`** (integer) + **`steps`** (integer) - Match events associated with people that are with N genealogical "steps" of a given person (the "source"), identified by ID.
 
