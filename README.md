@@ -26,6 +26,8 @@ The API provides information about four basic entity types - events, landmarks, 
 
 ### `/api/events`
 
+The events endpoint filters events by date, location, person, occupation, or type.
+
 #### Parameters
 
   - **`start_year`** (integer) - Match events that occurred on or after the provided year.
@@ -57,6 +59,8 @@ The API provides information about four basic entity types - events, landmarks, 
 
 ### `/api/landmarks`
 
+The landmarks endpoint provides lists of landmarks, filtered by location or type.
+
 #### Parameters
 
   - **`extent`** (WKT) - Match landmarks that fall inside of an arbitrary polygon.
@@ -67,6 +71,8 @@ The API provides information about four basic entity types - events, landmarks, 
 
 ### `/api/photographs`
 
+The photographs endpoint provides lists of photographs, filtered by location.
+
 #### Parameters
 
   - **`extent`** (WKT) - Match photographs that fall inside of an arbitrary polygon.
@@ -75,76 +81,18 @@ The API provides information about four basic entity types - events, landmarks, 
 
 ### `/api/relation`
 
+The relation endpoint finds the genealogical shortest path that connects two people. The response includes the path itself - the sequence of people from person A to B - as well as an array of "relationships," one for each consecutive pair of people (`spouse`, `parent`, or `child`).
+
 #### Parameters
 
   - **`source`** (integer) + **`target`** (integer) - Return a shortest path between two people, identified by ID.
 
 ### `/api/search`
 
-The search endpoint runs a full-text search (via Solr) against people (first and last name), landmarks (name), and occupations (name). The results are returned as three separate lists of records, each under a top-level key that identified the result type. In the person results, the documents are boosted in Solr according to the number of events associated with the person, which pushes more "important" people towards the top.
+The search endpoint runs a full-text search (via Solr) against people (first and last name), landmarks (name), and occupations (name). The results are returned as three separate lists of records, each under a top-level key that identifies the result type. Each individual hit has a `result` key, which contains the record itself, and a `highlight` key with the hit highlight from Solr.
+
+In the person results, the documents are boosted in Solr according to the number of events associated with the person, which pushes more "important" people towards the top.
 
 #### Parameters
 
   - **`query`** (string) - Search the names of people, landmarks, and occupations.
-
-#### Sample Responses
-
-  - `/api/search?query=shakespeare`
-
-    ```javascript
-    {
-        "people": [
-            {
-                "result": {
-                    "id": 5493,
-                    "family_name": "Shakespeare",
-                    "given_name": "John",
-                    "created_at": "2015-07-15T16:21:01.999Z",
-                    "updated_at": "2015-07-15T16:23:26.305Z",
-                    "sex": "M",
-                    "birth_year": 1530,
-                    "death_year": 1601,
-                    "legacy_id": "I27327",
-                    "birth_est": true,
-                    "death_est": true
-                },
-                "highlight": "John <em>Shakespeare</em>"
-            },
-            {
-                "result": {
-                    "id": 27717,
-                    "family_name": "Shakespeare",
-                    "given_name": "William",
-                    "created_at": "2015-07-15T16:22:05.717Z",
-                    "updated_at": "2015-07-15T16:24:56.811Z",
-                    "sex": "M",
-                    "birth_year": 1564,
-                    "death_year": 1616,
-                    "legacy_id": "I27325",
-                    "birth_est": true,
-                    "death_est": true
-                },
-                "highlight": "William <em>Shakespeare</em>"
-            },
-            {
-                "result": {
-                    "id": 14158,
-                    "family_name": "Barnes",
-                    "given_name": "Hugh Shakespear",
-                    "created_at": "2015-07-15T16:21:26.868Z",
-                    "updated_at": "2015-07-15T16:24:01.330Z",
-                    "sex": "M",
-                    "birth_year": 1853,
-                    "death_year": 1940,
-                    "legacy_id": "I12125",
-                    "birth_est": false,
-                    "death_est": false
-                },
-                "highlight": "Hugh <em>Shakespear</em> Barnes"
-            },
-            // ...
-        ],
-        "landmarks": [],
-        "occupations": []
-    }
-    ```
