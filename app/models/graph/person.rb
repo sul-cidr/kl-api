@@ -137,26 +137,21 @@ class Graph::Person
       .to_a.first
 
     # Postgres ids.
-    pg_ids = r.people.map do |p|
-      p.pg_id
-    end
+    pg_ids = r.people.map(&:pg_id)
 
     # Neo4j ids.
-    node_ids = r.people.map do |p|
-      p.neo_id
-    end
+    n4_ids = r.people.map(&:neo_id)
 
     # Relationship Neo4j ids.
     rel_ids = r.rels.map do |rel|
       [rel.start_node_neo_id, rel.end_node_neo_id]
     end
 
-    # Walk the path IDs in pairs.
-    rels = node_ids
+    # Walk the path ids in pairs.
+    rels = n4_ids
       .each_cons(2)
-      .to_a
-      .each_with_index
-      .map do |(nid1, nid2), i|
+      .map
+      .with_index do |(nid1, nid2), i|
 
       # Get the relationship type.
       type = r.rels[i].rel_type.to_s
