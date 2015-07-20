@@ -34,7 +34,7 @@ The API provides information about four basic entity types - events, landmarks, 
 
   - **`extent`** (WKT) - Match events that fall inside of an arbitrary polygon.
 
-  - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match events that fall within a given distance of a center point.
+  - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match events within a given radius of a center point.
 
   - **`people`** (integer[array]) - Match events that associated with a set of people, identified by ID.
 
@@ -43,3 +43,33 @@ The API provides information about four basic entity types - events, landmarks, 
   - **`type`** (integer) - Match events of a given type, identified by ID.
 
   - **`source`** (integer) + **`steps`** (integer) - Match events associated with people that are with N genealogical "steps" of a given person (the "source"), identified by ID.
+
+### `/api/landmarks`
+
+#### Parameters
+
+  - **`extent`** (WKT) - Match landmarks that fall inside of an arbitrary polygon.
+
+  - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match landmarks within a given radius of a center point.
+
+  - **`type`** (integer) - Match landmarks of a given type, identified by ID.
+
+### `/api/photographs`
+
+#### Parameters
+
+  - **`extent`** (WKT) - Match photographs that fall inside of an arbitrary polygon.
+
+  - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match photographs within a given radius of a center point.
+
+### `/api/relation`
+
+#### Parameters
+
+  - **`source`** (integer) + **`target`** (integer) - Return a shortest path between two people, identified by ID.
+
+### `/api/search`
+
+#### Parameters
+
+  - **`q`** (string) - Search the names of people, landmarks, and occupations.
