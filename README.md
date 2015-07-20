@@ -91,7 +91,7 @@ The search endpoint runs a full-text search (via Solr) against people (first and
 
   - `/api/search?query=shakespeare`
 
-    ```json
+    ```javascript
     {
         "people": [
             {
@@ -142,7 +142,7 @@ The search endpoint runs a full-text search (via Solr) against people (first and
                 },
                 "highlight": "Hugh <em>Shakespear</em> Barnes"
             },
-            ...
+            // ...
         ],
         "landmarks": [],
         "occupations": []
