@@ -1,8 +1,7 @@
 
-json.results do
-  json.array! @results.hits do |hit|
+@results.each do |name, results|
+  json.set! name, results.hits do |hit|
 
-    json.type hit.class_name
     json.result hit.result
 
     # Wrap the highlights in <em>'s.

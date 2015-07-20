@@ -14,15 +14,15 @@ describe API::SearchController, type: :controller do
     it "searches people, landmarks, and occupations" do
 
       p1 = create(:person, given_name: "dog")
-      p2 = create(:person, given_name: "dog")
+      p2 = create(:person, given_name: "dog cat")
       create(:person, given_name: "cat")
 
       l1 = create(:landmark, name: "dog")
-      l2 = create(:landmark, name: "dog")
+      l2 = create(:landmark, name: "dog cat")
       create(:landmark, name: "cat")
 
       o1 = create(:occupation, name: "dog")
-      o2 = create(:occupation, name: "dog")
+      o2 = create(:occupation, name: "dog cat")
       create(:occupation, name: "cat")
 
       Sunspot.commit
