@@ -11,7 +11,7 @@ describe API::RelationController, type: :controller do
 
   describe "GET #index", :neo4j, :quiet do
 
-    it "returns a path from source -> target" do
+    xit "returns a path from source -> target" do
 
       p1 = create(:person)
       p2 = create(:person)
