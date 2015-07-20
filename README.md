@@ -29,20 +29,31 @@ The API provides information about four basic entity types - events, landmarks, 
 #### Parameters
 
   - **`start_year`** (integer) - Match events that occurred on or after the provided year.
+    - `/api/events?start_year=1564`
 
   - **`end_year`** (integer) - Match events that occurred on or before the provided year.
+    - `/api/events?end_year=1616`
 
   - **`extent`** (WKT) - Match events that fall inside of an arbitrary polygon.
+    - `/api/events?extent=POLYGON((0 0, 0 1,1 1,1 0,0 0))`
 
   - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match events within a given radius of a center point.
+    - `/api/events?lon=74.05&lat=40.7&radius=3`
 
-  - **`people`** (integer[array]) - Match events that associated with one or more people, identified by ID.
+  - **`people`** (integer) - Match events that associated with one or more people, identified by ID.
+    - `/api/events?people=1`
+    - `/api/events?people[]=1&people[]=2`
 
   - **`occupations`** (integer) - Match events that associated with people of one or more occupations, identified by ID.
+    - `/api/events?occupations=1`
+    - `/api/events?occupations[]=1&occupations[]=2`
 
   - **`types`** (integer) - Match events of one or more types, identified by ID.
+    - `/api/events?type=1`
+    - `/api/events?type[]=1&type[]=2`
 
   - **`source`** (integer) + **`steps`** (integer) - Match events associated with people that are with N genealogical "steps" of a given person (the "source"), identified by ID.
+    - `/api/events?source=1&steps=3`
 
 ### `/api/landmarks`
 
@@ -52,7 +63,7 @@ The API provides information about four basic entity types - events, landmarks, 
 
   - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match landmarks within a given radius of a center point.
 
-  - **`type`** (integer) - Match landmarks of a given type, identified by ID.
+  - **`types`** (integer) - Match landmarks of a given type, identified by ID.
 
 ### `/api/photographs`
 
