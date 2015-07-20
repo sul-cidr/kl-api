@@ -85,7 +85,7 @@ The relation endpoint finds the genealogical shortest path that connects two peo
 
 #### Parameters
 
-  - **`source`** (integer) + **`target`** (integer) - Return a shortest path between two people, identified by ID.
+  - **`source`** (integer) + **`target`** (integer) - Return a shortest path between two people.
 
 ### `/api/search`
 
