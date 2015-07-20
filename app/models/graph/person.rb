@@ -133,13 +133,34 @@ class Graph::Person
       .match("p=shortestPath((p1)-[*..100]-(p2))")
       .where(p1: { pg_id: id1 })
       .where(p2: { pg_id: id2 })
-      .return("nodes(p) as people")
+      .return("nodes(p) as people, relationships(p) as rels")
+      .to_a.first
 
-    r.to_a.first.people.map do |p|
+    neo_ids = r.people.map do |p|
+      p.neo_id
+    end
+
+    pg_ids = r.people.map do |p|
       p.pg_id
     end
 
-    # TODO: Provide relation types.
+    rel_ids = r.rels.map do |rel|
+      [rel.start_node_neo_id, rel.end_node_neo_id]
+    end
+
+    links = neo_ids.each_cons(2).to_a.each_with_index.map do |(nid1, nid2), i|
+
+      type = r.rels[i].rel_type.to_s
+
+      if rel_ids[i] == [nid1, nid2] || type == "spouse"
+        type
+      else
+        "parent"
+      end
+
+    end
+
+    return pg_ids, links
 
   end
 
