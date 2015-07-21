@@ -12,6 +12,10 @@
 
 require 'rails_helper'
 
-RSpec.describe Monument, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Monument, type: :model do
+
+  describe "indexes" do
+    it { should have_db_index(:lonlat) }
+  end
+
 end
