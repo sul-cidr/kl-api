@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717202625) do
+ActiveRecord::Schema.define(version: 20150721214324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20150717202625) do
   end
 
   add_index "landmarks", ["lonlat"], name: "index_landmarks_on_lonlat", using: :gist
+
+  create_table "monuments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "unveiled_year"
+    t.geometry "lonlat",        limit: {:srid=>0, :type=>"point"}
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "monuments", ["lonlat"], name: "index_monuments_on_lonlat", using: :gist
 
   create_table "occupations", force: :cascade do |t|
     t.string   "name",       null: false
