@@ -9,6 +9,21 @@
 
 require 'rails_helper'
 
-RSpec.describe LandmarkToPerson, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe LandmarkToPerson, type: :model do
+
+  describe "columns" do
+    it { should have_db_column(:landmark_id).with_options(null: false) }
+    it { should have_db_column(:person_id).with_options(null: false) }
+  end
+
+  describe "indexes" do
+    it { should have_db_index([:landmark_id, :person_id]) }
+    it { should have_db_index([:person_id, :landmark_id]) }
+  end
+
+  describe "associations" do
+    it { should belong_to(:landmark) }
+    it { should belong_to(:person) }
+  end
+
 end

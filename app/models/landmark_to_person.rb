@@ -8,4 +8,6 @@
 #
 
 class LandmarkToPerson < ActiveRecord::Base
+  belongs_to :landmark
+  belongs_to :person
 end
