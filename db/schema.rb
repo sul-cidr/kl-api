@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721231603) do
+ActiveRecord::Schema.define(version: 20150721232736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,12 +48,6 @@ ActiveRecord::Schema.define(version: 20150721231603) do
 
   add_index "landmark_to_people", ["landmark_id", "person_id"], name: "index_landmark_to_people_on_landmark_id_and_person_id", using: :btree
   add_index "landmark_to_people", ["person_id", "landmark_id"], name: "index_landmark_to_people_on_person_id_and_landmark_id", using: :btree
-
-  create_table "landmark_types", force: :cascade do |t|
-    t.string "name", null: false
-  end
-
-  add_index "landmark_types", ["name"], name: "index_landmark_types_on_name", unique: true, using: :btree
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
