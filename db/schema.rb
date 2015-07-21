@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721232736) do
+ActiveRecord::Schema.define(version: 20150721233509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20150721232736) do
   add_index "events", ["year"], name: "index_events_on_year", using: :btree
 
   create_table "landmark_to_people", force: :cascade do |t|
-    t.integer "landmark_id"
-    t.integer "person_id"
+    t.integer "landmark_id", null: false
+    t.integer "person_id",   null: false
   end
 
   add_index "landmark_to_people", ["landmark_id", "person_id"], name: "index_landmark_to_people_on_landmark_id_and_person_id", using: :btree
