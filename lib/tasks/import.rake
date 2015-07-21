@@ -12,8 +12,7 @@ runner = Import::Runner.from_steps([
   Import::PersonEventRows,
   Import::EventDates,
   Import::LandmarkRows,
-  Import::RoleRows,
-  Import::MonumentRows,
+  Import::RoleRows
 ])
 
 namespace :db do

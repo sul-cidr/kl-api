@@ -5,9 +5,23 @@ module Import
     @depends = []
 
     def up
-      @DB[:place].where(admin2: "London").each do |p|
-        Landmark.create(name: p[:dbname])
+
+      # Form the CSV path.
+      path = Rails.root.join("data/landmarks.csv")
+
+      CSV.foreach(path, :headers => true) do |row|
+
+        lon = row["Long."].to_f
+        lat = row["Lat."].to_f
+
+        Landmark.create(
+          name: row["Name of monument"],
+          unveiled_year: row["Date of unveiling"],
+          lonlat: GeoHelper.point(lon, lat),
+        )
+
       end
+
     end
 
     def down
