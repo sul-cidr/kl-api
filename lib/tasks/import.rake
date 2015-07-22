@@ -2,7 +2,7 @@
 require_all "./lib/import"
 
 runner = Import::Runner.from_steps([
-  Import::PersonRows,
+  Import::Person,
   Import::OccupationRows,
   Import::OccupationLinks,
   Import::EventRows,
