@@ -16,7 +16,7 @@ module Import
     end
 
     #
-    # Initialize the name -> class map and the up/down dependency graphs.
+    # Map name -> class map and the initialize the dependency graphs.
     #
     def initialize
       @steps = {}
