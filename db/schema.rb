@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721233509) do
+ActiveRecord::Schema.define(version: 20150722000952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20150721233509) do
   add_index "events", ["legacy_id"], name: "index_events_on_legacy_id", unique: true, using: :btree
   add_index "events", ["lonlat"], name: "index_events_on_lonlat", using: :gist
   add_index "events", ["year"], name: "index_events_on_year", using: :btree
-
-  create_table "landmark_to_people", force: :cascade do |t|
-    t.integer "landmark_id", null: false
-    t.integer "person_id",   null: false
-  end
-
-  add_index "landmark_to_people", ["landmark_id", "person_id"], name: "index_landmark_to_people_on_landmark_id_and_person_id", using: :btree
-  add_index "landmark_to_people", ["person_id", "landmark_id"], name: "index_landmark_to_people_on_person_id_and_landmark_id", using: :btree
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
@@ -116,8 +108,6 @@ ActiveRecord::Schema.define(version: 20150721233509) do
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
 
   add_foreign_key "events", "event_types"
-  add_foreign_key "landmark_to_people", "landmarks"
-  add_foreign_key "landmark_to_people", "people"
   add_foreign_key "person_events", "events"
   add_foreign_key "person_events", "people"
   add_foreign_key "person_occupations", "occupations"
