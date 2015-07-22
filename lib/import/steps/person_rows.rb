@@ -1,6 +1,6 @@
 
 module Import
-  class Person < Step
+  class PersonRows < Step
 
     @depends = []
 
