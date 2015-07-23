@@ -14,10 +14,10 @@ module Import
         occupation = Occupation.find_by(name: i[:occu])
 
         # Link person -> occupation.
-        if occupation and person
+        if person and occupation
           PersonOccupation.create(
-            occupation_id: occupation.id,
-            person_id: person.id
+            person: person,
+            occupation: occupation
           )
         end
 

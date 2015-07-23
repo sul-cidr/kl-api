@@ -11,11 +11,11 @@ module Import
         person  = Person.find_by(legacy_id: p[:actor_id])
         event   = Event.find_by(legacy_id: p[:event_id])
 
-        if person and event
+        if role and person and event
           PersonEvent.create(
-            role_id:    role.id,
-            person_id:  person.id,
-            event_id:   event.id,
+            role:    role,
+            person:  person,
+            event:   event,
           )
         end
 
