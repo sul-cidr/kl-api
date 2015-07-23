@@ -1,21 +1,21 @@
 
 module Import
-  class EventType < Step
+  class CreateEventTypes < Step
 
     @depends = []
 
     def up
       @DB[:event].distinct(:type).each do |i|
-        ::EventType.create(name: i[:type])
+        EventType.create(name: i[:type])
       end
     end
 
     def down
-      ::EventType.delete_all
+      EventType.delete_all
     end
 
     def satisfied?
-      ::EventType.count > 0
+      EventType.count > 0
     end
 
   end

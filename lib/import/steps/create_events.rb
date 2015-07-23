@@ -1,14 +1,14 @@
 
 module Import
-  class Event < Step
+  class CreateEvents < Step
 
-    @depends = [EventType]
+    @depends = [CreateEventTypes]
 
     def up
       @DB[:event].each do |row|
 
         @old = row
-        @new = ::Event.new
+        @new = Event.new
 
         set_unchanged_cols
         set_dates
@@ -50,7 +50,7 @@ module Import
     #
     def link_type
 
-      type = ::EventType.find_by(name: @old[:type])
+      type = EventType.find_by(name: @old[:type])
 
       if type
         @new.event_type = type
@@ -59,11 +59,11 @@ module Import
     end
 
     def down
-      ::Event.delete_all
+      Event.delete_all
     end
 
     def satisfied?
-      ::Event.count > 0
+      Event.count > 0
     end
 
   end
