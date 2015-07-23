@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723215513) do
+ActiveRecord::Schema.define(version: 20150723215946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,20 +31,20 @@ ActiveRecord::Schema.define(version: 20150723215513) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.integer  "legacy_id"
-    t.integer  "type_id"
+    t.integer  "event_type_id"
     t.integer  "year"
     t.date     "date"
-    t.geometry "lonlat",      limit: {:srid=>0, :type=>"point"}
+    t.geometry "lonlat",        limit: {:srid=>0, :type=>"point"}
     t.text     "description"
   end
 
   add_index "events", ["date"], name: "index_events_on_date", using: :btree
+  add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
   add_index "events", ["legacy_id"], name: "index_events_on_legacy_id", unique: true, using: :btree
   add_index "events", ["lonlat"], name: "index_events_on_lonlat", using: :gist
-  add_index "events", ["type_id"], name: "index_events_on_type_id", using: :btree
   add_index "events", ["year"], name: "index_events_on_year", using: :btree
 
   create_table "landmarks", force: :cascade do |t|
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20150723215513) do
   add_index "photographs", ["lonlat"], name: "index_photographs_on_lonlat", using: :gist
   add_index "photographs", ["slug"], name: "index_photographs_on_slug", unique: true, using: :btree
 
-  add_foreign_key "events", "event_types", column: "type_id"
+  add_foreign_key "events", "event_types"
   add_foreign_key "person_events", "events"
   add_foreign_key "person_events", "people"
   add_foreign_key "person_occupations", "occupations"

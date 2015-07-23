@@ -45,8 +45,8 @@ class Graph::Person
   def self.index_marriages
 
     # Select "marriage" events.
-    events = Event.joins { type }.where {
-      type.name == "MARR"
+    events = Event.joins { event_type }.where {
+      event_type.name == "MARR"
     }
 
     bar = ProgressBar.new(events.count)
@@ -79,8 +79,8 @@ class Graph::Person
   def self.index_births
 
     # Select "birth" events.
-    events = Event.joins { type }.where {
-      type.name == "BIRT"
+    events = Event.joins { event_type }.where {
+      event_type.name == "BIRT"
     }
 
     bar = ProgressBar.new(events.count)

@@ -7,6 +7,6 @@
 #
 
 class EventType < ActiveRecord::Base
-  has_many :events, foreign_key: "type_id"
+  has_many :events
   validates :name, presence: true, uniqueness: true
 end

@@ -2,16 +2,16 @@
 #
 # Table name: events
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  legacy_id   :integer
-#  type_id     :integer
-#  year        :integer
-#  date        :date
-#  lonlat      :geometry({:srid= point, 0
-#  description :text
+#  id            :integer          not null, primary key
+#  name          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  legacy_id     :integer
+#  event_type_id :integer
+#  year          :integer
+#  date          :date
+#  lonlat        :geometry({:srid= point, 0
+#  description   :text
 #
 
 require 'rails_helper'
@@ -20,7 +20,7 @@ describe Event, type: :model do
 
   describe "indexes" do
     it { should have_db_index(:legacy_id).unique(true) }
-    it { should have_db_index(:type_id) }
+    it { should have_db_index(:event_type_id) }
     it { should have_db_index(:year) }
     it { should have_db_index(:date) }
     it { should have_db_index(:lonlat) }
@@ -33,7 +33,7 @@ describe Event, type: :model do
   describe "associations" do
     it { should have_many(:person_events) }
     it { should have_many(:people).through(:person_events) }
-    it { should belong_to(:type).class_name("EventType") }
+    it { should belong_to(:event_type) }
   end
 
   describe ".after_year()" do
