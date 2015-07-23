@@ -2,18 +2,18 @@
 #
 # Table name: person_events
 #
-#  id        :integer          not null, primary key
-#  person_id :integer          not null
-#  event_id  :integer          not null
-#  role_id   :integer          not null
+#  id            :integer          not null, primary key
+#  person_id     :integer          not null
+#  event_id      :integer          not null
+#  event_role_id :integer          not null
 #
 
 FactoryGirl.define do
 
   factory :person_event do
-    role
     person
     event
+    event_role
   end
 
 end

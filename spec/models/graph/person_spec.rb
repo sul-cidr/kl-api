@@ -62,9 +62,9 @@ describe Graph::Person, :neo4j, :quiet do
 
     before do
       @birth  = create(:event_type, name: "BIRT")
-      @mother = create(:role, name: "mother")
-      @father = create(:role, name: "father")
-      @child  = create(:role, name: "child")
+      @mother = create(:event_role, name: "mother")
+      @father = create(:event_role, name: "father")
+      @child  = create(:event_role, name: "child")
     end
 
     it "links mother, father, and child" do
@@ -75,9 +75,9 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       c = create(:person)
 
-      create(:person_event, person: m, event: e, role: @mother)
-      create(:person_event, person: f, event: e, role: @father)
-      create(:person_event, person: c, event: e, role: @child)
+      create(:person_event, person: m, event: e, event_role: @mother)
+      create(:person_event, person: f, event: e, event_role: @father)
+      create(:person_event, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -103,8 +103,8 @@ describe Graph::Person, :neo4j, :quiet do
       m = create(:person)
       c = create(:person)
 
-      create(:person_event, person: m, event: e, role: @mother)
-      create(:person_event, person: c, event: e, role: @child)
+      create(:person_event, person: m, event: e, event_role: @mother)
+      create(:person_event, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -127,8 +127,8 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       c = create(:person)
 
-      create(:person_event, person: f, event: e, role: @father)
-      create(:person_event, person: c, event: e, role: @child)
+      create(:person_event, person: f, event: e, event_role: @father)
+      create(:person_event, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -151,8 +151,8 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       m = create(:person)
 
-      create(:person_event, person: f, event: e, role: @father)
-      create(:person_event, person: m, event: e, role: @mother)
+      create(:person_event, person: f, event: e, event_role: @father)
+      create(:person_event, person: m, event: e, event_role: @mother)
 
       Graph::Person.index_births
 
