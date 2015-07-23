@@ -11,7 +11,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "creates nodes and relationships for marriages" do
 
-      e = create(:event, event_type: @marriage)
+      e = create(:event, type: @marriage)
 
       p1 = create(:person)
       p2 = create(:person)
@@ -35,8 +35,8 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "skips events with more than / fewer than 2 people" do
 
-      e1 = create(:event, event_type: @marriage)
-      e2 = create(:event, event_type: @marriage)
+      e1 = create(:event, type: @marriage)
+      e2 = create(:event, type: @marriage)
 
       p1 = create(:person)
       p2 = create(:person)
@@ -69,7 +69,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "links mother, father, and child" do
 
-      e = create(:event, event_type: @birth)
+      e = create(:event, type: @birth)
 
       m = create(:person)
       f = create(:person)
@@ -98,7 +98,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "links mother and child" do
 
-      e = create(:event, event_type: @birth)
+      e = create(:event, type: @birth)
 
       m = create(:person)
       c = create(:person)
@@ -122,7 +122,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "links father and child" do
 
-      e = create(:event, event_type: @birth)
+      e = create(:event, type: @birth)
 
       f = create(:person)
       c = create(:person)
@@ -146,7 +146,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     it "skips events with no child" do
 
-      e = create(:event, event_type: @birth)
+      e = create(:event, type: @birth)
 
       f = create(:person)
       m = create(:person)

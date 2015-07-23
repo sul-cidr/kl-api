@@ -20,7 +20,8 @@ class Event < ActiveRecord::Base
 
   has_many :person_events
   has_many :people, :through => :person_events
-  belongs_to :event_type
+
+  belongs_to :type, class_name: :EventType, foreign_key: "event_type_id"
 
   validates :legacy_id, uniqueness: true
 

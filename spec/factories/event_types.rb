@@ -23,7 +23,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |type, ev|
-        create_list(:event, ev.event_count, event_type: type)
+        create_list(:event, ev.event_count, type: type)
       end
 
     end

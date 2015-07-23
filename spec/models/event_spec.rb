@@ -33,7 +33,7 @@ describe Event, type: :model do
   describe "associations" do
     it { should have_many(:person_events) }
     it { should have_many(:people).through(:person_events) }
-    it { should belong_to(:event_type) }
+    it { should belong_to(:type).class_name("EventType") }
   end
 
   describe ".after_year()" do
