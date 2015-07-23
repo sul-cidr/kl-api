@@ -2,16 +2,17 @@
 module Import
   class Event < Step
 
-    @depends = []
+    @depends = [EventType]
 
     def up
       @DB[:event].each do |row|
 
         @old = row
-        @new = ::Event.create
+        @new = ::Event.new
 
         set_unchanged_cols
         set_dates
+        link_type
 
         @new.save
 
@@ -23,8 +24,8 @@ module Import
     #
     def set_unchanged_cols
       @new.attributes = {
-        legacy_id: e[:recno],
-        name: e[:label],
+        legacy_id: @old[:recno],
+        name: @old[:label],
       }
     end
 
@@ -40,6 +41,19 @@ module Import
         @new.date = date
       elsif year
         @new.year = year
+      end
+
+    end
+
+    #
+    # Assign the event to a type.
+    #
+    def link_type
+
+      type = ::EventType.find_by(name: @old[:type])
+
+      if type
+        @new.event_type = type
       end
 
     end
