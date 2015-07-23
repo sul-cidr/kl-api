@@ -2,7 +2,7 @@
 module Import
   class OccupationLinks < Step
 
-    @depends = [PersonRows, OccupationRows]
+    @depends = [Person, OccupationRows]
 
     def up
       @DB[:indiv_occu].each do |i|

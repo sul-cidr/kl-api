@@ -2,7 +2,7 @@
 module Import
   class EventTypeLinks < Step
 
-    @depends = [EventRows, EventTypeRows]
+    @depends = [Event, EventTypeRows]
 
     def up
       @DB[:event].each do |e|
@@ -11,7 +11,7 @@ module Import
         type = EventType.find_by(name: e[:type])
 
         if type
-          Event.find_by(legacy_id: e[:recno]).update(
+          ::Event.find_by(legacy_id: e[:recno]).update(
             event_type_id: type.id
           )
         end
@@ -20,11 +20,11 @@ module Import
     end
 
     def down
-      Event.update_all(event_type_id: nil)
+      ::Event.update_all(event_type_id: nil)
     end
 
     def satisfied?
-      Event.where.not(event_type_id: nil).exists?
+      ::Event.where.not(event_type_id: nil).exists?
     end
 
   end
