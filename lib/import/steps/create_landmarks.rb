@@ -1,6 +1,6 @@
 
 module Import
-  class LandmarkRows < Step
+  class CreateLandmarks < Step
 
     @depends = []
 

@@ -1,6 +1,6 @@
 
 module Import
-  class RoleRows < Step
+  class CreateRoles < Step
 
     @depends = []
 

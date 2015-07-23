@@ -1,6 +1,6 @@
 
 module Import
-  class Person < Step
+  class CreatePeople < Step
 
     @depends = []
 
@@ -8,7 +8,7 @@ module Import
       @DB[:indiv].each do |row|
 
         @old = row
-        @new = ::Person.new
+        @new = Person.new
 
         set_unchanged_cols
         set_birth_death_dates
@@ -53,11 +53,11 @@ module Import
     end
 
     def down
-      ::Person.delete_all
+      Person.delete_all
     end
 
     def satisfied?
-      ::Person.count > 0
+      Person.count > 0
     end
 
   end

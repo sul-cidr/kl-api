@@ -1,6 +1,6 @@
 
 module Import
-  class OccupationRows < Step
+  class CreateOccupations < Step
 
     @depends = []
 

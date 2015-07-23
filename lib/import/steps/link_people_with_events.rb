@@ -1,8 +1,8 @@
 
 module Import
-  class PersonEventRows < Step
+  class LinkPeopleWithEvents < Step
 
-    @depends = [Person, CreateEvents, RoleRows]
+    @depends = [CreatePeople, CreateEvents, CreateRoles]
 
     def up
       @DB[:particip].each do |p|

@@ -4,6 +4,12 @@ require_all "./lib/import"
 runner = Import::Runner.from_steps([
   Import::CreateEvents,
   Import::CreateEventTypes,
+  Import::CreatePeople,
+  Import::CreateLandmarks,
+  Import::CreateOccupations,
+  Import::CreateRoles,
+  Import::LinkPeopleWithOccupations,
+  Import::LinkPeopleWithEvents,
 ])
 
 namespace :db do
