@@ -31,8 +31,8 @@ describe Event, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:person_events) }
-    it { should have_many(:people).through(:person_events) }
+    it { should have_many(:person_event_rels) }
+    it { should have_many(:people).through(:person_event_rels) }
     it { should belong_to(:event_type) }
   end
 
@@ -178,12 +178,12 @@ describe Event, type: :model do
       e5 = create(:event)
       e6 = create(:event)
 
-      create(:person_event, person: p1, event: e1)
-      create(:person_event, person: p1, event: e2)
-      create(:person_event, person: p2, event: e3)
-      create(:person_event, person: p2, event: e4)
-      create(:person_event, person: p3, event: e5)
-      create(:person_event, person: p3, event: e6)
+      create(:person_event_rel, person: p1, event: e1)
+      create(:person_event_rel, person: p1, event: e2)
+      create(:person_event_rel, person: p2, event: e3)
+      create(:person_event_rel, person: p2, event: e4)
+      create(:person_event_rel, person: p3, event: e5)
+      create(:person_event_rel, person: p3, event: e6)
 
       events = Event.by_people(p1.id, p2.id)
       expect(events).to be_records(e1, e2, e3, e4)
@@ -214,16 +214,16 @@ describe Event, type: :model do
       # occupation 1 -> person 1 -> events 1+2.
       # occupation 2 -> person 2 -> events 3+4.
 
-      create(:person_occupation, person: p1, occupation: o1)
-      create(:person_occupation, person: p2, occupation: o2)
-      create(:person_occupation, person: p3, occupation: o3)
+      create(:person_occupation_rel, person: p1, occupation: o1)
+      create(:person_occupation_rel, person: p2, occupation: o2)
+      create(:person_occupation_rel, person: p3, occupation: o3)
 
-      create(:person_event, person: p1, event: e1)
-      create(:person_event, person: p1, event: e2)
-      create(:person_event, person: p2, event: e3)
-      create(:person_event, person: p2, event: e4)
-      create(:person_event, person: p3, event: e5)
-      create(:person_event, person: p3, event: e6)
+      create(:person_event_rel, person: p1, event: e1)
+      create(:person_event_rel, person: p1, event: e2)
+      create(:person_event_rel, person: p2, event: e3)
+      create(:person_event_rel, person: p2, event: e4)
+      create(:person_event_rel, person: p3, event: e5)
+      create(:person_event_rel, person: p3, event: e6)
 
       events = Event.by_occupations(o1.id, o2.id)
       expect(events).to be_records(e1, e2, e3, e4)

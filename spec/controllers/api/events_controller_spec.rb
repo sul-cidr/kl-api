@@ -90,12 +90,12 @@ describe API::EventsController, type: :controller do
         @e5 = create(:event)
         @e6 = create(:event)
 
-        create(:person_event, person: @p1, event: @e1)
-        create(:person_event, person: @p1, event: @e2)
-        create(:person_event, person: @p2, event: @e3)
-        create(:person_event, person: @p2, event: @e4)
-        create(:person_event, person: @p3, event: @e5)
-        create(:person_event, person: @p3, event: @e6)
+        create(:person_event_rel, person: @p1, event: @e1)
+        create(:person_event_rel, person: @p1, event: @e2)
+        create(:person_event_rel, person: @p2, event: @e3)
+        create(:person_event_rel, person: @p2, event: @e4)
+        create(:person_event_rel, person: @p3, event: @e5)
+        create(:person_event_rel, person: @p3, event: @e6)
 
       end
 
@@ -133,16 +133,16 @@ describe API::EventsController, type: :controller do
         # occupation 1 -> person 1 -> events 1+2.
         # occupation 2 -> person 2 -> events 3+4.
 
-        create(:person_occupation, person: @p1, occupation: @o1)
-        create(:person_occupation, person: @p2, occupation: @o2)
-        create(:person_occupation, person: @p3, occupation: @o3)
+        create(:person_occupation_rel, person: @p1, occupation: @o1)
+        create(:person_occupation_rel, person: @p2, occupation: @o2)
+        create(:person_occupation_rel, person: @p3, occupation: @o3)
 
-        create(:person_event, person: @p1, event: @e1)
-        create(:person_event, person: @p1, event: @e2)
-        create(:person_event, person: @p2, event: @e3)
-        create(:person_event, person: @p2, event: @e4)
-        create(:person_event, person: @p3, event: @e5)
-        create(:person_event, person: @p3, event: @e6)
+        create(:person_event_rel, person: @p1, event: @e1)
+        create(:person_event_rel, person: @p1, event: @e2)
+        create(:person_event_rel, person: @p2, event: @e3)
+        create(:person_event_rel, person: @p2, event: @e4)
+        create(:person_event_rel, person: @p3, event: @e5)
+        create(:person_event_rel, person: @p3, event: @e6)
 
       end
 
@@ -192,11 +192,11 @@ describe API::EventsController, type: :controller do
       e4 = create(:event)
       e5 = create(:event)
 
-      create(:person_event, person: p1, event: e1)
-      create(:person_event, person: p2, event: e2)
-      create(:person_event, person: p3, event: e3)
-      create(:person_event, person: p4, event: e4)
-      create(:person_event, person: p5, event: e5)
+      create(:person_event_rel, person: p1, event: e1)
+      create(:person_event_rel, person: p2, event: e2)
+      create(:person_event_rel, person: p3, event: e3)
+      create(:person_event_rel, person: p4, event: e4)
+      create(:person_event_rel, person: p5, event: e5)
 
       n1 = Graph::Person.add_node(p1.id)
       n2 = Graph::Person.add_node(p2.id)

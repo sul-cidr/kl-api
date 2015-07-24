@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: roles
+# Table name: event_roles
 #
 #  id   :integer          not null, primary key
 #  name :string           not null

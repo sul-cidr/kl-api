@@ -28,10 +28,10 @@ describe Person, :type => :model do
   end
 
   describe "associations" do
-    it { should have_many(:person_events) }
-    it { should have_many(:events).through(:person_events) }
-    it { should have_many(:person_occupations) }
-    it { should have_many(:occupations).through(:person_occupations) }
+    it { should have_many(:person_event_rels) }
+    it { should have_many(:events).through(:person_event_rels) }
+    it { should have_many(:person_occupation_rels) }
+    it { should have_many(:occupations).through(:person_occupation_rels) }
   end
 
   describe "solr" do

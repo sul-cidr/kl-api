@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: person_events
+# Table name: person_event_rels
 #
-#  id        :integer          not null, primary key
-#  person_id :integer          not null
-#  event_id  :integer          not null
-#  role_id   :integer          not null
+#  id            :integer          not null, primary key
+#  person_id     :integer          not null
+#  event_id      :integer          not null
+#  event_role_id :integer          not null
 #
 
 require 'rails_helper'
 
-describe PersonEvent, type: :model do
+describe PersonEventRel, type: :model do
 
   describe "columns" do
     it { should have_db_column(:person_id).with_options(null: false) }
