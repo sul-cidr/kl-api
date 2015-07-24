@@ -11,6 +11,9 @@ require "factory_girl_rails"
 require "json_spec"
 require "shoulda/matchers"
 
+# Require import rig.
+require_all "./lib/import"
+
 $sunspot_session = Sunspot.session
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
