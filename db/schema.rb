@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722000952) do
+ActiveRecord::Schema.define(version: 20150724203652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "event_roles", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  add_index "event_roles", ["name"], name: "index_event_roles_on_name", unique: true, using: :btree
 
   create_table "event_types", force: :cascade do |t|
     t.string "name", null: false
@@ -75,9 +81,9 @@ ActiveRecord::Schema.define(version: 20150722000952) do
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree
 
   create_table "person_events", force: :cascade do |t|
-    t.integer "person_id", null: false
-    t.integer "event_id",  null: false
-    t.integer "role_id",   null: false
+    t.integer "person_id",     null: false
+    t.integer "event_id",      null: false
+    t.integer "event_role_id", null: false
   end
 
   add_index "person_events", ["event_id", "person_id"], name: "index_person_events_on_event_id_and_person_id", using: :btree
@@ -100,12 +106,6 @@ ActiveRecord::Schema.define(version: 20150722000952) do
 
   add_index "photographs", ["lonlat"], name: "index_photographs_on_lonlat", using: :gist
   add_index "photographs", ["slug"], name: "index_photographs_on_slug", unique: true, using: :btree
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name", null: false
-  end
-
-  add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
 
   add_foreign_key "events", "event_types"
   add_foreign_key "person_events", "events"

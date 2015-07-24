@@ -11,9 +11,9 @@
 FactoryGirl.define do
 
   factory :person_event do
-    role
     person
     event
+    event_role
   end
 
 end

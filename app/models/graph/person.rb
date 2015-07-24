@@ -89,9 +89,9 @@ class Graph::Person
 
       m, f, c = nil
       event.person_events.each do |pe|
-        m = pe.person if pe.role.name == "mother"
-        f = pe.person if pe.role.name == "father"
-        c = pe.person if pe.role.name == "child"
+        m = pe.person if pe.event_role.name == "mother"
+        f = pe.person if pe.event_role.name == "father"
+        c = pe.person if pe.event_role.name == "child"
       end
 
       next if not c

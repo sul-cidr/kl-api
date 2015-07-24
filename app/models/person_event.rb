@@ -9,7 +9,7 @@
 #
 
 class PersonEvent < ActiveRecord::Base
-  belongs_to :role
   belongs_to :person
   belongs_to :event
+  belongs_to :event_role
 end
