@@ -13,3 +13,4 @@ env:
 before_install:
   - rake neo4j:install[test,community-latest]
   - rake neo4j:config[test,7474]
+  - rake neo4j:start[test]
