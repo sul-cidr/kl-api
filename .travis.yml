@@ -20,3 +20,6 @@ before_script:
   - rake neo4j:install[$NEO4J_VERSION,test]
   - rake neo4j:config[test,7474]
   - rake neo4j:start[test]
+
+  # Install Solr.
+  - rake sunspot:solr:start
