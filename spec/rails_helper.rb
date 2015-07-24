@@ -89,4 +89,19 @@ RSpec.configure do |config|
     Graph::Person.delete_all
   end
 
+  # TODO|dev
+  config.before(:all, :import) do
+
+    # Reset the database.
+    silence_stream(STDERR) do
+      `dropdb kb_legacy_test`
+      `createdb kb_legacy_test`
+    end
+
+    # Source the legacy schema.
+    schema = File.read(Rails.root.join("spec/fixtures/legacy.sql"))
+    LegacyHelper.DB.run(schema)
+
+  end
+
 end
