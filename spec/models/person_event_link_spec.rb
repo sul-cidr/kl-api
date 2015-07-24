@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: person_events
+# Table name: person_event_links
 #
 #  id            :integer          not null, primary key
 #  person_id     :integer          not null
@@ -10,7 +10,7 @@
 
 require 'rails_helper'
 
-describe PersonEvent, type: :model do
+describe PersonEventLink, type: :model do
 
   describe "columns" do
     it { should have_db_column(:person_id).with_options(null: false) }

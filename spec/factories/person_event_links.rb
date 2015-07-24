@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: person_events
+# Table name: person_event_links
 #
 #  id            :integer          not null, primary key
 #  person_id     :integer          not null
@@ -8,8 +8,12 @@
 #  event_role_id :integer          not null
 #
 
-class PersonEvent < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :event
-  belongs_to :event_role
+FactoryGirl.define do
+
+  factory :person_event_link do
+    person
+    event
+    event_role
+  end
+
 end

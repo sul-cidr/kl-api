@@ -16,8 +16,8 @@ describe Graph::Person, :neo4j, :quiet do
       p1 = create(:person)
       p2 = create(:person)
 
-      create(:person_event, person: p1, event: e)
-      create(:person_event, person: p2, event: e)
+      create(:person_event_link, person: p1, event: e)
+      create(:person_event_link, person: p2, event: e)
 
       Graph::Person.index_marriages
 
@@ -43,12 +43,12 @@ describe Graph::Person, :neo4j, :quiet do
       p3 = create(:person)
 
       # 1 people on e1.
-      create(:person_event, person: p1, event: e1)
+      create(:person_event_link, person: p1, event: e1)
 
       # 3 people on e2.
-      create(:person_event, person: p1, event: e2)
-      create(:person_event, person: p2, event: e2)
-      create(:person_event, person: p3, event: e2)
+      create(:person_event_link, person: p1, event: e2)
+      create(:person_event_link, person: p2, event: e2)
+      create(:person_event_link, person: p3, event: e2)
 
       Graph::Person.index_marriages
 
@@ -75,9 +75,9 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       c = create(:person)
 
-      create(:person_event, person: m, event: e, event_role: @mother)
-      create(:person_event, person: f, event: e, event_role: @father)
-      create(:person_event, person: c, event: e, event_role: @child)
+      create(:person_event_link, person: m, event: e, event_role: @mother)
+      create(:person_event_link, person: f, event: e, event_role: @father)
+      create(:person_event_link, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -103,8 +103,8 @@ describe Graph::Person, :neo4j, :quiet do
       m = create(:person)
       c = create(:person)
 
-      create(:person_event, person: m, event: e, event_role: @mother)
-      create(:person_event, person: c, event: e, event_role: @child)
+      create(:person_event_link, person: m, event: e, event_role: @mother)
+      create(:person_event_link, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -127,8 +127,8 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       c = create(:person)
 
-      create(:person_event, person: f, event: e, event_role: @father)
-      create(:person_event, person: c, event: e, event_role: @child)
+      create(:person_event_link, person: f, event: e, event_role: @father)
+      create(:person_event_link, person: c, event: e, event_role: @child)
 
       Graph::Person.index_births
 
@@ -151,8 +151,8 @@ describe Graph::Person, :neo4j, :quiet do
       f = create(:person)
       m = create(:person)
 
-      create(:person_event, person: f, event: e, event_role: @father)
-      create(:person_event, person: m, event: e, event_role: @mother)
+      create(:person_event_link, person: f, event: e, event_role: @father)
+      create(:person_event_link, person: m, event: e, event_role: @mother)
 
       Graph::Person.index_births
 

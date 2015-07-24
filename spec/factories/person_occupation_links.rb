@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: person_events
+# Table name: person_occupation_links
 #
 #  id            :integer          not null, primary key
+#  occupation_id :integer          not null
 #  person_id     :integer          not null
-#  event_id      :integer          not null
-#  event_role_id :integer          not null
 #
 
 FactoryGirl.define do
 
-  factory :person_event do
+  factory :person_occupation_link do
+    occupation
     person
-    event
-    event_role
   end
 
 end

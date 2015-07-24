@@ -17,11 +17,11 @@
 
 class Person < ActiveRecord::Base
 
-  has_many :person_events
-  has_many :events, :through => :person_events
+  has_many :person_event_links
+  has_many :events, :through => :person_event_links
 
-  has_many :person_occupations
-  has_many :occupations, :through => :person_occupations
+  has_many :person_occupation_links
+  has_many :occupations, :through => :person_occupation_links
 
   validates :legacy_id, uniqueness: true
 

@@ -88,7 +88,7 @@ class Graph::Person
     events.each do |event|
 
       m, f, c = nil
-      event.person_events.each do |pe|
+      event.person_event_links.each do |pe|
         m = pe.person if pe.event_role.name == "mother"
         f = pe.person if pe.event_role.name == "father"
         c = pe.person if pe.event_role.name == "child"

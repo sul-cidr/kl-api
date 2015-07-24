@@ -15,7 +15,7 @@ module Import
 
         # Link person -> occupation.
         if person and occupation
-          PersonOccupation.create(
+          PersonOccupationLink.create(
             person: person,
             occupation: occupation
           )
@@ -25,11 +25,11 @@ module Import
     end
 
     def down
-      PersonOccupation.delete_all
+      PersonOccupationLink.delete_all
     end
 
     def satisfied?
-      PersonOccupation.count > 0
+      PersonOccupationLink.count > 0
     end
 
   end

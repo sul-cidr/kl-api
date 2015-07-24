@@ -18,8 +18,8 @@ class Event < ActiveRecord::Base
 
   include GeoSearchable
 
-  has_many :person_events
-  has_many :people, :through => :person_events
+  has_many :person_event_links
+  has_many :people, :through => :person_event_links
   belongs_to :event_type
 
   validates :legacy_id, uniqueness: true
