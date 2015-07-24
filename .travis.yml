@@ -10,6 +10,6 @@ before_script:
   - psql -U postgres -c "CREATE EXTENSION POSTGIS"
 
   # Install Neo4j.
-  - rake neo4j:install[community-latest,test]
+  - rake neo4j:install[community-2.2.3,test]
   - rake neo4j:config[test,7474]
   - rake neo4j:start[test]
