@@ -12,15 +12,7 @@ module Import
     # Set the legacy database connection.
     #
     def initialize
-
-      # Read KB1 params from Rails config.
-      params = Rails.configuration.database_configuration['legacy']
-
-      @DB = Sequel.connect(
-        :adapter => "postgres",
-        **params.symbolize_keys
-      )
-
+      @DB = LegacyHelper.DB
     end
 
     #
