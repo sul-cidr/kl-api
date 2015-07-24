@@ -4,12 +4,19 @@ language: ruby
 rvm:
   - 2.2.2
 
+env:
+  - NEO4J_VERSION=community-2.2.3
+
 before_script:
 
   # Enable PostGIS.
   - psql -U postgres -c "CREATE EXTENSION POSTGIS"
 
+  # Create database, apply Travis config.
+  - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
+  - cp config/database.yml.travis config/database.yml
+
   # Install Neo4j.
-  - rake neo4j:install[community-2.2.3,test]
+  - rake neo4j:install[$NEO4J_VERSION,test]
   - rake neo4j:config[test,7474]
   - rake neo4j:start[test]

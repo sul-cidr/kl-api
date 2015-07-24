@@ -1,0 +1,10 @@
+
+default: &default
+  adapter: postgis
+  encoding: unicode
+  pool: 5
+
+test:
+  <<: *default
+  database: travis_ci_test
+  username: postgres
