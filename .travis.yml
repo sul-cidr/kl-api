@@ -2,7 +2,10 @@
 language: ruby
 
 rvm:
-  - "2.2.2"
+  - 2.2.2
 
 before_script:
   - psql -U postgres -c "CREATE EXTENSION POSTGIS"
+
+services:
+  - neo4j
