@@ -1,9 +1,9 @@
 
-![](https://api.travis-ci.org/sul-cidr/kb-api.svg)
-
 # Kindred Britain JSON API
 
-The Kindred London API is provides data about London-related people, events, landmarks, photographs and genealogical relationships in the Kindred Britain database.
+![](https://api.travis-ci.org/sul-cidr/kb-api.svg)
+
+The Kindred London API provides data about London-related people, events, landmarks, photographs and genealogical relationships in the Kindred Britain database.
 
 ## Project setup
 
