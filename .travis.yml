@@ -7,5 +7,11 @@ rvm:
 before_script:
   - psql -U postgres -c "CREATE EXTENSION POSTGIS"
 
-services:
-  - neo4j
+env:
+    - NEO4J_VERSION="2.2.3"
+
+# Install Neo4j
+before_install:
+  - wget dist.neo4j.org/neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - tar -xzf neo4j-community-$NEO4J_VERSION-unix.tar.gz
+  - neo4j-community-$NEO4J_VERSION/bin/neo4j start
