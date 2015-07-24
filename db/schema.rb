@@ -11,17 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723233832) do
+ActiveRecord::Schema.define(version: 20150722000952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
-
-  create_table "event_roles", force: :cascade do |t|
-    t.string "name", null: false
-  end
-
-  add_index "event_roles", ["name"], name: "index_event_roles_on_name", unique: true, using: :btree
 
   create_table "event_types", force: :cascade do |t|
     t.string "name", null: false
@@ -80,22 +74,22 @@ ActiveRecord::Schema.define(version: 20150723233832) do
 
   add_index "people", ["legacy_id"], name: "index_people_on_legacy_id", unique: true, using: :btree
 
-  create_table "person_event_links", force: :cascade do |t|
-    t.integer "person_id",     null: false
-    t.integer "event_id",      null: false
-    t.integer "event_role_id", null: false
+  create_table "person_events", force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "event_id",  null: false
+    t.integer "role_id",   null: false
   end
 
-  add_index "person_event_links", ["event_id", "person_id"], name: "index_person_event_links_on_event_id_and_person_id", using: :btree
-  add_index "person_event_links", ["person_id", "event_id"], name: "index_person_event_links_on_person_id_and_event_id", using: :btree
+  add_index "person_events", ["event_id", "person_id"], name: "index_person_events_on_event_id_and_person_id", using: :btree
+  add_index "person_events", ["person_id", "event_id"], name: "index_person_events_on_person_id_and_event_id", using: :btree
 
-  create_table "person_occupation_links", force: :cascade do |t|
+  create_table "person_occupations", force: :cascade do |t|
     t.integer "occupation_id", null: false
     t.integer "person_id",     null: false
   end
 
-  add_index "person_occupation_links", ["occupation_id", "person_id"], name: "index_person_occupation_links_on_occupation_id_and_person_id", using: :btree
-  add_index "person_occupation_links", ["person_id", "occupation_id"], name: "index_person_occupation_links_on_person_id_and_occupation_id", using: :btree
+  add_index "person_occupations", ["occupation_id", "person_id"], name: "index_person_occupations_on_occupation_id_and_person_id", using: :btree
+  add_index "person_occupations", ["person_id", "occupation_id"], name: "index_person_occupations_on_person_id_and_occupation_id", using: :btree
 
   create_table "photographs", force: :cascade do |t|
     t.string   "slug",                                          null: false
@@ -107,9 +101,15 @@ ActiveRecord::Schema.define(version: 20150723233832) do
   add_index "photographs", ["lonlat"], name: "index_photographs_on_lonlat", using: :gist
   add_index "photographs", ["slug"], name: "index_photographs_on_slug", unique: true, using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  add_index "roles", ["name"], name: "index_roles_on_name", unique: true, using: :btree
+
   add_foreign_key "events", "event_types"
-  add_foreign_key "person_event_links", "events"
-  add_foreign_key "person_event_links", "people"
-  add_foreign_key "person_occupation_links", "occupations"
-  add_foreign_key "person_occupation_links", "people"
+  add_foreign_key "person_events", "events"
+  add_foreign_key "person_events", "people"
+  add_foreign_key "person_occupations", "occupations"
+  add_foreign_key "person_occupations", "people"
 end

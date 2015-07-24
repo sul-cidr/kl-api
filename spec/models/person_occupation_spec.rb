@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: person_occupation_links
+# Table name: person_occupations
 #
 #  id            :integer          not null, primary key
 #  occupation_id :integer          not null
@@ -9,7 +9,7 @@
 
 require 'rails_helper'
 
-describe PersonOccupationLink, type: :model do
+describe PersonOccupation, type: :model do
 
   describe "columns" do
     it { should have_db_column(:occupation_id).with_options(null: false) }

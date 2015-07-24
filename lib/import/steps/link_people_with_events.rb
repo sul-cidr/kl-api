@@ -12,7 +12,7 @@ module Import
         event   = Event.find_by(legacy_id: p[:event_id])
 
         if role and person and event
-          PersonEventLink.create(
+          PersonEvent.create(
             role:    role,
             person:  person,
             event:   event,
@@ -23,11 +23,11 @@ module Import
     end
 
     def down
-      PersonEventLink.delete_all
+      PersonEvent.delete_all
     end
 
     def satisfied?
-      PersonEventLink.count > 0
+      PersonEvent.count > 0
     end
 
   end

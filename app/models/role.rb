@@ -1,11 +1,12 @@
 # == Schema Information
 #
-# Table name: event_roles
+# Table name: roles
 #
 #  id   :integer          not null, primary key
 #  name :string           not null
 #
 
-class EventRole < ActiveRecord::Base
+
+class Role < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 end

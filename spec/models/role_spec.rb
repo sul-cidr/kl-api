@@ -1,14 +1,15 @@
 # == Schema Information
 #
-# Table name: event_roles
+# Table name: roles
 #
 #  id   :integer          not null, primary key
 #  name :string           not null
 #
 
+
 require 'rails_helper'
 
-describe EventRole, type: :model do
+describe Role, type: :model do
 
   describe "columns" do
     it { should have_db_column(:name).with_options(null: false) }

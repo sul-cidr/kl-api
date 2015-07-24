@@ -1,13 +1,17 @@
 # == Schema Information
 #
-# Table name: person_occupation_links
+# Table name: person_occupations
 #
 #  id            :integer          not null, primary key
 #  occupation_id :integer          not null
 #  person_id     :integer          not null
 #
 
-class PersonOccupationLink < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :occupation
+FactoryGirl.define do
+
+  factory :person_occupation do
+    occupation
+    person
+  end
+
 end
