@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727183329) do
+ActiveRecord::Schema.define(version: 20150727221016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 20150727183329) do
   add_index "person_occupation_rels", ["person_id", "occupation_id"], name: "index_person_occupation_rels_on_person_id_and_occupation_id", using: :btree
 
   create_table "photographs", force: :cascade do |t|
-    t.string   "slug",                                          null: false
     t.geometry "lonlat",     limit: {:srid=>0, :type=>"point"}
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.integer  "flickr_id",  limit: 8,                          null: false
   end
 
+  add_index "photographs", ["flickr_id"], name: "index_photographs_on_flickr_id", unique: true, using: :btree
   add_index "photographs", ["lonlat"], name: "index_photographs_on_lonlat", using: :gist
-  add_index "photographs", ["slug"], name: "index_photographs_on_slug", unique: true, using: :btree
 
   add_foreign_key "events", "event_types"
   add_foreign_key "person_event_rels", "events"

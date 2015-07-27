@@ -3,10 +3,10 @@
 # Table name: photographs
 #
 #  id         :integer          not null, primary key
-#  slug       :string           not null
 #  lonlat     :geometry({:srid= point, 0
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  flickr_id  :integer          not null
 #
 
 require 'rails_helper'
@@ -14,17 +14,17 @@ require 'rails_helper'
 describe Photograph, type: :model do
 
   describe "columns" do
-    it { should have_db_column(:slug).with_options(null: false) }
+    it { should have_db_column(:flickr_id).with_options(null: false) }
   end
 
   describe "indexes" do
-    it { should have_db_index(:slug).unique(true) }
+    it { should have_db_index(:flickr_id).unique(true) }
     it { should have_db_index(:lonlat) }
   end
 
   describe "validations" do
-    it { should validate_presence_of(:slug) }
-    it { should validate_uniqueness_of(:slug) }
+    it { should validate_presence_of(:flickr_id) }
+    it { should validate_uniqueness_of(:flickr_id) }
   end
 
   describe ".in_extent()" do

@@ -3,7 +3,7 @@ json.array! @photographs do |photograph|
   json.extract!(
     photograph,
     :id,
-    :slug,
+    :flickr_id,
     :lonlat,
   )
 end
