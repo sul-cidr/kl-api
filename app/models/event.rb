@@ -12,6 +12,7 @@
 #  date          :date
 #  lonlat        :geometry({:srid= point, 0
 #  description   :text
+#  address       :string
 #
 
 class Event < ActiveRecord::Base

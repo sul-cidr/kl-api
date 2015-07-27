@@ -43,6 +43,7 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'neo4j'
+gem 'geocoder'
 
 group :development, :test do
 
