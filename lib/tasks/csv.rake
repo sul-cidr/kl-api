@@ -1,7 +1,7 @@
 
 namespace :csv do
 
-  desc "Make a photographs CSV for Fusion Tables"
+  desc "Generate a photographs CSV"
   task :photos, [:path] => :environment do |t, args|
 
     path = args.path || "photos.csv"
@@ -13,6 +13,24 @@ namespace :csv do
 
       Photograph.where { lonlat != nil }.each do |p|
         fh << [p.url, p.lonlat.x, p.lonlat.y]
+      end
+
+    end
+
+  end
+
+  desc "Generate an events CSV"
+  task :events, [:path] => :environment do |t, args|
+
+    path = args.path || "events.csv"
+
+    CSV.open(path, "w",
+      :headers => ["name", "longitude", "latitude"],
+      :write_headers => true,
+    ) do |fh|
+
+      Event.where { lonlat != nil }.each do |e|
+        fh << [e.name, e.lonlat.x, e.lonlat.y]
       end
 
     end
