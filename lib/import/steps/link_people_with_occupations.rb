@@ -14,7 +14,7 @@ module Import
         occupation = Occupation.find_by(name: i[:occu])
 
         if person and occupation
-          PersonOccupation.create(
+          PersonOccupationRel.create(
             person: person,
             occupation: occupation
           )
@@ -24,11 +24,11 @@ module Import
     end
 
     def down
-      PersonOccupation.delete_all
+      PersonOccupationRel.delete_all
     end
 
     def satisfied?
-      PersonOccupation.count > 0
+      PersonOccupationRel.count > 0
     end
 
   end
