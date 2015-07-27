@@ -12,7 +12,8 @@ module Import
 
         set_unchanged_cols
         set_dates
-        link_type
+        set_event_type
+        set_address
 
         @new.save
 
@@ -48,12 +49,26 @@ module Import
     #
     # Assign the event to a type.
     #
-    def link_type
+    def set_event_type
 
       type = EventType.find_by(name: @old[:type])
 
       if type
         @new.event_type = type
+      end
+
+    end
+
+    #
+    # Try to find an address for the event.
+    #
+    def set_address
+
+      # Try to find a matching place.
+      place = @DB[:place].where(placeid: @old[:place_id]).first
+
+      if place
+        @new.address = place[:dbname]
       end
 
     end
