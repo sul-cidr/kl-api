@@ -9,10 +9,32 @@ module Import
     @depends = []
 
     #
-    # Set the legacy database connection.
+    # Set the database connection, initialize the progress bar.
     #
     def initialize
+
       @DB = Helpers::Legacy.DB
+
+      if count
+        @bar = ProgressBar.new(count)
+      end
+
+    end
+
+    #
+    # How many items will the step process?
+    #
+    # @return [Integer]
+    #
+    def count
+      nil
+    end
+
+    #
+    # Increment the progress bar.
+    #
+    def increment
+      @bar.increment!
     end
 
     #

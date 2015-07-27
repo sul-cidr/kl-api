@@ -4,6 +4,10 @@ module Import
 
     @depends = [CreateEventTypes]
 
+    def count
+      @DB[:event].count
+    end
+
     def up
       @DB[:event].each do |row|
 
@@ -16,6 +20,7 @@ module Import
         set_address
 
         @new.save
+        increment
 
       end
     end

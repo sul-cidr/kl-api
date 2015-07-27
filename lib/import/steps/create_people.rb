@@ -4,6 +4,10 @@ module Import
 
     @depends = []
 
+    def count
+      @DB[:indiv].count
+    end
+
     def up
       @DB[:indiv].each do |row|
 
@@ -14,6 +18,7 @@ module Import
         set_birth_death_dates
 
         @new.save
+        increment
 
       end
     end
