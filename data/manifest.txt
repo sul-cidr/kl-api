@@ -1,1 +1,2 @@
 monuments.csv
+photographs.csv

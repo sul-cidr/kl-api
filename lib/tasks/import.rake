@@ -8,6 +8,7 @@ runner = Import::Runner.from_steps([
   Import::CreatePeople,
   Import::CreateLandmarks,
   Import::CreateOccupations,
+  Import::CreatePhotographs,
   Import::LinkPeopleWithOccupations,
   Import::LinkPeopleWithEvents,
 ])
