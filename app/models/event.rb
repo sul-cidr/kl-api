@@ -26,6 +26,15 @@ class Event < ActiveRecord::Base
   validates :legacy_id, uniqueness: true
 
   #
+  # Map geocoding results into the PostGIS point column.
+  #
+  geocoded_by :address do |event, results|
+    if geo = results.first
+      event.lonlat = Helpers::Geo.point(geo.longitude, geo.latitude)
+    end
+  end
+
+  #
   # Match events that occur after a given year (inclusive).
   #
   # @param y [Integer]
