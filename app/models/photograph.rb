@@ -10,6 +10,10 @@
 #
 
 class Photograph < ActiveRecord::Base
+
   include GeoSearchable
+
   validates :flickr_id, presence: true, uniqueness: true
+  validates :url, presence: true
+
 end

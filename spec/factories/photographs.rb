@@ -11,11 +11,18 @@
 
 FactoryGirl.define do
 
+  sequence :photograph_flickr_id do |n|
+    n
+  end
+
+  sequence :photograph_url do |n|
+    "http://flickr.com/#{n}"
+  end
+
   factory :photograph do
 
-    sequence :flickr_id do |n|
-      n
-    end
+    flickr_id { generate(:photograph_flickr_id) }
+    url { generate(:photograph_url) }
 
   end
 

@@ -15,6 +15,7 @@ describe Photograph, type: :model do
 
   describe "columns" do
     it { should have_db_column(:flickr_id).with_options(null: false) }
+    it { should have_db_column(:url).with_options(null: false) }
   end
 
   describe "indexes" do
@@ -23,8 +24,10 @@ describe Photograph, type: :model do
   end
 
   describe "validations" do
+    subject { create(:photograph) }
     it { should validate_presence_of(:flickr_id) }
     it { should validate_uniqueness_of(:flickr_id) }
+    it { should validate_presence_of(:url) }
   end
 
   describe ".in_extent()" do
