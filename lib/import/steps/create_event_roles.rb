@@ -1,21 +1,21 @@
 
 module Import
-  class CreateRoles < Step
+  class CreateEventRoles < Step
 
     @depends = []
 
     def up
       @DB[:particip].distinct(:role).each do |r|
-        Role.create(name: r[:role])
+        EventRole.create(name: r[:role])
       end
     end
 
     def down
-      Role.delete_all
+      EventRole.delete_all
     end
 
     def satisfied?
-      Role.count > 0
+      EventRole.count > 0
     end
 
   end
