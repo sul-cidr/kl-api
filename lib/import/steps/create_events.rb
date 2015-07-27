@@ -9,7 +9,9 @@ module Import
     end
 
     def up
-      @DB[:event].each do |row|
+      @DB[:event]
+        .left_outer_join(:place, placeid: :place_id)
+        .each do |row|
 
         @old = row
         @new = Event.new
@@ -17,7 +19,6 @@ module Import
         set_unchanged_cols
         set_dates
         set_event_type
-        set_address
 
         @new.save
         increment
@@ -32,6 +33,7 @@ module Import
       @new.attributes = {
         legacy_id: @old[:recno],
         name: @old[:label],
+        address: @old[:dbname],
       }
     end
 
@@ -60,20 +62,6 @@ module Import
 
       if type
         @new.event_type = type
-      end
-
-    end
-
-    #
-    # Try to find an address for the event.
-    #
-    def set_address
-
-      # Try to find a matching place.
-      place = @DB[:place].where(placeid: @old[:place_id]).first
-
-      if place
-        @new.address = place[:dbname]
       end
 
     end

@@ -2,7 +2,7 @@
 module Import
   class LinkPeopleWithEvents < Step
 
-    @depends = [CreatePeople, CreateEvents, CreateRoles]
+    @depends = [CreatePeople, CreateEvents, CreateEventRoles]
 
     def up
       @DB[:particip].each do |p|
