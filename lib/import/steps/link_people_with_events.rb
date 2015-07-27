@@ -7,9 +7,14 @@ module Import
     def up
       @DB[:particip].each do |p|
 
-        role    = Role.find_by(name: p[:role])
-        person  = Person.find_by(legacy_id: p[:actor_id])
-        event   = Event.find_by(legacy_id: p[:event_id])
+        # Find matching role.
+        role = Role.find_by(name: p[:role])
+
+        # Find matching person.
+        person = Person.find_by(legacy_id: p[:actor_id])
+
+        # Find matching event.
+        event = Event.find_by(legacy_id: p[:event_id])
 
         if role and person and event
           PersonEvent.create(

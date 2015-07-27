@@ -13,7 +13,6 @@ module Import
         # Find matching occupation.
         occupation = Occupation.find_by(name: i[:occu])
 
-        # Link person -> occupation.
         if person and occupation
           PersonOccupation.create(
             person: person,
