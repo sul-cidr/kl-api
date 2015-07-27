@@ -26,12 +26,12 @@ describe Landmark, type: :model do
 
     it "returns landmarks inside of the passed polygon" do
 
-      lm1 = create(:landmark, lonlat: GeoHelper.point(1, 1))
-      lm2 = create(:landmark, lonlat: GeoHelper.point(1, 2))
-      create(:landmark, lonlat: GeoHelper.point(1, 4))
-      create(:landmark, lonlat: GeoHelper.point(1, 5))
+      lm1 = create(:landmark, lonlat: Helpers::Geo.point(1, 1))
+      lm2 = create(:landmark, lonlat: Helpers::Geo.point(1, 2))
+      create(:landmark, lonlat: Helpers::Geo.point(1, 4))
+      create(:landmark, lonlat: Helpers::Geo.point(1, 5))
 
-      extent = GeoHelper.polygon(
+      extent = Helpers::Geo.polygon(
         [0, 0],
         [0, 3],
         [2, 3],
@@ -49,10 +49,10 @@ describe Landmark, type: :model do
 
     it "returns landmarks with a given radius of a point" do
 
-      lm1 = create(:landmark, lonlat: GeoHelper.point(1, 0))
-      lm2 = create(:landmark, lonlat: GeoHelper.point(2, 0))
-      create(:landmark, lonlat: GeoHelper.point(4, 0))
-      create(:landmark, lonlat: GeoHelper.point(5, 0))
+      lm1 = create(:landmark, lonlat: Helpers::Geo.point(1, 0))
+      lm2 = create(:landmark, lonlat: Helpers::Geo.point(2, 0))
+      create(:landmark, lonlat: Helpers::Geo.point(4, 0))
+      create(:landmark, lonlat: Helpers::Geo.point(5, 0))
 
       landmarks = Landmark.in_radius(0, 0, 3)
       expect(landmarks).to be_records(lm1, lm2)

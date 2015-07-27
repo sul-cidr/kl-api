@@ -46,12 +46,12 @@ describe API::EventsController, type: :controller do
 
     it "extent" do
 
-      e1 = create(:event, lonlat: GeoHelper.point(1, 1))
-      e2 = create(:event, lonlat: GeoHelper.point(1, 2))
-      create(:event, lonlat: GeoHelper.point(1, 4))
-      create(:event, lonlat: GeoHelper.point(1, 5))
+      e1 = create(:event, lonlat: Helpers::Geo.point(1, 1))
+      e2 = create(:event, lonlat: Helpers::Geo.point(1, 2))
+      create(:event, lonlat: Helpers::Geo.point(1, 4))
+      create(:event, lonlat: Helpers::Geo.point(1, 5))
 
-      extent = GeoHelper.polygon(
+      extent = Helpers::Geo.polygon(
         [0, 0],
         [0, 3],
         [2, 3],
@@ -65,10 +65,10 @@ describe API::EventsController, type: :controller do
 
     it "lon+lat+radius" do
 
-      e1 = create(:event, lonlat: GeoHelper.point(1, 0))
-      e2 = create(:event, lonlat: GeoHelper.point(2, 0))
-      create(:event, lonlat: GeoHelper.point(4, 0))
-      create(:event, lonlat: GeoHelper.point(5, 0))
+      e1 = create(:event, lonlat: Helpers::Geo.point(1, 0))
+      e2 = create(:event, lonlat: Helpers::Geo.point(2, 0))
+      create(:event, lonlat: Helpers::Geo.point(4, 0))
+      create(:event, lonlat: Helpers::Geo.point(5, 0))
 
       get :index, lon: 0, lat: 0, radius: 3
       expect(response.body).to be_json_records(e1, e2)

@@ -128,12 +128,12 @@ describe Event, type: :model do
 
     it "returns events inside of the passed polygon" do
 
-      e1 = create(:event, lonlat: GeoHelper.point(1, 1))
-      e2 = create(:event, lonlat: GeoHelper.point(1, 2))
-      create(:event, lonlat: GeoHelper.point(1, 4))
-      create(:event, lonlat: GeoHelper.point(1, 5))
+      e1 = create(:event, lonlat: Helpers::Geo.point(1, 1))
+      e2 = create(:event, lonlat: Helpers::Geo.point(1, 2))
+      create(:event, lonlat: Helpers::Geo.point(1, 4))
+      create(:event, lonlat: Helpers::Geo.point(1, 5))
 
-      extent = GeoHelper.polygon(
+      extent = Helpers::Geo.polygon(
         [0, 0],
         [0, 3],
         [2, 3],
@@ -151,10 +151,10 @@ describe Event, type: :model do
 
     it "returns events with a given radius of a point" do
 
-      e1 = create(:event, lonlat: GeoHelper.point(1, 0))
-      e2 = create(:event, lonlat: GeoHelper.point(2, 0))
-      create(:event, lonlat: GeoHelper.point(4, 0))
-      create(:event, lonlat: GeoHelper.point(5, 0))
+      e1 = create(:event, lonlat: Helpers::Geo.point(1, 0))
+      e2 = create(:event, lonlat: Helpers::Geo.point(2, 0))
+      create(:event, lonlat: Helpers::Geo.point(4, 0))
+      create(:event, lonlat: Helpers::Geo.point(5, 0))
 
       events = Event.in_radius(0, 0, 3)
       expect(events).to be_records(e1, e2)

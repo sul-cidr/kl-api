@@ -31,12 +31,12 @@ describe Photograph, type: :model do
 
     it "returns photographs inside of the passed polygon" do
 
-      p1 = create(:photograph, lonlat: GeoHelper.point(1, 1))
-      p2 = create(:photograph, lonlat: GeoHelper.point(1, 2))
-      create(:photograph, lonlat: GeoHelper.point(1, 4))
-      create(:photograph, lonlat: GeoHelper.point(1, 5))
+      p1 = create(:photograph, lonlat: Helpers::Geo.point(1, 1))
+      p2 = create(:photograph, lonlat: Helpers::Geo.point(1, 2))
+      create(:photograph, lonlat: Helpers::Geo.point(1, 4))
+      create(:photograph, lonlat: Helpers::Geo.point(1, 5))
 
-      extent = GeoHelper.polygon(
+      extent = Helpers::Geo.polygon(
         [0, 0],
         [0, 3],
         [2, 3],
@@ -54,10 +54,10 @@ describe Photograph, type: :model do
 
     it "returns photographs with a given radius of a point" do
 
-      p1 = create(:photograph, lonlat: GeoHelper.point(1, 0))
-      p2 = create(:photograph, lonlat: GeoHelper.point(2, 0))
-      create(:photograph, lonlat: GeoHelper.point(4, 0))
-      create(:photograph, lonlat: GeoHelper.point(5, 0))
+      p1 = create(:photograph, lonlat: Helpers::Geo.point(1, 0))
+      p2 = create(:photograph, lonlat: Helpers::Geo.point(2, 0))
+      create(:photograph, lonlat: Helpers::Geo.point(4, 0))
+      create(:photograph, lonlat: Helpers::Geo.point(5, 0))
 
       photos = Photograph.in_radius(0, 0, 3)
       expect(photos).to be_records(p1, p2)

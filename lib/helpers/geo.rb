@@ -1,5 +1,5 @@
 
-module GeoHelper
+module Helpers::Geo
 
   #
   # Alias the cartesian geometry factory.

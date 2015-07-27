@@ -84,6 +84,11 @@ production:
   username: kb
   password: <%= ENV['PG_DATABASE_PASSWORD'] %>
 
+legacy_test:
+  <<: *default
+  adapter: postgresql
+  database: kb_legacy_test
+
 legacy:
   <<: *default
   adapter: postgresql

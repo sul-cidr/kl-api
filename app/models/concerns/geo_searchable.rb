@@ -22,7 +22,7 @@ module GeoSearchable
     # @param radius [Float]
     #
     def in_radius(lon, lat, radius)
-      point = GeoHelper.point(lon, lat)
+      point = Helpers::Geo.point(lon, lat)
       where("ST_DWithin(ST_GeomFromText(?), lonlat, ?)", point.to_s, radius)
     end
 
@@ -41,7 +41,7 @@ module GeoSearchable
       all.each do |row|
 
         # Set a random coordinate.
-        row.lonlat = GeoHelper.point(
+        row.lonlat = Helpers::Geo.point(
           rand(min_lon..max_lon),
           rand(min_lat..max_lat)
         )

@@ -17,7 +17,7 @@ module Import
         Landmark.create(
           name: row["Name of monument"],
           unveiled_year: row["Date of unveiling"],
-          lonlat: GeoHelper.point(lon, lat),
+          lonlat: Helpers::Geo.point(lon, lat),
         )
 
       end
