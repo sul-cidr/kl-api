@@ -37,4 +37,22 @@ namespace :csv do
 
   end
 
+  desc "Generate a landmarks CSV"
+  task :landmarks, [:path] => :environment do |t, args|
+
+    path = args.path || "landmarks.csv"
+
+    CSV.open(path, "w",
+      :headers => ["name", "longitude", "latitude"],
+      :write_headers => true,
+    ) do |fh|
+
+      Landmark.where { lonlat != nil }.each do |l|
+        fh << [l.name, l.lonlat.x, l.lonlat.y]
+      end
+
+    end
+
+  end
+
 end
