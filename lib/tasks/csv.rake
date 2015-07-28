@@ -25,12 +25,12 @@ namespace :csv do
     path = args.path || "events.csv"
 
     CSV.open(path, "w",
-      :headers => ["name", "longitude", "latitude"],
+      :headers => ["name", "address", "longitude", "latitude"],
       :write_headers => true,
     ) do |fh|
 
       Event.where { lonlat != nil }.each do |e|
-        fh << [e.name, e.lonlat.x, e.lonlat.y]
+        fh << [e.name, e.address, e.lonlat.x, e.lonlat.y]
       end
 
     end
