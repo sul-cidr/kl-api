@@ -92,7 +92,7 @@ The relation endpoint finds the genealogical shortest path that connects two peo
 
 ### `/api/search`
 
-The search endpoint runs a full-text search (via Solr) against people (first and last name), landmarks (name), and occupations (name). The results are returned as three separate lists of records, each under a top-level key that identifies the result type. Each individual hit has a `result` key, which contains the record itself, and a `highlight` key with the hit highlight from Solr.
+The search endpoint runs a full-text search (via Solr) against people landmarks, and occupations. The results are returned as three separate lists of records, each under a top-level key that identifies the result type. Each individual hit has a `result` key, which contains the record itself, and a `highlight` key with the hit highlight from Solr.
 
 In the person results, the documents are boosted in Solr according to the number of events associated with the person, which pushes more "important" people towards the top.
 
