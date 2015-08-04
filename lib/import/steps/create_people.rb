@@ -42,7 +42,7 @@ module Import
 
       # Resolve the birth / death years.
       birth_year = @old[:birthyear] || @old[:birth_abt] || @old[:best]
-      death_year = @old[:birthyear] || @old[:birth_abt] || @old[:best]
+      death_year = @old[:deathyear] || @old[:death_abt] || @old[:dest]
 
       # Are the dates exact or approximate?
       birth_est = !!(@old[:birth_abt] || @old[:best])
