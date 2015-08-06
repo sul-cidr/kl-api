@@ -33,10 +33,10 @@ The events endpoint filters events by date, location, person, occupation, or typ
 
 #### Parameters
 
-  - **`start_year`** (integer) - Match events that occurred on or after the provided year.
+  - **`start_year`** (integer) - Match events that occurred during or after the provided year.
     - `/api/events?start_year=1564`
 
-  - **`end_year`** (integer) - Match events that occurred on or before the provided year.
+  - **`end_year`** (integer) - Match events that occurred during or before the provided year.
     - `/api/events?end_year=1616`
 
   - **`extent`** (WKT) - Match events that fall inside of an arbitrary polygon.
