@@ -54,8 +54,7 @@ module Import
     end
 
     def satisfied?
-      #Photograph.count > 0
-      false
+      Photograph.count > 0
     end
 
   end
