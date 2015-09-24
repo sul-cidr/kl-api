@@ -56,4 +56,27 @@
   rake sunspot:solr:start
   ```
 
+1. Create and migrate the API database.
+
+  ```
+  rake db:create
+  rake db:migrate
+  ```
+
 1. Run the test suite with `rake`. If this passes, everything is configured correctly.
+
+1. Download the `landmarks.csv` and `photographs.csv` files and put them in the `/data` directory
+
+1. Import data from the legacy database and flat files.
+
+  ```
+  rake db:import:up
+  ```
+
+1. index genealogical relationships in Neo4j.
+
+  ```
+  rake neo4j:index
+  ```
+
+1. Open a new tab and spin up a development server with `rails s`.
