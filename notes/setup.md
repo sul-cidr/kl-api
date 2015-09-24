@@ -73,10 +73,16 @@
   rake db:import:up
   ```
 
-1. index genealogical relationships in Neo4j. (~10 minutes)
+1. index genealogical relationships in Neo4j. (~15 minutes)
 
   ```
   rake neo4j:index
   ```
 
 1. Open a new tab and spin up a development server with `rails s`.
+
+1. Now, you should be able to hit the REST endpoints described in the README. Eg, in a browser:
+
+  ```
+  http://localhost:3000/api/events?start_year=2000
+  ```
