@@ -1,6 +1,6 @@
 # Environment setup
 
-1. If you don't already have it, install Postgres locally.
+1. Install Postgres.
 
   ```
   brew update
@@ -67,13 +67,13 @@
 
 1. Download the `landmarks.csv` and `photographs.csv` files and put them in the `/data` directory
 
-1. Import data from the legacy database and flat files.
+1. Import data from the legacy database and flat files. (~10 minutes)
 
   ```
   rake db:import:up
   ```
 
-1. index genealogical relationships in Neo4j.
+1. index genealogical relationships in Neo4j. (~10 minutes)
 
   ```
   rake neo4j:index
