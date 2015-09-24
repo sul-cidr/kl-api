@@ -18,7 +18,5 @@
 /tmp
 
 /solr
-/.ruby-version
 /.env
-/spec/fixtures
 /*.csv
