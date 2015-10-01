@@ -6,6 +6,7 @@
   brew update
   brew install postgres
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  brew install postgis
   ```
 
 1. Install rbenv (Ruby version manager) and Ruby 2.2.2:
@@ -15,11 +16,11 @@
   rbenv install 2.2.2
   ```
 
-1. Install Java 7.
+1. Install Java 8.
 
   ```
   brew install caskroom/cask/brew-cask
-  brew cask install java7
+  brew cask install java
   ```
 
 1. Create a local database called `kb_legacy` for the Kindred Britain data.
@@ -46,8 +47,8 @@
   rake neo4j:start[test]
 
   rake neo4j:install[community-2.2.3,development]
-  rake neo4j:config[test,7475]
-  rake neo4j:start[test]
+  rake neo4j:config[development,7475]
+  rake neo4j:start[development]
   ```
 
 1. Install a development Solr server.
