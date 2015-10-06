@@ -11,8 +11,8 @@ module Import
 
       CSV.foreach(path, :headers => true) do |row|
 
-        lon = row["Long."].to_f
-        lat = row["Lat."].to_f
+        lon = row["Lon"].to_f
+        lat = row["Lat"].to_f
 
         Landmark.create(
           name: row["Name of monument"],
