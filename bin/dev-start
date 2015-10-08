@@ -1,0 +1,9 @@
+#!/bin/sh
+
+rake neo4j:config[test,7474]
+rake neo4j:config[development,7475]
+
+rake neo4j:start[test]
+rake neo4j:start[development]
+
+rake sunspot:solr:start

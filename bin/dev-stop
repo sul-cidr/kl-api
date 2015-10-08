@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rake sunspot:solr:stop
+
+rake neo4j:stop[test]
+rake neo4j:stop[development]
