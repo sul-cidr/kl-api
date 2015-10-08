@@ -27,5 +27,18 @@ module Import
 
     end
 
+    #
+    # Open a CSV in the /data directory.
+    #
+    # @param file [String]
+    #
+    def csv(file)
+      CSV.open(
+        Rails.root.join("data/#{file}"),
+        :headers => true,
+        :header_converters => :symbol
+      )
+    end
+
   end
 end
