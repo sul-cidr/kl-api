@@ -21,8 +21,10 @@ module Import
     #
     def set_unchanged_cols
       @new.attributes = {
-        flickr_id: @old[:photo_id],
-        url: @old[:img_orig],
+        flickr_id:  @old[:photo_id],
+        url:        @old[:img_orig],
+        address:    @old[:address],
+        title:      @old[:p_title],
       }
     end
 
