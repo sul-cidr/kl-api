@@ -10,6 +10,7 @@
 #  url        :string           not null
 #  title      :string
 #  address    :string
+#  geocode    :boolean          default(FALSE), not null
 #
 
 FactoryGirl.define do
