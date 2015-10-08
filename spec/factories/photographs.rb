@@ -7,6 +7,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  flickr_id  :integer          not null
+#  url        :string           not null
 #
 
 FactoryGirl.define do

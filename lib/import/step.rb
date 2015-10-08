@@ -1,63 +1,30 @@
 
 module Import
-  class Step
-
-    class << self
-      attr_accessor :depends
-    end
-
-    @depends = []
+  class Step < Vacuum::Step
 
     #
-    # Set the database connection, initialize the progress bar.
+    # Cache a database connection.
     #
     def initialize
-
-      @DB = Helpers::Legacy.DB
-
-      if count
-        @bar = ProgressBar.new(count)
-      end
-
+      super
+      @DB = self.class.DB
     end
 
     #
-    # How many items will the step process?
+    # Connect to the legacy database.
     #
-    # @return [Integer]
+    # @return [Sequel::Database]
     #
-    def count
-      nil
-    end
+    def self.DB
 
-    #
-    # Increment the progress bar.
-    #
-    def increment
-      @bar.increment!
-    end
+      # Read legacy params from Rails config.
+      params = Rails.configuration.database_configuration["legacy"]
 
-    #
-    # Run the import.
-    #
-    def up
-      raise NotImplementedError
-    end
+      Sequel.connect(
+        :adapter => "postgres",
+        **params.symbolize_keys
+      )
 
-    #
-    # Reverse the import.
-    #
-    def down
-      raise NotImplementedError
-    end
-
-    #
-    # Has the import been run?
-    #
-    # @return [Boolean]
-    #
-    def satisfied?
-      raise NotImplementedError
     end
 
   end

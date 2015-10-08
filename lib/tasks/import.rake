@@ -1,7 +1,7 @@
 
-require_all "./lib/import"
+require_all './lib/vacuum', './lib/import'
 
-runner = Import::Runner.from_steps([
+runner = Vacuum::Runner.from_steps([
   Import::CreateEvents,
   Import::CreateEventTypes,
   Import::CreateEventRoles,
@@ -16,14 +16,20 @@ runner = Import::Runner.from_steps([
 namespace :db do
   namespace :import do
 
-    desc "Import data from KB1"
+    desc 'Import data'
     task :up => :environment do
       runner.up
     end
 
-    desc "Roll back an import step"
-    task :down, [:step] => :environment do |t, args|
+    desc 'Roll back import'
+    task :down => :environment do
+      runner.down
+    end
+
+    desc 'Run an individual step'
+    task :run, [:step] => :environment do |t, args|
       runner.down(args.step)
+      runner.up(args.step)
     end
 
   end
