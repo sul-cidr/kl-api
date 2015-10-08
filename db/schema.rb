@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008212959) do
+ActiveRecord::Schema.define(version: 20151008221426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 20151008212959) do
     t.datetime "updated_at",                                    null: false
     t.integer  "flickr_id",  limit: 8,                          null: false
     t.string   "url",                                           null: false
+    t.string   "title"
+    t.string   "address"
   end
 
   add_index "photographs", ["flickr_id"], name: "index_photographs_on_flickr_id", unique: true, using: :btree

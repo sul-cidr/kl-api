@@ -8,6 +8,8 @@
 #  updated_at :datetime         not null
 #  flickr_id  :integer          not null
 #  url        :string           not null
+#  title      :string
+#  address    :string
 #
 
 class Photograph < ActiveRecord::Base
