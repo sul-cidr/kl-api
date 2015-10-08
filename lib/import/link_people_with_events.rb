@@ -37,9 +37,5 @@ module Import
       PersonEventRel.delete_all
     end
 
-    def satisfied?
-      PersonEventRel.count > 0
-    end
-
   end
 end

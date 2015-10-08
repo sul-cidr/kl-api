@@ -2,8 +2,6 @@
 module Import
   class CreatePeople < Step
 
-    @depends = []
-
     def count
       @DB[:indiv].count
     end
@@ -59,10 +57,6 @@ module Import
 
     def down
       Person.delete_all
-    end
-
-    def satisfied?
-      Person.count > 0
     end
 
   end

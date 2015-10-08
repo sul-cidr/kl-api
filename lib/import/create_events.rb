@@ -70,9 +70,5 @@ module Import
       Event.delete_all
     end
 
-    def satisfied?
-      Event.count > 0
-    end
-
   end
 end

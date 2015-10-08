@@ -27,9 +27,5 @@ module Import
       PersonOccupationRel.delete_all
     end
 
-    def satisfied?
-      PersonOccupationRel.count > 0
-    end
-
   end
 end

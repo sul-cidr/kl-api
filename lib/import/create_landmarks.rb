@@ -2,8 +2,6 @@
 module Import
   class CreateLandmarks < Step
 
-    @depends = []
-
     def up
 
       # Form the CSV path.
@@ -26,10 +24,6 @@ module Import
 
     def down
       Landmark.delete_all
-    end
-
-    def satisfied?
-      Landmark.count > 0
     end
 
   end
