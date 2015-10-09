@@ -20,6 +20,6 @@ Geocoder.configure(
   # :distances => :linear    # :spherical or :linear
 
   :lookup => :dstk,
-  :host => ENV["DSTK_HOST"]
+  :host => ENV['DSTK_HOST'],
 
 )

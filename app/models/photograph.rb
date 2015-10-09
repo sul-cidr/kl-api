@@ -25,7 +25,7 @@ class Photograph < ActiveRecord::Base
   #
   geocoded_by :geoquery do |event, results|
     if geo = results.first
-      event.geometry = Helpers::Geo.point(geo.longitude, geo.latitude)
+      event.lonlat = Helpers::Geo.point(geo.longitude, geo.latitude)
     end
   end
 

@@ -15,4 +15,18 @@ namespace :geocode do
 
   end
 
+  desc "Geocode photographs"
+  task :photographs => :environment do
+
+    photos = Photograph.where { needs_coord == true }
+    bar = ProgressBar.new(photos.count)
+
+    photos.each do |photo|
+      photo.geocode
+      photo.save
+      bar.increment!
+    end
+
+  end
+
 end
