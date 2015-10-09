@@ -20,7 +20,6 @@ describe Photograph, type: :model do
   describe "columns" do
     it { should have_db_column(:flickr_id).with_options(null: false) }
     it { should have_db_column(:url).with_options(null: false) }
-    it { should have_db_column(:geocode).with_options(null: false) }
   end
 
   describe "indexes" do

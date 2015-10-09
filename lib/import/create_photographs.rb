@@ -40,6 +40,8 @@ module Import
           point[0].to_f,
           point[1].to_f,
         )
+      else
+        @new.needs_coord = true
       end
 
     end
