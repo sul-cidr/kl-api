@@ -81,4 +81,26 @@ namespace :csv do
 
   end
 
+  desc "Generate CSV with geocoded photos"
+  task :geocoded_photos, [:path] => :environment do |t, args|
+
+    args.with_defaults(path: "geocoded-photos.csv")
+
+    CSV.open(args.path, "w",
+      :headers => ["url", "longitude", "latitude"],
+      :write_headers => true,
+    ) do |fh|
+
+      photos = Photograph.where {
+        (needs_coord == true) & (lonlat != nil)
+      }
+
+      photos.each do |p|
+        fh << [p.url, p.lonlat.x, p.lonlat.y]
+      end
+
+    end
+
+  end
+
 end
