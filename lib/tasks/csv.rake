@@ -86,8 +86,18 @@ namespace :csv do
 
     args.with_defaults(path: 'geocoded-photos.csv')
 
+    headers = [
+      'url',
+      'url_text',
+      'title',
+      'address',
+      'longitude',
+      'latitude',
+      'point',
+    ]
+
     CSV.open(args.path, 'w',
-      :headers => ['url', 'title', 'address', 'longitude', 'latitude'],
+      :headers => headers,
       :write_headers => true,
     ) do |fh|
 
@@ -96,7 +106,15 @@ namespace :csv do
       }
 
       photos.each do |p|
-        fh << [p.url, p.title, p.address, p.lonlat.x, p.lonlat.y]
+        fh << [
+          p.url,
+          p.url,
+          p.title,
+          p.address,
+          p.lonlat.x,
+          p.lonlat.y,
+          "#{p.lonlat.y} #{p.lonlat.x}"
+        ]
       end
 
     end
