@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   #
   # Map geocoding results into the PostGIS point column.
   #
-  geocoded_by :address do |event, results|
+  geocoded_by :address, :lookup => :dstk do |event, results|
     if geo = results.first
       event.lonlat = Helpers::Geo.point(geo.longitude, geo.latitude)
     end

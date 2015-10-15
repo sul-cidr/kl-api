@@ -20,11 +20,14 @@ Geocoder.configure(
   # :units     => :mi,       # :km for kilometers or :mi for miles
   # :distances => :linear    # :spherical or :linear
 
-  lookup: :dstk,
-  timeout: 30,
+  google: {
+    api_key: ENV['GOOGLE_KEY'],
+    use_https: true,
+  },
 
   dstk: {
-    host: ENV['DSTK_HOST']
+    host: ENV['DSTK_HOST'],
+    timeout: 30,
   }
 
 )

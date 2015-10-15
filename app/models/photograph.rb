@@ -23,7 +23,7 @@ class Photograph < ActiveRecord::Base
   #
   # Map geocoding results into the PostGIS point column.
   #
-  geocoded_by :geoquery do |event, results|
+  geocoded_by :geoquery, :lookup => :google do |event, results|
     if geo = results.first
       event.lonlat = Helpers::Geo.point(geo.longitude, geo.latitude)
     end
