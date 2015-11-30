@@ -1,12 +1,12 @@
 
 production:
   type: server_db
-  url: http://localhost:7475
+  url: http://localhost:7474
 
 development:
   type: server_db
-  url: http://localhost:7475
+  url: http://localhost:7474
 
 test:
   type: server_db
-  url: http://localhost:7574
+  url: http://localhost:7575
