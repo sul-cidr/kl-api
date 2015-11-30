@@ -71,3 +71,13 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
 end
+
+group :deployment do
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-npm'
+  gem 'capistrano-passenger'
+  gem 'dlss-capistrano'
+end
