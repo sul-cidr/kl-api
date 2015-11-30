@@ -1,0 +1,12 @@
+
+production:
+  type: server_db
+  url: http://localhost:7475
+
+development:
+  type: server_db
+  url: http://localhost:7475
+
+test:
+  type: server_db
+  url: http://localhost:7574
