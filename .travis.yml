@@ -5,7 +5,7 @@ rvm:
   - 2.2.2
 
 env:
-  - NEO4J_VERSION=community-2.2.3
+  - NEO4J_VERSION=community-2.3.1
 
 notifications:
   email: false
