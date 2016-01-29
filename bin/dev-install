@@ -1,0 +1,6 @@
+#!/bin/sh
+
+NEO4J_VERSION=community-2.2.3
+
+rake neo4j:install[$NEO4J_VERSION,test]
+rake neo4j:install[$NEO4J_VERSION,development]

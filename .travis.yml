@@ -2,7 +2,7 @@
 language: ruby
 
 rvm:
-  - 2.2.2
+  - 2.2.3
 
 env:
   - NEO4J_VERSION=community-2.2.3

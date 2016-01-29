@@ -1,14 +1,17 @@
 #!/usr/bin/env ruby
 require 'pathname'
 
-# path to your application root.
+# Path to your application root.
 APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
 
+NEO4J_VERSION = 'community-2.2.3'
+
 Dir.chdir APP_ROOT do
+
   # This script is a starting point to setup your application.
   # Add necessary setup steps to this file:
 
-  puts "== Installing dependencies =="
+  puts "== Install dependencies =="
   system "gem install bundler --conservative"
   system "bundle check || bundle install"
 
@@ -17,13 +20,29 @@ Dir.chdir APP_ROOT do
   #   system "cp config/database.yml.sample config/database.yml"
   # end
 
-  puts "\n== Preparing database =="
+  puts "\n== Install Neo4j =="
+  system "bin/rake neo4j:install[#{NEO4J_VERSION},test]"
+  system "bin/rake neo4j:install[#{NEO4J_VERSION},development]"
+
+  puts "\n== Configure Neo4j =="
+  system "bin/rake neo4j:config[test,7474]"
+  system "bin/rake neo4j:config[development,7475]"
+
+  puts "\n== Start Neo4j =="
+  system "bin/rake neo4j:start[test]"
+  system "bin/rake neo4j:start[development]"
+
+  puts "\n== Start Solr =="
+  system "bin/rake sunspot:solr:start"
+
+  puts "\n== Prepare database =="
   system "bin/rake db:setup"
 
-  puts "\n== Removing old logs and tempfiles =="
+  puts "\n== Remove old logs and tempfiles =="
   system "rm -f log/*"
   system "rm -rf tmp/cache"
 
-  puts "\n== Restarting application server =="
+  puts "\n== Restart application server =="
   system "touch tmp/restart.txt"
+
 end
