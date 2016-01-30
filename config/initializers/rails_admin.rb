@@ -30,5 +30,8 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    config.main_app_name = 'Kindred London'
+
   end
 end
