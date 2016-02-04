@@ -3,13 +3,13 @@ require 'rails_helper'
 
 describe Graph::Person, :neo4j, :quiet do
 
-  describe ".index_marriages()" do
+  describe '.index_marriages()' do
 
     before do
-      @marriage = create(:event_type, name: "MARR")
+      @marriage = create(:event_type, name: 'MARR')
     end
 
-    it "creates nodes and relationships for marriages" do
+    it 'creates nodes and relationships for marriages' do
 
       e = create(:event, event_type: @marriage)
 
@@ -33,7 +33,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
-    it "skips events with more than / fewer than 2 people" do
+    it 'skips events with more than / fewer than 2 people' do
 
       e1 = create(:event, event_type: @marriage)
       e2 = create(:event, event_type: @marriage)
@@ -58,16 +58,16 @@ describe Graph::Person, :neo4j, :quiet do
 
   end
 
-  describe ".index_births()" do
+  describe '.index_births()' do
 
     before do
-      @birth  = create(:event_type, name: "BIRT")
-      @mother = create(:event_role, name: "mother")
-      @father = create(:event_role, name: "father")
-      @child  = create(:event_role, name: "child")
+      @birth  = create(:event_type, name: 'BIRT')
+      @mother = create(:event_role, name: 'mother')
+      @father = create(:event_role, name: 'father')
+      @child  = create(:event_role, name: 'child')
     end
 
-    it "links mother, father, and child" do
+    it 'links mother, father, and child' do
 
       e = create(:event, event_type: @birth)
 
@@ -96,7 +96,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
-    it "links mother and child" do
+    it 'links mother and child' do
 
       e = create(:event, event_type: @birth)
 
@@ -120,7 +120,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
-    it "links father and child" do
+    it 'links father and child' do
 
       e = create(:event, event_type: @birth)
 
@@ -144,7 +144,7 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
-    it "skips events with no child" do
+    it 'skips events with no child' do
 
       e = create(:event, event_type: @birth)
 
@@ -162,9 +162,9 @@ describe Graph::Person, :neo4j, :quiet do
 
   end
 
-  describe ".kin()" do
+  describe '.kin()' do
 
-    it "returns a path from source -> target" do
+    it 'returns a path from source -> target' do
 
       p1 = create(:person)
       p2 = create(:person)
@@ -204,37 +204,34 @@ describe Graph::Person, :neo4j, :quiet do
       ]
 
       expect(rels).to eq [
-        "child",
-        "child",
-        "spouse",
-        "parent",
-        "parent",
+        'child',
+        'child',
+        'spouse',
+        'parent',
+        'parent',
       ]
 
     end
 
   end
 
-  describe ".bacon()" do
+  describe '.bacon()' do
 
-    it "returns people with N degrees" do
+    it 'returns people with N degrees' do
 
       p1 = create(:person)
       p2 = create(:person)
       p3 = create(:person)
       p4 = create(:person)
-      p5 = create(:person)
 
       n1 = Graph::Person.add_node(p1.id)
       n2 = Graph::Person.add_node(p2.id)
       n3 = Graph::Person.add_node(p3.id)
       n4 = Graph::Person.add_node(p4.id)
-      n5 = Graph::Person.add_node(p5.id)
 
       n1.child << n2
       n2.child << n3
       n3.child << n4
-      n4.child << n5
 
       # 1 degree.
       expect(Graph::Person.bacon(p1.id, 1)).to eq([
@@ -252,14 +249,6 @@ describe Graph::Person, :neo4j, :quiet do
         p2.id,
         p3.id,
         p4.id,
-      ])
-
-      # 4 degrees.
-      expect(Graph::Person.bacon(p1.id, 4)).to eq([
-        p2.id,
-        p3.id,
-        p4.id,
-        p5.id,
       ])
 
     end

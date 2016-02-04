@@ -30,8 +30,6 @@ describe API::BaconController, type: :controller do
       n3.child << n4
       n4.child << n5
 
-      # 3 steps
-
       get :index, source: p1.id, steps: 3
       json = JSON.parse(response.body)
 
