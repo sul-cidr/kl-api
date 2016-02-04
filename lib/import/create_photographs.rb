@@ -57,10 +57,14 @@ module Import
       point = eval(@old['coordinates'])
 
       if point[0] != ''
+
         @new.lonlat = Helpers::Geo.point(
           point[0].to_f,
           point[1].to_f,
         )
+
+        @new.accuracy = 0
+
       else
         @new.needs_coord = true
       end
