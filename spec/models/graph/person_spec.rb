@@ -253,6 +253,32 @@ describe Graph::Person, :neo4j, :quiet do
 
     end
 
+    it 'returns all people for an in-range degree' do
+
+      p1 = create(:person)
+      p2 = create(:person)
+      p3 = create(:person)
+      p4 = create(:person)
+
+      n1 = Graph::Person.add_node(p1.id)
+      n2 = Graph::Person.add_node(p2.id)
+      n3 = Graph::Person.add_node(p3.id)
+      n4 = Graph::Person.add_node(p4.id)
+
+      # n3 -> n2 <- n4
+
+      n1.child << n2
+      n2.child << n3
+      n2.child << n4
+
+      expect(Graph::Person.bacon(p1.id, 2)).to match_array([
+        p2.id,
+        p3.id,
+        p4.id,
+      ])
+
+    end
+
   end
 
 end
