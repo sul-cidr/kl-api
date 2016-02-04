@@ -33,7 +33,7 @@ module KbApi
 
     # Set the Neo4j URL.
     config.neo4j.session_type = :server_db
-    config.neo4j.session_path = ENV['NEO4J_URL']
+    config.neo4j.session_path = 'http://localhost:7475'
 
   end
 end
