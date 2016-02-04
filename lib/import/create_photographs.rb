@@ -8,7 +8,8 @@ module Import
         @old = row
         @new = Photograph.new
 
-        set_unchanged_cols
+        set_core_fields
+        set_permission_fields
         set_lonlat
 
         @new.save
@@ -17,15 +18,29 @@ module Import
     end
 
     #
-    # Set directly-migrated column values.
+    # Set origin / descriptive fields.
     #
-    def set_unchanged_cols
+    def set_core_fields
       @new.attributes = {
-        flickr_id:  @old[:photo_id],
-        url:        @old[:img_orig],
-        address:    @old[:address],
-        title:      @old[:p_title],
+        flickr_id:  @old['photo_id'],
+        url:        @old['img_orig'],
+        address:    @old['address'],
+        title:      @old['p_title'],
       }
+    end
+
+    #
+    # Set copyright / permission fields.
+    #
+    def set_permission_fields
+
+      rights = @old['copyright permission secured'] == 'yes' ?  true : nil
+
+      @new.attributes = {
+        license: @old['license'],
+        copyright_permission: rights,
+      }
+
     end
 
     #
@@ -33,9 +48,9 @@ module Import
     #
     def set_lonlat
 
-      point = eval(@old[:coordinates])
+      point = eval(@old['coordinates'])
 
-      if point[0] != ""
+      if point[0] != ''
         @new.lonlat = Helpers::Geo.point(
           point[0].to_f,
           point[1].to_f,

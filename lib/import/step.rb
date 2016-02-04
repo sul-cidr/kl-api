@@ -18,10 +18,10 @@ module Import
     def self.DB
 
       # Read legacy params from Rails config.
-      params = Rails.configuration.database_configuration["legacy"]
+      params = Rails.configuration.database_configuration['legacy']
 
       Sequel.connect(
-        :adapter => "postgres",
+        :adapter => 'postgres',
         **params.symbolize_keys
       )
 
@@ -36,7 +36,6 @@ module Import
       CSV.open(
         Rails.root.join("data/#{file}"),
         :headers => true,
-        :header_converters => :symbol
       )
     end
 
