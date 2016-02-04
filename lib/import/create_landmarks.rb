@@ -5,15 +5,15 @@ module Import
     def up
 
       # Form the CSV path.
-      path = Rails.root.join("data/landmarks.csv")
+      path = Rails.root.join('data/landmarks.csv')
 
       CSV.foreach(path, :headers => true) do |row|
 
-        lon = row["Lon"].to_f
-        lat = row["Lat"].to_f
+        lon = row['Lon'].to_f
+        lat = row['Lat'].to_f
 
         Landmark.create(
-          name: row["Name of monument"],
+          name: row['Name'],
           unveiled_year: row["Date of unveiling"],
           lonlat: Helpers::Geo.point(lon, lat),
         )
