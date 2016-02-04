@@ -6,12 +6,12 @@ describe API::RelationController, type: :controller do
   render_views
 
   before(:each) do
-    request.headers["Accept"] = "application/json"
+    request.headers['Accept'] = 'application/json'
   end
 
-  describe "GET #index", :neo4j, :quiet do
+  describe 'GET #index', :neo4j, :quiet do
 
-    it "returns a path from source -> target" do
+    it 'returns a path from source -> target' do
 
       p1 = create(:person)
       p2 = create(:person)
@@ -43,7 +43,7 @@ describe API::RelationController, type: :controller do
       json = JSON.parse(response.body)
 
       # Pull out the Person ids.
-      ids = json["people"].map {|p| p["id"] }
+      ids = json['people'].map {|p| p['id'] }
 
       expect(ids).to eq [
         p1.id,
@@ -54,12 +54,12 @@ describe API::RelationController, type: :controller do
         p6.id,
       ]
 
-      expect(json["relationships"]).to eq [
-        "child",
-        "child",
-        "spouse",
-        "parent",
-        "parent",
+      expect(json['relationships']).to eq [
+        'child',
+        'child',
+        'spouse',
+        'parent',
+        'parent',
       ]
 
     end
