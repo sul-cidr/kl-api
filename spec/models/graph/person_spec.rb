@@ -238,7 +238,7 @@ describe Graph::Person, :neo4j, :quiet do
 
       # 1 degree.
       expect(Graph::Person.bacon(p1.id, 1)).to eq([
-        p2.id
+        p2.id,
       ])
 
       # 2 degrees.
