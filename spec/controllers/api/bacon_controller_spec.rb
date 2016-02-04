@@ -11,7 +11,7 @@ describe API::BaconController, type: :controller do
 
   describe 'GET #index', :neo4j, :quiet do
 
-    it 'returns ids for people within N degrees' do
+    it 'returns ids for people within N steps' do
 
       p1 = create(:person)
       p2 = create(:person)
@@ -30,11 +30,15 @@ describe API::BaconController, type: :controller do
       n3.child << n4
       n4.child << n5
 
-      get :index, source: p1.id, degrees: 1
+      # 3 steps
+
+      get :index, source: p1.id, steps: 3
       json = JSON.parse(response.body)
 
       expect(json['people']).to eq [
         p2.id,
+        p3.id,
+        p4.id,
       ]
 
     end

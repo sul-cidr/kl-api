@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     resources :landmarks, only: [:index]
     resources :search, only: [:index]
     resources :relation, only: [:index]
+    resources :bacon, only: [:index]
   end
 
 end

@@ -1,0 +1,2 @@
+
+json.people @ids

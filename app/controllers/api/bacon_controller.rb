@@ -3,7 +3,10 @@ module API
   class BaconController < ApplicationController
 
     def index
-      # TODO
+      @ids = Graph::Person.bacon(
+        params[:source].to_i,
+        params[:steps].to_i,
+      )
     end
 
   end
