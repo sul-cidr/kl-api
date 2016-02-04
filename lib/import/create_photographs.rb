@@ -39,6 +39,7 @@ module Import
       @new.attributes = {
         license: @old['license'],
         copyright_permission: rights,
+        fee: @old['fee?'],
       }
 
     end
