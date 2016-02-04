@@ -34,13 +34,17 @@ module Import
     #
     def set_permission_fields
 
-      rights = @old['copyright permission secured'] == 'yes' ?  true : nil
-
       @new.attributes = {
+
         license: @old['license'],
-        copyright_permission: rights,
-        credit: @old['credit line to include'],
         fee: @old['fee?'],
+        credit: @old['credit line to include'],
+
+        copyright_permission: (
+          @old['copyright permission secured'] == 'yes' ?
+          true : nil
+        ),
+
       }
 
     end
