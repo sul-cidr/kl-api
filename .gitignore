@@ -16,7 +16,8 @@
 /log/*
 !/log/.keep
 /tmp
+/*.csv
 
+/data
 /solr
 /.env
-/*.csv
