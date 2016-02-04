@@ -40,7 +40,7 @@ module Import
         fee: @old['fee?'],
         credit: @old['credit line to include'],
 
-        copyright_permission: (
+        permission: (
           @old['copyright permission secured'] == 'yes' ?
           true : nil
         ),
