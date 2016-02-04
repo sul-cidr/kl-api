@@ -3,7 +3,7 @@ module Import
   class CreatePhotographs < Step
 
     def up
-      csv('photographs.csv').each do |row|
+      csv('photos/master.csv').each do |row|
 
         @old = row
         @new = Photograph.new
