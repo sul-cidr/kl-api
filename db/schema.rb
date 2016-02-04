@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204223144) do
+ActiveRecord::Schema.define(version: 20160204223529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160204223144) do
     t.integer  "license"
     t.boolean  "copyright_permission"
     t.string   "fee"
+    t.string   "credit"
   end
 
   add_index "photographs", ["flickr_id"], name: "index_photographs_on_flickr_id", unique: true, using: :btree
