@@ -29,7 +29,7 @@ module Import
     def set_unchanged_fields
       @new.attributes = {
         title: @old['photo title'],
-        url: 'url',
+        url: @old['Flickr URL'],
       }
     end
 
