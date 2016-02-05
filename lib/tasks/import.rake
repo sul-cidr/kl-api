@@ -9,8 +9,9 @@ runner = Vacuum::Runner.from_steps([
   Import::CreateLandmarks,
   Import::CreateOccupations,
   Import::CreatePhotographs,
-  Import::LinkPeopleWithOccupations,
+  Import::CreateSupplementPhotographs,
   Import::LinkPeopleWithEvents,
+  Import::LinkPeopleWithOccupations,
 ])
 
 namespace :db do
