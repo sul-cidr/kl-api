@@ -11,6 +11,7 @@ module Import
         set_flickr_id
         set_unchanged_fields
         set_lonlat
+        set_permission_fields
 
         @new.save
 
@@ -49,6 +50,22 @@ module Import
           point[1].to_f,
         )
 
+      end
+
+    end
+
+    #
+    # Set copyright / permission fields.
+    #
+    def set_permission_fields
+
+      if @old['permission given'] == 'yes'
+        @new.permission = true
+      end
+
+      if @old['date of permission']
+        parsed = Date.strptime(@old['date of permission'], '%m/%d/%y')
+        @new.permission_date = parsed
       end
 
     end
