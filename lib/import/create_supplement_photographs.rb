@@ -31,6 +31,7 @@ module Import
       @new.attributes = {
         title: @old['photo title'],
         url: @old['Flickr URL'],
+        accuracy: @old['Accuracy'],
       }
     end
 
@@ -47,8 +48,6 @@ module Import
           point[0].to_f,
           point[1].to_f,
         )
-
-        @new.accuracy = 0
 
       end
 
