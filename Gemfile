@@ -46,6 +46,7 @@ gem 'neo4j'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'rails_admin'
+gem 'flickraw'
 
 group :development, :test do
 

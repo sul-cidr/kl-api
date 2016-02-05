@@ -83,6 +83,7 @@ GEM
     faraday_middleware-multi_json (0.0.6)
       faraday_middleware
       multi_json
+    flickraw (0.9.8)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
     geocoder (1.2.9)
@@ -312,6 +313,7 @@ DEPENDENCIES
   colorize
   dotenv-rails
   factory_girl_rails
+  flickraw
   geocoder
   jbuilder (~> 2.0)
   jquery-rails

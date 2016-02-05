@@ -31,8 +31,31 @@ class Photograph < ActiveRecord::Base
   #
   # Download photos from Flickr.
   #
-  def self.harvest
-    puts 'harvest'
+  def self.harvest(delay=0.5)
+
+    bar = ProgressBar.new(all.count)
+
+    all.each do |p|
+
+      begin
+
+        sizes = flickr.photos.getSizes(photo_id: p.flickr_id)
+
+        original = sizes.find do |s|
+          s.label == 'Original'
+        end
+
+        pp original.source
+
+      rescue
+        puts "Missing photo: #{p.flickr_id}"
+      end
+
+      bar.increment!
+      sleep(delay)
+
+    end
+
   end
 
 end
