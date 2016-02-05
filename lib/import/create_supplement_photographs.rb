@@ -10,6 +10,7 @@ module Import
 
         set_flickr_id
         set_unchanged_fields
+        set_lonlat
 
         @new.save
 
@@ -31,6 +32,26 @@ module Import
         title: @old['photo title'],
         url: @old['Flickr URL'],
       }
+    end
+
+    #
+    # Set the coordinate, if provided.
+    #
+    def set_lonlat
+
+      point = @old['co-ordinates'].split(',')
+
+      if point.length == 2 and point[0] != '['
+
+        @new.lonlat = Helpers::Geo.point(
+          point[0].to_f,
+          point[1].to_f,
+        )
+
+        @new.accuracy = 0
+
+      end
+
     end
 
     def down
