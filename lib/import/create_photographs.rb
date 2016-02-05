@@ -65,8 +65,6 @@ module Import
 
         @new.accuracy = 0
 
-      else
-        @new.needs_coord = true
       end
 
     end
