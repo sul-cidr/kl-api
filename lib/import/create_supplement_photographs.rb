@@ -32,6 +32,7 @@ module Import
       @new.attributes = {
         title: @old['photo title'],
         url: @old['Flickr URL'],
+        place: @old['Rough address'],
         accuracy: @old['Accuracy'],
       }
     end
