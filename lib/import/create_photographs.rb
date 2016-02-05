@@ -35,17 +35,19 @@ module Import
     def set_permission_fields
 
       @new.attributes = {
-
         license: @old['license'],
         fee: @old['fee?'],
         credit: @old['credit line to include'],
-
-        permission: (
-          @old['copyright permission secured'] == 'yes' ?
-          true : nil
-        ),
-
       }
+
+      if @old['copyright permission secured'] == 'yes'
+        @new.permission = true
+      end
+
+      if @old['permission date']
+        parsed = Date.strptime(@old['permission date'], '%m/%d/%y')
+        @new.permission_date = parsed
+      end
 
     end
 
