@@ -8,7 +8,7 @@ module Import
         @old = row
         @new = Photograph.new
 
-        set_core_fields
+        set_unchanged_fields
         set_permission_fields
         set_lonlat
 
@@ -20,12 +20,15 @@ module Import
     #
     # Set origin / descriptive fields.
     #
-    def set_core_fields
+    def set_unchanged_fields
       @new.attributes = {
         flickr_id:  @old['photo_id'],
         url:        @old['img_orig'],
         address:    @old['address'],
         title:      @old['p_title'],
+        credit:     @old['credit line to include'],
+        fee:        @old['fee?'],
+        license:    @old['license'],
       }
     end
 
@@ -33,12 +36,6 @@ module Import
     # Set copyright / permission fields.
     #
     def set_permission_fields
-
-      @new.attributes = {
-        license: @old['license'],
-        fee: @old['fee?'],
-        credit: @old['credit line to include'],
-      }
 
       if @old['copyright permission secured'] == 'yes'
         @new.permission = true
