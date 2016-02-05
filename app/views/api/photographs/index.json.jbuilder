@@ -5,6 +5,6 @@ json.array! @photographs do |photograph|
     :id,
     :flickr_id,
     :lonlat,
-    :url,
+    :flickr_url,
   )
 end

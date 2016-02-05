@@ -39,8 +39,5 @@ module Import
 
     end
 
-    def down
-    end
-
   end
 end

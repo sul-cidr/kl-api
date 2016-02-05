@@ -38,14 +38,14 @@ module Vacuum
     # Run the step.
     #
     def up
-      raise NotImplementedError
+      # no-op
     end
 
     #
     # Revert the step.
     #
     def down
-      raise NotImplementedError
+      # no-op
     end
 
     #
