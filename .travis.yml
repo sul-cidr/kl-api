@@ -19,6 +19,10 @@ before_script:
   - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
   - cp config/database.yml.travis config/database.yml
 
+  # Load the schema.
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
+
   # Install Neo4j.
   - rake neo4j:install[$NEO4J_VERSION,test]
   - rake neo4j:config[test,7474]
