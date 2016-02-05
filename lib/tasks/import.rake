@@ -2,16 +2,21 @@
 require_all './lib/vacuum', './lib/import'
 
 runner = Vacuum::Runner.from_steps([
+
   Import::CreateEvents,
   Import::CreateEventTypes,
   Import::CreateEventRoles,
   Import::CreatePeople,
   Import::CreateLandmarks,
   Import::CreateOccupations,
+
   Import::CreatePhotographs,
   Import::CreateSupplementPhotographs,
+  Import::ApplyPhotographCorrections,
+
   Import::LinkPeopleWithEvents,
   Import::LinkPeopleWithOccupations,
+
 ])
 
 namespace :db do

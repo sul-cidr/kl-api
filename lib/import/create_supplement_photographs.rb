@@ -2,6 +2,8 @@
 module Import
   class CreateSupplementPhotographs < Step
 
+    @depends = [CreatePhotographs]
+
     def up
       csv('photos/supplement.csv').each do |row|
 
