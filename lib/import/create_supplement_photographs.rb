@@ -30,10 +30,11 @@ module Import
     #
     def set_unchanged_fields
       @new.attributes = {
-        title: @old['photo title'],
-        url: @old['Flickr URL'],
-        place: @old['Rough address'],
-        accuracy: @old['Accuracy'],
+        title:      @old['photo title'],
+        legacy_id:  @old['KB Association'],
+        url:        @old['Flickr URL'],
+        accuracy:   @old['Accuracy'],
+        place:      @old['Rough address'],
       }
     end
 
