@@ -40,3 +40,12 @@ namespace :db do
 
   end
 end
+
+namespace :photos do
+
+  desc 'Harvest photos from Flickr'
+  task :harvest => :environment do
+    Photograph.harvest
+  end
+
+end

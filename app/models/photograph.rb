@@ -28,4 +28,11 @@ class Photograph < ActiveRecord::Base
   validates :flickr_id, presence: true, uniqueness: true
   validates :flickr_url, presence: true
 
+  #
+  # Download photos from Flickr.
+  #
+  def self.harvest
+    puts 'harvest'
+  end
+
 end
