@@ -24,6 +24,7 @@ module Import
       @new.attributes = {
         flickr_id:  @old['photo_id'],
         flickr_url: @old['url_flickr'],
+        image_url:  @old['img_orig'],
         address:    @old['address'],
         title:      @old['p_title'],
         credit:     @old['credit line to include'],
