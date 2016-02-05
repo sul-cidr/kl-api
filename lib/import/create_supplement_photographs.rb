@@ -35,6 +35,7 @@ module Import
         url:        @old['Flickr URL'],
         accuracy:   @old['Accuracy'],
         place:      @old['Rough address'],
+        notes:      @old['notes'],
       }
     end
 
