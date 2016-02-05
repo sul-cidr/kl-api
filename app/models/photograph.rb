@@ -28,20 +28,4 @@ class Photograph < ActiveRecord::Base
   validates :flickr_id, presence: true, uniqueness: true
   validates :flickr_url, presence: true
 
-  #
-  # Map geocoding results into the PostGIS point column.
-  #
-  geocoded_by :geoquery, :lookup => :google do |event, results|
-    if geo = results.first
-      event.lonlat = Helpers::Geo.point(geo.longitude, geo.latitude)
-    end
-  end
-
-  #
-  # Form a geocoding query.
-  #
-  def geoquery
-    address or "#{title}, London"
-  end
-
 end
