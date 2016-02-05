@@ -23,7 +23,7 @@ module Import
     def set_unchanged_fields
       @new.attributes = {
         flickr_id:  @old['photo_id'],
-        url:        @old['url_flickr'],
+        flickr_url: @old['url_flickr'],
         address:    @old['address'],
         title:      @old['p_title'],
         credit:     @old['credit line to include'],

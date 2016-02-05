@@ -7,7 +7,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  flickr_id       :integer          not null
-#  url             :string           not null
+#  flickr_url      :string           not null
 #  title           :string
 #  address         :string
 #  license         :integer
@@ -18,6 +18,7 @@
 #  permission_date :date
 #  place           :string
 #  legacy_id       :string
+#  notes           :text
 #
 
 FactoryGirl.define do

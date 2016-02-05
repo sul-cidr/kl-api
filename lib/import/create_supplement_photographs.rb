@@ -32,7 +32,7 @@ module Import
       @new.attributes = {
         title:      @old['photo title'],
         legacy_id:  @old['KB Association'],
-        url:        @old['Flickr URL'],
+        flickr_url: @old['Flickr URL'],
         accuracy:   @old['Accuracy'],
         place:      @old['Rough address'],
         notes:      @old['notes'],

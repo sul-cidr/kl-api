@@ -7,7 +7,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  flickr_id       :integer          not null
-#  url             :string           not null
+#  flickr_url      :string           not null
 #  title           :string
 #  address         :string
 #  license         :integer
@@ -18,6 +18,7 @@
 #  permission_date :date
 #  place           :string
 #  legacy_id       :string
+#  notes           :text
 #
 
 class Photograph < ActiveRecord::Base
@@ -25,7 +26,7 @@ class Photograph < ActiveRecord::Base
   include GeoSearchable
 
   validates :flickr_id, presence: true, uniqueness: true
-  validates :url, presence: true
+  validates :flickr_url, presence: true
 
   #
   # Map geocoding results into the PostGIS point column.
