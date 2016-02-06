@@ -67,7 +67,7 @@ class Photograph < ActiveRecord::Base
         end
 
       rescue
-        puts "Missing photo: #{p.flickr_id}"
+        puts "Failed: #{p.flickr_id}"
       end
 
       bar.increment!
