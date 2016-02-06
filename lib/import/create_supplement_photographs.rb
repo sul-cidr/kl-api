@@ -75,9 +75,5 @@ module Import
 
     end
 
-    def down
-      Photograph.delete_all
-    end
-
   end
 end

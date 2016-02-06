@@ -23,19 +23,25 @@ namespace :db do
   namespace :import do
 
     desc 'Import data'
-    task :up => :environment do
-      runner.up
+    task :up, [:step] => :environment do |t, args|
+      args.with_defaults(step: nil)
+      runner.up(args.step)
     end
 
     desc 'Roll back import'
-    task :down => :environment do
-      runner.down
+    task :down, [:step] => :environment do |t, args|
+      args.with_defaults(step: nil)
+      runner.down(args.step)
     end
 
     desc 'Run an individual step'
     task :run, [:step] => :environment do |t, args|
+
+      args.with_defaults(step: nil)
+
       runner.down(args.step)
       runner.up(args.step)
+
     end
 
   end
