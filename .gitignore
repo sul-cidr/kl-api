@@ -19,5 +19,6 @@
 /*.csv
 
 /data
+/public/images/*.jpg
 /solr
 /.env

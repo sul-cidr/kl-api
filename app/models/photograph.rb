@@ -39,21 +39,40 @@ class Photograph < ActiveRecord::Base
 
       begin
 
+        # Download the file.
+
         sizes = flickr.photos.getSizes(photo_id: p.flickr_id)
-        exif = flickr.photos.getExif(photo_id: p.flickr_id)
 
         original = sizes.find do |s|
           s.label == 'Original'
         end
 
-        pp original.source
-        pp exif
+        path = Rails.public_path.join("images/#{p.flickr_id}.jpg")
+
+        File.open(path, 'wb') do |f|
+          f.print(open(original.source).read)
+        end
+
+        # Set the coordinate, if missing.
+
+        if not p.lonlat
+
+          geo = flickr.photos.geo.getLocation(photo_id: p.flickr_id)
+
+          p.lonlat = Helpers::Geo.point(
+            geo.location.longitude.to_f,
+            geo.location.latitude.to_f,
+          )
+
+        end
 
       rescue
         puts "Missing photo: #{p.flickr_id}"
       end
 
       bar.increment!
+
+      # Throttle.
       sleep(delay)
 
     end
