@@ -40,12 +40,14 @@ class Photograph < ActiveRecord::Base
       begin
 
         sizes = flickr.photos.getSizes(photo_id: p.flickr_id)
+        exif = flickr.photos.getExif(photo_id: p.flickr_id)
 
         original = sizes.find do |s|
           s.label == 'Original'
         end
 
         pp original.source
+        pp exif
 
       rescue
         puts "Missing photo: #{p.flickr_id}"
