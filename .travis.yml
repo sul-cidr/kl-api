@@ -20,13 +20,13 @@ before_script:
   - cp config/database.yml.travis config/database.yml
 
   # Install Neo4j.
-  - rake neo4j:install[$NEO4J_VERSION,test]
-  - rake neo4j:config[test,7474]
-  - rake neo4j:start[test]
+  - bundle exec rake neo4j:install[$NEO4J_VERSION,test]
+  - bundle exec rake neo4j:config[test,7474]
+  - bundle exec rake neo4j:start[test]
 
   # Install Solr.
-  - rake sunspot:solr:start
+  - bundle exec rake sunspot:solr:start
 
   # Load the schema.
-  - rake db:schema:load
-  - rake db:test:prepare
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
