@@ -10,14 +10,14 @@ class Graph::Person
 
   has_one(
     :both, :spouse,
-    model_class: "Person",
+    model_class: "Graph::Person",
     type: "spouse",
     unique: true
   )
 
   has_many(
     :out, :child,
-    model_class: "Person",
+    model_class: "Graph::Person",
     type: "child",
     unique: true
   )
