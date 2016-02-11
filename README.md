@@ -72,6 +72,14 @@ The relation endpoint finds the genealogical shortest path that connects two peo
 
   - **`source`** (integer) + **`target`** (integer) - Return a shortest path between two people.
 
+### `/api/bacon`
+
+The bacon endpoint provides a set of ids for people who are within N "hops" of a given person in the genealogical graph.
+
+#### Parameters
+
+  - **`source`** (integer) + **`steps`** (integer) - Return a set of person ids with N steps.
+
 ### `/api/search`
 
 The search endpoint runs a full-text search (via Solr) against people landmarks, and occupations. The results are returned as three separate lists of records, each under a top-level key that identifies the result type. Each individual hit has a `result` key, which contains the record itself, and a `highlight` key with the hit highlight from Solr.
