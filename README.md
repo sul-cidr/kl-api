@@ -1,5 +1,5 @@
 
-# Kindred Britain JSON API
+# Kindred London JSON API
 
 [![](https://api.travis-ci.org/sul-cidr/kb-api.svg)](https://travis-ci.org/sul-cidr/kb-api)
 
