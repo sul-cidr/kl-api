@@ -19,6 +19,7 @@ describe EventType, type: :model do
   end
 
   describe "validations" do
+    subject { create(:event_type) }
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
   end

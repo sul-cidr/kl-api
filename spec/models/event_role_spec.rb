@@ -19,6 +19,7 @@ describe EventRole, type: :model do
   end
 
   describe "validations" do
+    subject { create(:event_role) }
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
   end
