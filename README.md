@@ -64,6 +64,14 @@ The photographs endpoint provides lists of photographs, filtered by location.
 
   - **`lon`** (float) + **`lat`** (float) + **`radius`** (float) - Match photographs within a radius of a center point.
 
+### `/api/people/:id`
+
+The person endpoint provides all information about an individual person, including their occupations and life events.
+
+#### Parameters
+
+  - **`id`** (integer) - The person primary key.
+
 ### `/api/relation`
 
 The relation endpoint finds the genealogical shortest path that connects two people. The response includes the path itself - the sequence of people from person A to B - as well as an array of "relationships," one for each consecutive pair of people (`spouse`, `parent`, or `child`).
