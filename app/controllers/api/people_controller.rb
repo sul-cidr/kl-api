@@ -7,7 +7,7 @@ module API
     end
 
     def show
-      @person = People.find_by(id: params[:id])
+      @person = Person.find_by(id: params[:id])
     end
 
   end
