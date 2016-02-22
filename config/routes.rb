@@ -58,13 +58,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   namespace :api do
-    resources :people, only: [:index]
-    resources :events, only: [:index]
-    resources :photographs, only: [:index]
-    resources :landmarks, only: [:index]
-    resources :search, only: [:index]
-    resources :relation, only: [:index]
-    resources :bacon, only: [:index]
+    resources :people
+    resources :events
+    resources :photographs
+    resources :landmarks
+    resources :search
+    resources :relation
+    resources :bacon
   end
 
 end
