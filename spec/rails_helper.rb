@@ -93,6 +93,11 @@ RSpec.configure do |config|
     Graph::Person.delete_all
   end
 
+  # Request JSON response.
+  config.before(:each, :json) do
+    request.headers["Accept"] = "application/json"
+  end
+
   # Render views in controller specs.
   config.render_views
 

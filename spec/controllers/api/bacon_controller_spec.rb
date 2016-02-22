@@ -1,11 +1,7 @@
 
 require 'rails_helper'
 
-describe API::BaconController, type: :controller do
-
-  before(:each) do
-    request.headers['Accept'] = 'application/json'
-  end
+describe API::BaconController, :json, type: :controller do
 
   describe 'GET #index', :neo4j, :quiet do
 

@@ -1,11 +1,7 @@
 
 require 'rails_helper'
 
-describe API::EventsController, type: :controller do
-
-  before(:each) do
-    request.headers["Accept"] = "application/json"
-  end
+describe API::EventsController, :json, type: :controller do
 
   describe "GET #index" do
 

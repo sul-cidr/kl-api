@@ -1,11 +1,7 @@
 
 require 'rails_helper'
 
-describe API::PhotographsController, type: :controller do
-
-  before(:each) do
-    request.headers["Accept"] = "application/json"
-  end
+describe API::PhotographsController, :json, type: :controller do
 
   describe "GET #index" do
 

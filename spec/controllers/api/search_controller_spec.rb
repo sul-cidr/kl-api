@@ -1,11 +1,7 @@
 
 require 'rails_helper'
 
-describe API::SearchController, type: :controller do
-
-  before(:each) do
-    request.headers["Accept"] = "application/json"
-  end
+describe API::SearchController, :json, type: :controller do
 
   describe "GET #index", :solr do
 
