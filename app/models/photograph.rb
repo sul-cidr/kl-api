@@ -47,7 +47,7 @@ class Photograph < ActiveRecord::Base
           s.label == 'Original'
         end
 
-        path = Rails.public_path.join("images/#{p.flickr_id}.jpg")
+        path = Rails.public_path.join("photos/#{p.flickr_id}.jpg")
 
         File.open(path, 'wb') do |f|
           f.print(open(original.source).read)
