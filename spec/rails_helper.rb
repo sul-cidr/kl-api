@@ -93,6 +93,9 @@ RSpec.configure do |config|
     Graph::Person.delete_all
   end
 
+  # Render views in controller specs.
+  config.render_views
+
 end
 
 

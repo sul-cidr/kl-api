@@ -3,8 +3,6 @@ require 'rails_helper'
 
 describe API::BaconController, type: :controller do
 
-  render_views
-
   before(:each) do
     request.headers['Accept'] = 'application/json'
   end
