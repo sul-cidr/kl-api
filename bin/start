@@ -1,0 +1,18 @@
+#!/bin/sh
+
+NEO4J_VERSION=community-2.2.3
+
+# Install Neo4j
+rake neo4j:install[$NEO4J_VERSION,test]
+rake neo4j:install[$NEO4J_VERSION,development]
+
+# Configure Neo4j
+rake neo4j:config[test,7474]
+rake neo4j:config[development,7475]
+
+# Start Neo4j
+rake neo4j:start[test]
+rake neo4j:start[development]
+
+# Start Solr
+rake sunspot:solr:start
