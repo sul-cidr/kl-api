@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223163225) do
+ActiveRecord::Schema.define(version: 20160223173429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,9 +122,7 @@ ActiveRecord::Schema.define(version: 20160223163225) do
     t.string   "legacy_id"
     t.text     "notes"
     t.string   "image_url"
-    t.string   "fsize_url"
-    t.string   "thumb_url"
-    t.boolean  "harvested"
+    t.string   "harvested_url"
   end
 
   add_index "photographs", ["flickr_id"], name: "index_photographs_on_flickr_id", unique: true, using: :btree

@@ -54,20 +54,14 @@ class Photograph < ActiveRecord::Base
 
         sizes = flickr.photos.getSizes(photo_id: p.flickr_id)
 
-        fsize = sizes.find {|s| s.label == 'Large' }
-        thumb = sizes.find {|s| s.label == 'Large Square' }
-
-        fsize_path = photos.join("#{p.flickr_id}.jpg")
-        thumb_path = photos.join("#{p.flickr_id}-thumb.jpg")
-
-        # Fullsize
-        File.open(fsize_path, 'wb') do |f|
-          f.print(open(fsize.source).read)
+        original = sizes.find do |s|
+          s.label == 'Original'
         end
 
-        # Thumbnail
-        File.open(thumb_path, 'wb') do |f|
-          f.print(open(thumb.source).read)
+        path = photos.join("#{p.flickr_id}.jpg")
+
+        File.open(path, 'wb') do |f|
+          f.print(open(original.source).read)
         end
 
         # Set the coordinate, if missing.
@@ -83,13 +77,11 @@ class Photograph < ActiveRecord::Base
 
         end
 
-        p.fsize_url = fsize.source
-        p.thumb_url = thumb.source
-        p.harvested = true
+        p.harvested_url = original.source
 
-      rescue
+      rescue => error
         puts "Failed: #{p.flickr_id}"
-        p.harvested = false
+        pp error
       end
 
       p.save!
