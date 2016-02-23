@@ -33,6 +33,13 @@ class Photograph < ActiveRecord::Base
   #
   def self.harvest(delay=0.5)
 
+    photos = Rails.public_path.join('photos')
+
+    # Create the directory.
+    unless File.directory?(photos)
+      FileUtils.mkdir_p(photos)
+    end
+
     bar = ProgressBar.new(all.count)
 
     all.each do |p|
@@ -43,14 +50,20 @@ class Photograph < ActiveRecord::Base
 
         sizes = flickr.photos.getSizes(photo_id: p.flickr_id)
 
-        original = sizes.find do |s|
-          s.label == 'Original'
+        fsize = sizes.find {|s| s.label == 'Large' }
+        thumb = sizes.find {|s| s.label == 'Large Square' }
+
+        fsize_path = photos.join("#{p.flickr_id}.jpg")
+        thumb_path = photos.join("#{p.flickr_id}-thumb.jpg")
+
+        # Fullsize
+        File.open(fsize_path, 'wb') do |f|
+          f.print(open(fsize.source).read)
         end
 
-        path = Rails.public_path.join("photos/#{p.flickr_id}.jpg")
-
-        File.open(path, 'wb') do |f|
-          f.print(open(original.source).read)
+        # Thumbnail
+        File.open(thumb_path, 'wb') do |f|
+          f.print(open(thumb.source).read)
         end
 
         # Set the coordinate, if missing.
