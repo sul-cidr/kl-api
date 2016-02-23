@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160223173429) do
     t.text     "notes"
     t.string   "image_url"
     t.string   "harvested_url"
+    t.boolean  "harvested"
   end
 
   add_index "photographs", ["flickr_id"], name: "index_photographs_on_flickr_id", unique: true, using: :btree

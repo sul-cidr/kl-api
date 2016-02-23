@@ -35,7 +35,7 @@ class Photograph < ActiveRecord::Base
   #
   # Download photos from Flickr.
   #
-  def self.harvest(delay=0.5)
+  def self.harvest()
 
     photos = Rails.public_path.join('photos')
 
@@ -44,9 +44,9 @@ class Photograph < ActiveRecord::Base
       FileUtils.mkdir_p(photos)
     end
 
-    bar = ProgressBar.new(all.count)
+    where{harvested == nil}.order{id}.each do |p|
 
-    all.each do |p|
+      puts p.id
 
       begin
 
@@ -78,17 +78,18 @@ class Photograph < ActiveRecord::Base
         end
 
         p.harvested_url = original.source
+        p.harvested = true
 
       rescue => error
+
         puts "Failed: #{p.flickr_id}"
         pp error
+
+        p.harvested = false
+
       end
 
       p.save!
-      bar.increment!
-
-      # Throttle.
-      sleep(delay)
 
     end
 
