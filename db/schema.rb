@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223173429) do
+ActiveRecord::Schema.define(version: 20160223185651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,10 +56,43 @@ ActiveRecord::Schema.define(version: 20160223173429) do
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.geometry "lonlat",     limit: {:srid=>0, :type=>"point"}
-    t.integer  "start_year"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.geometry "lonlat",             limit: {:srid=>0, :type=>"point"}
+    t.integer  "opened"
+    t.string   "opened_qualifier"
+    t.integer  "closed"
+    t.string   "closed_qualifier"
+    t.string   "location_qualifier"
+    t.string   "address_name"
+    t.string   "address_street"
+    t.string   "address_type"
+    t.string   "address_postal"
+    t.integer  "priority"
+    t.string   "kb_association"
+    t.string   "also_known_as"
+    t.string   "category"
+    t.string   "notes"
+    t.string   "architect"
+    t.string   "artist"
+    t.string   "denomination"
+    t.string   "monument_type"
+    t.string   "physical_type"
+    t.string   "monument_subject"
+    t.string   "monument_sphere_1"
+    t.string   "monument_sphere_2"
+    t.string   "monument_sphere_3"
+    t.string   "monument_patronage"
+    t.string   "monument_legend"
+    t.string   "person_dates"
+    t.string   "research_questions"
+    t.string   "branch"
+    t.string   "kb_tag"
+    t.string   "kb_subtag"
+    t.string   "kb_extra_tag"
+    t.string   "court_type"
+    t.string   "railway_line"
+    t.string   "drama_category"
   end
 
   add_index "landmarks", ["lonlat"], name: "index_landmarks_on_lonlat", using: :gist
