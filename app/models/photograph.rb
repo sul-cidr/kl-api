@@ -83,10 +83,16 @@ class Photograph < ActiveRecord::Base
 
         end
 
+        p.fsize_url = fsize.source
+        p.thumb_url = thumb.source
+        p.harvested = true
+
       rescue
         puts "Failed: #{p.flickr_id}"
+        p.harvested = false
       end
 
+      p.save!
       bar.increment!
 
       # Throttle.
