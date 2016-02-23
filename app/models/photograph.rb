@@ -19,6 +19,10 @@
 #  place           :string
 #  legacy_id       :string
 #  notes           :text
+#  image_url       :string
+#  fsize_url       :string
+#  thumb_url       :string
+#  exists          :boolean
 #
 
 class Photograph < ActiveRecord::Base
