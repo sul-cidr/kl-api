@@ -22,7 +22,7 @@
 #  image_url       :string
 #  fsize_url       :string
 #  thumb_url       :string
-#  exists          :boolean
+#  harvested       :boolean
 #
 
 FactoryGirl.define do
